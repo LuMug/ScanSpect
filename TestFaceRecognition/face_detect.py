@@ -4,7 +4,7 @@ import face_recognition
 import math
 
 # Get a reference to webcam 
-video_capture = cv2.VideoCapture(0)
+video_capture = cv2.VideoCapture(1)
 
 # Calculate left or top coords of the movement square
 def calculateLeftOrTopMovement(leftOrTopFace, areaMovement, areaFace):
