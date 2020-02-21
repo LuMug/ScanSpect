@@ -17,11 +17,26 @@
 
 
 ##  Problemi riscontrati e soluzioni adottate
-Lista dei problemi riscontrati:
+#### Lista dei problemi riscontrati:
 
-- Delay della web con codice del creatore della libreria:  [ Codice creatore  ](https://github.com/ageitgey/face_recognition)
+1. Delay della web con codice del creatore della libreria:  [ Codice creatore  ](https://github.com/ageitgey/face_recognition)
 
-	Liste & array dinamice su python.
+2. Il contatore delle persone non funziona in modo contatore, perché conta il nummero di persone per frame.
+![Contatore persone](img/Codice_conta_persone.png)
+Output:
+![Console funzione conta persone](img/Console_conta_persone.png)
+
+
+3.	Probelmi con le liste e con gli array dinamiche su python.
+
+#### Soluzioni
+
+1. Abbiamo cambiato codice di base e questo ci ha peromesso di avere meno delay della Webcam con un incremneto dell'rang  sulla distanza.[ Codice ](https://www.analyticsvidhya.com/blog/2018/12/introduction-face-detection-video-deep-learning-python/)
+
+2. Soluzioni applicabili:
+		- soluzione con formula matematica
+		- assegnazione di un colore per ogni persona
+3.  
 
 ##  Punto della situazione rispetto alla pianificazione
 
