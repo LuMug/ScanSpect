@@ -14,7 +14,7 @@ In questo progetto si dovrà creare un prgoramma che permette di contare le per
 L’obiettivo principale è quello di riuscire a contare quante persone sono passate davanti a una webcam.
 
 #### Mandato:
-Mandato: [QdC_SecondoSemestre-ScanSpect.pdf](muggiasca_qdc_scanspect.pdf)
+Mandato: [QdC_SecondoSemestre-ScanSpect.pdf](Documenti/muggiasca_qdc_scanspect.pdf)
 
 #### Struttura:
 - [Codice](Src/)
