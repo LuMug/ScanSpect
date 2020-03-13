@@ -172,8 +172,8 @@
 
 
 
-  |**ID**	|**Nome**			|**Descrizione**|**Priorità**|**Vers**|**Note**  |
-  |----|------------|--------|----|------|
+  |**ID**|**Nome**|**Descrizione**|**Priorità**|**Vers**|**Note**|
+  |----|------------|--------|----|----------|------|
   |Req-01|Utilizzo di librerie esterne|Devono essere utilizzate delle librerie esterne per poter contare le facce delle persone.|1|1.0|...|
   |Req-02|Multipiattaforma|L'applicativo o il sito deve essere utilizzabile su qualsiasi piattaforma (Windows, Linux e MacOS).|1|1.0|...|
   |Req-03|Registrazione orario di visita|Deve essere registrato l'orario di visita di ogni persona che viene rilevata dalla webcam.|1|1.0|...|
