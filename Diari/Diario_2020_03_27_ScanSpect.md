@@ -1,5 +1,5 @@
 # ScanSpect | Diario di lavoro
-##### André Da Silva, Alessandro Aloise, Nathan luè
+##### André Da Silva, Alessandro Aloise, Nathan Luè
 ### Centro Professionale Trevano, 27.03.2020
 
 ## Lavori svolti
@@ -7,23 +7,31 @@
 
 |Orario        |Lavoro svolto                           |
 |--------------|----------------------------------------|
-|08:20 - 08:40 | Riunione per organizzare la giornata   |
-|08:40 - 11:35 | Discussione della struttura del sito web e del software               |
-|13:15 - 14:45 | <b>Tutti</b>: Creazione xml  e discussione         |
+|08:20 - 08:40 | <b>Tutti</b>: Riunione per organizzare la giornata   |
+|08:40 - 11:35 | <b>Tutti</b>: Ricerca e consulenza per definire la struttura degli "hardware" del progetto (client, WebServer)               |
+|13:15 - 14:45 | <b>Tutti</b>: Ricerca di datasets per poter creare il file xml e vari test         |
 |15:00 - 16:30 | <b>Nathan</b>: Documentazione<br><b>André</b>: Creazione nuovo dataset haarClassifier xml    |
 |16:20 - 16:30 | <b>Alessandro</b>:   Scrittura diario.    |
 
 ##  Problemi riscontrati e soluzioni adottate
 
-- Abbiamo riscontrato moltissimi probemi prima con Django perché non sapevamo come renderlo compatibile con infomaniak, quindi abbiamo pensato di passare a web2py ma anche li abbiamo riscontato molti probemi e abbiamo convolto il professore Geo Petrini che ci ha aiutati con lo schema sottostante e cosi facendo abbiamo risolto il problema della compatibilità.
-[ schema  ](..\Screens\schema.png)
+- Abbiamo avuto qualche problema nel decidere la struttura del progetto. Inizialmente abbiamo optato per Django (Web Framework) che permette di essere utilizzato sopra un WebServer. Dopo averci smanettato un po' ci siamo resi conto che Infomaniak non lo supporta.
+<br>
+Dopo una ricerca abbiamo provato ad utilizzare Web2Py (anch'esso un Web Framework), ma dopo un'attenta documentazione ci siamo resi conto che in realtà non era ciò che serviva a noi.
+<br>
+Infine abbiamo chiesto consulenza al professor Geo Petrini, che ci ha fatto ragionare su uno schema molto più semplice da capire.
+<br>
+Così facendo abbiamo risolto i problemi di compatibilità tra infomaniak ed il nostro applicativo.
 
-- Abbiamo riscontato anche un problema con la creazione dell'xml per via del training che non funzionava e quindi abbiamo dovuto cercare delle foto negative per poter sistemare questo errore.  
+![Schema struttura](..\Screens\schema.png)
+
+- Abbiamo inoltre riscontrato qualche problema con la creazione dell'xml che contiene le informazioni necessarie per compiere il riconoscimento dei volti. Abbiamo bisogno di un dataset più grande di immagini per evitare di perdere "il contatto" con una faccia (in questo momento succede molto spesso). Il problema è trovarlo.
 
 ##  Punto della situazione rispetto alla pianificazione
 
-- In orario.
+- Corretta.
 
 ## Programma di massima per la prossima giornata di lavoro
 
-Sviluppo sito + risolvere i problemi con i file xml del software.
+- Iniziare a strutturare il progetto secondo lo [schema](..\Screens\schema.png) sviluppato.
+- Risolvere i problemi legati al dataset troppo piccolo.
