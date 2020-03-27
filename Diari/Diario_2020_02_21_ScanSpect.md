@@ -1,5 +1,5 @@
 # ScanSpect | Diario di lavoro
-##### André Da Silva, Alessandro Aloise, Nathan luè
+##### André Da Silva, Alessandro Aloise, Nathan Luè
 ### Centro Professionale Trevano, 21.02.2020
 
 ## Lavori svolti
