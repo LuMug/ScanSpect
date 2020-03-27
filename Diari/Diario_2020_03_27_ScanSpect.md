@@ -23,7 +23,7 @@ Infine abbiamo chiesto consulenza al professor Geo Petrini, che ci ha fatto ragi
 <br>
 Così facendo abbiamo risolto i problemi di compatibilità tra infomaniak ed il nostro applicativo.
 
-![Schema struttura](..\Screens\schema.png)
+![Schema struttura](../Screens/schema.png)
 
 - Abbiamo inoltre riscontrato qualche problema con la creazione dell'xml che contiene le informazioni necessarie per compiere il riconoscimento dei volti. Abbiamo bisogno di un dataset più grande di immagini per evitare di perdere "il contatto" con una faccia (in questo momento succede molto spesso). Il problema è trovarlo.
 
