@@ -15,12 +15,9 @@
 
 ##  Problemi riscontrati e soluzioni adottate
 
-- Abbiamo avuto qualche problema nel decidere la struttura del progetto. Inizialmente abbiamo optato per Django (Web Framework) che permette di essere utilizzato sopra un WebServer. Dopo averci smanettato un po' ci siamo resi conto che Infomaniak non lo supporta.
-<br>
-Dopo una ricerca abbiamo provato ad utilizzare Web2Py (anch'esso un Web Framework), ma dopo un'attenta documentazione ci siamo resi conto che in realtà non era ciò che serviva a noi.
-<br>
-Infine abbiamo chiesto consulenza al professor Geo Petrini, che ci ha fatto ragionare su uno schema molto più semplice da capire.
-<br>
+- Abbiamo avuto qualche problema nel decidere la struttura del progetto. Inizialmente abbiamo optato per Django (Web Framework) che permette di essere utilizzato sopra un WebServer. Dopo averci smanettato un po' ci siamo resi conto che Infomaniak non lo supporta.<br>
+Dopo una ricerca abbiamo provato ad utilizzare Web2Py (anch'esso un Web Framework), ma dopo un'attenta documentazione ci siamo resi conto che in realtà non era ciò che serviva a noi.<br>
+Infine abbiamo chiesto consulenza al professor Geo Petrini, che ci ha fatto ragionare su uno schema molto più semplice da capire.<br>
 Così facendo abbiamo risolto i problemi di compatibilità tra infomaniak ed il nostro applicativo.
 
 ![Schema struttura](../Screens/schema.png)
