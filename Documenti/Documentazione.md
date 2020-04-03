@@ -9,7 +9,7 @@
 1. [Analisi](#analisi)
 
   - [Analisi del dominio](#analisi-del-dominio)
-  
+
   - [Analisi dei mezzi](#analisi-dei-mezzi)
 
   - [Analisi e specifica dei requisiti](#analisi-e-specifica-dei-requisiti)
@@ -61,7 +61,7 @@
 
 ### Abstract
 
-  Al giorno d'oggi è molto importante avere dei dati che permettono di capire quanto una cosa sia piaciuta alle persone che l'hanno vista. Questo progetto permette di avere un riscontro esaustivo sulla presenza delle persone ad uno stand. Grazie a grafici e dati precisi, il programma, permetterà di sapere quante persone hanno visitato lo stand, in che ora, qual è la fascia oraria con più visite e molto altro. Con questo semplice progetto non è più necessario utilizzare complicati ed obsoleti metodi, grazie a ScanSpect i dati sono nelle tue mani. 
+  Al giorno d'oggi è molto importante avere dei dati che permettono di capire quanto una cosa sia piaciuta alle persone che l'hanno vista. Questo progetto permette di avere un riscontro esaustivo sulla presenza delle persone ad uno stand. Grazie a grafici e dati precisi, il programma, permetterà di sapere quante persone hanno visitato lo stand, in che ora, qual è la fascia oraria con più visite e molto altro. Con questo semplice progetto non è più necessario utilizzare complicati ed obsoleti metodi, grazie a ScanSpect i dati sono nelle tue mani.
 
   >*Nowadays it is very important to have data that allow you to understand how much a person liked it. This project allows you to have an exhaustive feedback on the presence of people at a stand. Thanks to precise graphics and data, the program will allow you to know how many people visited the stand, at what time, what is the time slot with the most visits and much more. With this simple project it is no longer necessary to use complicated and obsolete methods, thanks to ScanSpect the data are in your hands.*
 
@@ -159,8 +159,8 @@
   |Req-12|Composizione delle statistiche analizzate|Le statistiche dovranno visualizzare nel tempo la frequenza di passaggio allo stand, sia giornalmente che in determinate fasce orarie.|1|1.0|...|
   |Req-13|Comparazione con celebrità|Deve essere presente la possibilità di comparare la faccia di un utente con un dataset di facce di celebrità e ritornare quella più simile.|2|1.0|...|
 
-  
-  
+
+
 
 
 
@@ -253,6 +253,13 @@ Descrive:
     dati* (DFD).
 
 -   Eventuale sitemap
+
+![Schema struttura](../Screens/Gantt.png)
+Come si può vedere dall'imagine soprastante questo é il Gantt. 
+
+
+![Schema struttura](../Screens/schema.png)
+Nell'immagine soprastante viene rappresentata la struttura delle sistema del progetto. Si avvia il programma da pc in locale e dalla schermata grafica si hanno due possibilità o collegarsi in locale o collegare collegarsi online con un account personale.Se si sceglierà il coleggamento in locale i dati verrano salvati in un database sulla macchina invece se si seleziona l'altra voce i dati saranno caricati sul proprio profilo online e accessibili tramite nome utente e password.
 
 ### Design dei dati e database
 
