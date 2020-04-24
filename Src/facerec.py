@@ -1,123 +1,111 @@
-import face_recognition
-import cv2
-import numpy as np
-
-# This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
-# other example, but it includes some basic performance tweaks to make things run a lot faster:
-#   1. Process each video frame at 1/4 resolution (though still display it at full resolution)
-#   2. Only detect faces in every other frame of video.
-
-# PLEASE NOTE: This example requires OpenCV (the `cv2` library) to be installed only to read from your webcam.
-# OpenCV is *not* required to use the face_recognition library. It's only required if you want to run this
-# specific demo. If you have trouble installing it, try any of the other demos that don't require it instead.
-
-# Get a reference to webcam #0 (the default one)
-video_capture = cv2.VideoCapture(0)
+# Import required modules
+import cv2 as cv
+import math
+import time
+import argparse
+import mysql.connector
+import os 
 
 
-# Load a sample picture and learn how to recognize it.
-obama_image = face_recognition.load_image_file("obama.jpg")
-obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
-
-# Load a second sample picture and learn how to recognize it.
-#trump_image = face_recognition.load_image_file("trump.jpg")
-#trump_face_encoding = face_recognition.face_encodings(trump_image)[0]
-
-#for x in range(5):
-#andre_image = face_recognition.load_image_file("Andre1.jpg")
-#andre_face_encoding = face_recognition.face_encodings(andre_image)[0]
-
-nath_image = face_recognition.load_image_file("Nath1.jpg")
-nath_face_encoding = face_recognition.face_encodings(nath_image)[0]
+#---------- Accesso al database + dichiarazione cursore ----------------------
+mydb = mysql.connector.connect(
+host="localhost",
+user="root",
+passwd="root"
+)
+cursor = mydb.cursor()
+#-----------------------------------------------------------------------------
 
 
+def createDatabase():
+
+    cursor.execute("SHOW DATABASES LIKE 'ScanSpect'")
+    results = 0
+    for x in cursor:
+        results+=1
+    if results == 0:
+        cursor.execute("DROP DATABASE IF EXISTS ScanSpect")
+        cursor.execute("CREATE DATABASE ScanSpect")
+        cursor.execute("USE ScanSpect")
+        cursor.execute("DROP TABLE IF EXISTS persone")
+        cursor.execute("CREATE TABLE persone (ora date,persone INTEGER(32))")
+        mydb.commit()
 
 
+def addDataToDb(date,nPersons):
+
+    #Inserimento dati nel Database
+    cursor.execute("USE ScanSpect")
+    sql = "INSERT INTO persone(ora,persone) VALUES (%s,%s)"
+    val = (date,nPersons)
+    cursor.execute(sql,val)
+    mydb.commit()
+    mydb.close()
+    
+
+def getFaceBox(net, frame, conf_threshold=0.7):
+    frameOpencvDnn = frame.copy()
+    frameHeight = frameOpencvDnn.shape[0]
+    frameWidth = frameOpencvDnn.shape[1]
+    blob = cv.dnn.blobFromImage(frameOpencvDnn, 1.0, (300, 300), [104, 117, 123], True, False)
+
+    net.setInput(blob)
+    detections = net.forward()
+    bboxes = []
+    for i in range(detections.shape[2]):
+        confidence = detections[0, 0, i, 2]
+        if confidence > conf_threshold:
+            x1 = int(detections[0, 0, i, 3] * frameWidth)
+            y1 = int(detections[0, 0, i, 4] * frameHeight)
+            x2 = int(detections[0, 0, i, 5] * frameWidth)
+            y2 = int(detections[0, 0, i, 6] * frameHeight)
+            bboxes.append([x1, y1, x2, y2])
+            cv.rectangle(frameOpencvDnn, (x1, y1), (x2, y2), (0, 255, 0), int(round(frameHeight/150)), 8)
+    return frameOpencvDnn, bboxes
 
 
-# Create arrays of known face encodings and their names
-known_face_encodings = [
-    obama_face_encoding,
-    #trump_face_encoding,
-    #andre_face_encoding,
-    nath_face_encoding
-]
+faceProto = "opencv_face_detector.pbtxt"
+faceModel = "opencv_face_detector_uint8.pb"
 
-known_face_names = [
-    "Barack Obama",
-    #"Donald Trump",
-    #"André",
-    "Nath"
-]
+MODEL_MEAN_VALUES = (78.4263377603, 87.7689143744, 114.895847746)
 
-# Initialize some variables
-face_locations = []
-face_encodings = []
-face_names = []
-process_this_frame = True
+# Load network
+faceNet = cv.dnn.readNet(faceModel, faceProto)
 
-while True:
-    # Grab a single frame of video
-    ret, frame = video_capture.read()
+# Open a video file or an image file or a camera stream
+cap = cv.VideoCapture(0)
+padding = 20
+last_face_number = None
+count = 0
 
-    # Resize frame of video to 1/4 size for faster face recognition processing
-    small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
-
-    # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
-    rgb_small_frame = small_frame[:, :, ::-1]
-
-
-    # Only process every other frame of video to save time
-    if process_this_frame:
-        # Find all the faces and face encodings in the current frame of video
-        face_locations = face_recognition.face_locations(rgb_small_frame)
-        face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
-
-        face_names = []
-        for face_encoding in face_encodings:
-            # See if the face is a match for the known face(s)
-            matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
-            name = "Unknown"
-
-            # # If a match was found in known_face_encodings, just use the first one.
-            # if True in matches:
-            #     first_match_index = matches.index(True)
-            #     name = known_face_names[first_match_index]
-
-            # Or instead, use the known face with the smallest distance to the new face
-            face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
-            best_match_index = np.argmin(face_distances)
-            if matches[best_match_index]:
-                name = known_face_names[best_match_index]
-
-            face_names.append(name)
-
-    process_this_frame = not process_this_frame
-
-
-    # Display the results
-    for (top, right, bottom, left), name in zip(face_locations, face_names):
-        # Scale back up face locations since the frame we detected in was scaled to 1/4 size
-        top *= 4
-        right *= 4
-        bottom *= 4
-        left *= 4
-
-        # Draw a box around the face
-        cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
-
-        # Draw a label with a name below the face
-        cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
-        font = cv2.FONT_HERSHEY_DUPLEX
-        cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
-
-    # Display the resulting image
-    cv2.imshow('Video', frame)
-
-    # Hit 'q' on the keyboard to quit!
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+while cv.waitKey(1) < 0:
+    # Read frame
+    #t = time.time()
+    hasFrame, frame = cap.read()
+    if not hasFrame:
+        cv.waitKey()
         break
 
-# Release handle to the webcam
-video_capture.release()
-cv2.destroyAllWindows()
+    frameFace, bboxes = getFaceBox(faceNet, frame)
+    if not bboxes:
+        print("Nessuna faccia trovata.")
+        continue
+    
+    face_number = 0
+    for bbox in bboxes:
+        # print(bbox)
+        face = frame[max(0,bbox[1]-padding):min(bbox[3]+padding,frame.shape[0]-1),max(0,bbox[0]-padding):min(bbox[2]+padding, frame.shape[1]-1)]
+        blob = cv.dnn.blobFromImage(face, 1.0, (227, 227), MODEL_MEAN_VALUES, swapRB=False)
+        face_number+=1   
+        cv.imshow("Face detect", frameFace)
+       
+    if last_face_number is not None:
+        if last_face_number < face_number:
+            count+=1
+            #addData()
+        last_face_number = face_number
+    else:
+        last_face_number = face_number
+        count+=face_number 
+           
+    print(str(count))  

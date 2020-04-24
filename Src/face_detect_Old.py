@@ -1,66 +1,120 @@
-# import libraries
 import cv2
-import face_recognition
-import time
-import math
+import numpy as np
 
-# Get a reference to webcam 
-video_capture = cv2.VideoCapture(1)
-
-def calculateLeftMovement(leftFace, areaMovement, areaFace):
+# Load the cascade
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+face_cascade2 = cv2.CascadeClassifier('haarcascade_profileface.xml')
 
 
-# Initialize variables
-face_locations = []
 
-startTime = time.time()
 
-last_face_locations = []
+
+# To capture video from webcam. 
+cap = cv2.VideoCapture(0)
+
+# To use a video file as input 
+# cap = cv2.VideoCapture('filename.mp4')
+
+last_face_number = None
+
 count = 0
-##### 5FPS #####
+
+boolean = None
+
+boolean2 = None
+
+#cap.set(cv2.CAP_PROP_BUFFERSIZE,1)
 while True:
-    currentTime = time.time()  - startTime
-    # Grab a single frame of video
-    ret, frame = video_capture.read()
 
-    # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
-    rgb_frame = frame[:, :, ::-1]
+    # Read the frame
+    _, img = cap.read()
 
-    # Find all the faces in the current frame of video
-    face_locations = face_recognition.face_locations(rgb_frame)
+    # Convert to grayscale
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    face = 0
+    # Detect the faces
+    faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+    faces2 = face_cascade2.detectMultiScale(gray, 1.1, 4)
 
-    # Display the results
-    for top, right, bottom, left in face_locations:
-        print('Entrato '+str(face)+' volte')
-        #print('Top: '+str(top)+', Right: '+str(right)+',  Bottom: '+str(bottom)+', Left: '+str(left))
-        print('Width: '+str((right - left))+', Height: '+str((bottom - top)))
-        # Draw a box around the face
-        cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
-        #last_face_locations.insert(face, [])
-        last_face_locations.append([])
-        if last_face_locations[face]:
-            if last_face_locations[face][0] != top or last_face_locations[face][1] != right or last_face_locations[face][2] != bottom or last_face_locations[face][3] != left:
-                #sideControl = math.sqrt((right - left) * (bottom - top) * 100)
-                #if last_face_locations[face][0] + sideControl < top + sideControl or last_face_locations[face][1] + sideControl < right + sideControl or last_face_locations[face][2] + sideControl < bottom + sideControl or last_face_locations[face][3] + sideControl < left + sideControl :
-                    #count+=1
-        last_face_locations[face].insert(0, top)
-        last_face_locations[face].insert(1, right)
-        last_face_locations[face].insert(2, bottom)
-        last_face_locations[face].insert(3, left)
-        print('Top misurato: '+str(top)+'\t|\t'+'Top salvato: '+str(last_face_locations[face][0])+'\nRight misurato: '+str(right)+'\t|\t'+'Right salvato: '+str(last_face_locations[face][1])+'\nBottom misurato: '+str(bottom)+'\t|\t'+'Bottom salvato: '+str(last_face_locations[face][2])+'\nLeft misurato: '+str(left)+'\t|\t'+'Left salvato: '+str(last_face_locations[face][3])+'\n')
-        print('ciao '+str(face))
-        face+=1
-    print('\nConteggio:'+str(count)+'\n')
-    print('Facce: '+str(face))
-    # Display the resulting image
-    cv2.imshow('Video', frame)
 
-    # Hit 'q' on the keyboard to quit!
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+
+    #boolean_arr = np.full((1,len(faces)), False, dtype=bool)
+    #boolean_arr2 = np.full((1,len(faces2)), False, dtype=bool)
+
+    
+    boolean_arr = [False] * len(faces)
+    boolean_arr2 = [False] * len(faces2)
+
+    
+    bolCounter = 0
+    
+
+    #boolean = None    
+    #boolean2 = None
+ 
+    # The number of faces seen by the webcam in a frame
+    face_number = 0
+		
+    # Draw the rectangle around each face
+    for (x, y, w, h) in faces:
+
+        boolean_arr[bolCounter] = True
+        bolCounter+=1
+        #boolean = True
+        cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
+        face_number+=1
+    
+
+    for i in range(0, len(boolean_arr)):
+
+        if boolean_arr[i] is False:
+            for (x, y, w, h) in faces2:
+                cv2.rectangle(img, (x, y), (x+w, y+h), (0,255,0), 2)
+                face_number+=1
+
+    #for (x, y, w, h) in faces2:
+        
+        #if  boolean_arr[bolCounter] is False:
+        #cv2.rectangle(img, (x, y), (x+w, y+h), (0,255,0), 2)
+        #face_number+=1
+        #bolCounter+=1
+        
+        
+
+    #if boolean is None:
+     #   boolean2 = True
+      #  for (x, y, w, h) in faces2:
+       #     cv2.rectangle(img, (x, y), (x+w, y+h), (0,255,0), 2)
+        #    face_number+=1
+
+
+
+   # if boolean2 is None and boolean is None:
+
+       # flipped = cv2.flip(gray,1)
+      #  faces2 = face_cascade2.detectMultiScale(flipped, 1.1, 4)
+        
+       # for (x, y, w, h) in faces2:
+        #    cv2.rectangle(img, (x+w, y), (x+2*w, y+h), (0,0,255), 2)
+         #   face_number+=1
+
+
+    if last_face_number is not None:
+        if last_face_number < face_number:
+            count+=1
+        last_face_number = face_number
+    else:
+        last_face_number = face_number
+        count+=face_number
+    
+    print(str(count))
+
+    # Display
+    cv2.imshow('img', img)
+    # Stop if escape key is pressed
+    k = cv2.waitKey(30) & 0xff
+    if k==27:
         break
-
-# Release handle to the webcam
-video_capture.release()
-cv2.destroyAllWindows()
+		    
+# Release the VideoCapture object
+cap.release()
