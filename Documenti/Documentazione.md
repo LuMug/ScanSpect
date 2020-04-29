@@ -102,46 +102,12 @@
   <br>
   Esistono alcuni software che permettono di rilevare la presenza negli stand, ma tutti sono molto complicati e molto costosi. Inoltre l'utilizzo dell'intelligenza artificiale rende questo progetto infinitamente più semplice da utilizzare rispetto a quelli presenti sul mercato.
   <br>
-  Chiunque può utilizzare il seguente prodotto, gli unici requisiti sono: avere un computer ed una connessione ad internet. Grazie alle semplici interfaccie leggibili ed intuitive non servirà nessuna conoscenza informatica particolare per utilizzare il prodotto.
+  Chiunque può utilizzare il seguente prodotto, gli unici requisiti sono: avere un computer, un webserver locale ed un database. Grazie alle semplici interfaccie leggibili ed intuitive non servirà nessuna conoscenza informatica particolare per utilizzare il prodotto.
 
 ### Analisi e specifica dei requisiti
 
-  Il progettista, dopo aver ricevuto il mandato, in collaborazione con il
-  committente redige una lista di requisiti. Durante questi incontri,
-  tramite interviste (da inserire nei diari), il progettista deve cercare
-  di rispondere alle seguenti domande:
 
-  -   Quali sono i bisogni del committente?
-
-  -   Quali funzioni deve svolgere il prodotto?
-
-  -   Come devono essere implementate?
-
-  -   L’utente, come vorrebbe/dovrebbe interagire con il prodotto?
-
-  -   Come verrà utilizzato il prodotto?
-
-  -   Che tipo di interfaccia si immagina?
-
-  -   Che prestazioni minime deve fornire il prodotto?
-
-  -   Che grado di sicurezza deve avere il prodotto?
-
-  -   …
-
-  In base alla lista dei requisiti e all’analisi degli stessi, il
-  progettista redige una *specifica dei requisiti* in cui elenca e
-  descrive in modo dettagliato quali sono le funzionalità che il prodotto
-  fornirà. La specifica dovrebbe essere abbastanza dettagliata da poter
-  essere utilizzata come base per lo sviluppo, ma non troppo; ad esempio
-  non dovrebbe contenere dettagli di implementazione, o definizioni
-  dettagliate dell’interfaccia grafica a meno che questi non siano
-  considerati cruciali. Non si deve scordare che i requisiti non
-  rappresentano delle attività bensì delle caratteristiche che il prodotto
-  dovrà possedere.
-
-
-
+  Questa è la lista di requisiti discussi in classe con il profesore:
 
   |**ID**|**Nome**|**Descrizione**|**Priorità**|**Vers**|**Note**|
   |----|------------|--------|----|----------|------|
@@ -168,24 +134,15 @@
 
 **ID**: identificativo univoco del requisito
 
-**Nome**: breve descrizione del requisito
+**Nome**: il nome del requisito
 
-**Priorità**: indica l’importanza di un requisito nell’insieme del
-progetto, definita assieme al committente. Ad esempio poter disporre di
-report con colonne di colori diversi ha priorità minore rispetto al
-fatto di avere un database con gli elementi al suo interno. Solitamente
-si definiscono al massimo di 2-3 livelli di priorità.
+**Descrizione**: breve descrizione del requisitol
 
-**Versione**: indica la versione del requisito. Ogni modifica del
-requisito avrà una versione aggiornata.
+**Priorità**: l'importanza con la quale deve essere svolto un requisito
 
-Sulla documentazione apparirà solamente l’ultima versione, mentre le
-vecchie dovranno essere inserite nei diari.
+**Versione**: indica la versione del requisito. 
 
-**Note**: eventuali osservazioni importanti o riferimenti ad altri
-requisiti.
-
-**Sotto requisiti**: elementi che compongono il requisito.
+**Note**: eventuali osservazioni
 
 
 ### Use case
@@ -254,12 +211,16 @@ Descrive:
 
 -   Eventuale sitemap
 
-![Schema struttura](../Screens/Gantt.png)
-Come si può vedere dall'imagine soprastante questo é il Gantt. 
+![Gantt](../Screens/Gantt.png)
+L'immagine indica il gantt stilato ad inizio progetto. Le due fasi che sulla carta impiegano più tempo sono l'implementazione e il test. Queste fasi sono  circa i 2/3 del tempo impiegato per portare a termine il progetto. Le attività sono divise per allievo, ogni tanto è possibile che più allievi lavorino insieme ed ogni tanto è possibile che un allievo lavori singolarmente. Questo è il gantt iniziale, potrebbe essere differente dal gantt consuntivo indicato nell'immagine sotto.
 
 
-![Schema struttura](../Screens/schema.png)
-Nell'immagine soprastante viene rappresentata la struttura delle sistema del progetto. Si avvia il programma da pc in locale e dalla schermata grafica si hanno due possibilità o collegarsi in locale o collegare collegarsi online con un account personale.Se si sceglierà il coleggamento in locale i dati verrano salvati in un database sulla macchina invece se si seleziona l'altra voce i dati saranno caricati sul proprio profilo online e accessibili tramite nome utente e password.
+![Gantt_Consuntivo](../Screens/GanttConsuntivo.png)
+Gantt consuntivo ancora da fare.
+
+
+![Schema struttura](../Screens/Schema_Struttura.png)
+L'immagine mostra lo schema della struttura del progetto. Il progetto è composto da un programma che rileva il numero di persone. Ad ogni rilevamento inserisce un dato all'interno del database (all'inizio lo crea se non esiste). La logica del sito (in php), si occupa di richiedere i dati al database e di mandarli al sito vero e prorpio. Così facendo il sito ha abbastanza valori per creare un'interfaccia con dei grafici esaustivi e stampare i dati in una tabella.
 
 ### Design dei dati e database
 
