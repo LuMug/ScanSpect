@@ -2,7 +2,7 @@
 ## Progetto
 |Titolo             |Autori           |Responsabile               |Link    |
 |:------------------|:------------------|:--------------------------|:-------|
-|ScanSpect    |<b>Alessandro Aloise</b> <b>André da Silva</b>  <b>Nathan Lué </b> |Luca Muggiasca|non ancora|
+|ScanSpect    |<b>Alessandro Aloise,</b> <b>André da Silva,</b>  <b>Nathan Lué </b> |Luca Muggiasca|non ancora|
 
 ## Info
 **Inizio:** 24.01.2020
