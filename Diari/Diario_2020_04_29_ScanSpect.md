@@ -8,7 +8,7 @@
 |Orario        |Lavoro svolto                           |
 |--------------|----------------------------------------|
 |08:20 - 09:50 | <b>Nathan</b>: Scrittura della documentazione (Progettazione e requisiti) e creazione della immagine dello schema della struttura. <br><b>André</b>: Cambio dimensione frame del programma e prima aggiunta dell'interfaccia grafica interagibile.   |
-|10:15 - 11:35 | <b>Alessandro</b>: |
+|10:15 - 11:35 | <b>Alessandro</b>: Ricerca su come fare i grafici|
 
 ##  Problemi riscontrati e soluzioni adottate
 
