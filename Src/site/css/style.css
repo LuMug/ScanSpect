@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /*
 * Trunk version 2.0.0
 */
@@ -13,6 +14,10 @@ button:focus {
 
 button::-moz-focus-inner {
 	border: 0;
+}
+
+.home-banner-h1-white{
+	color: white !important; 
 }
 
 *:focus {
