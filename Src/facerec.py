@@ -10,19 +10,21 @@ from tkinter import *
 from PIL import Image, ImageTk
 
 
-def startFaceRecognition():
+def startFaceRecognition(host,user,passwd):
 
 
     #---------- Accesso al database + dichiarazione cursore ----------------------
     mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="root"
+    host=host,
+    user=user,
+    passwd=passwd
     )
     cursor = mydb.cursor()
 
     
     #------------------------------Resize del frame-------------------------------
+    
+    #esegue un resizing del frame in base alla percentuale passata.
     def rescale_frame(frame, percent=75):
         width = int(frame.shape[1] * percent/ 100)
         height = int(frame.shape[0] * percent/ 100)
@@ -47,7 +49,7 @@ def startFaceRecognition():
             cursor.execute("CREATE TABLE people(id INT PRIMARY KEY AUTO_INCREMENT,date DATE,hours INT,minutes INT,seconds INT)")
             mydb.commit()
 
-    #permette l'aggiunta di dati al database (tempo di rivelamento + numero totale di persone)
+    #Permette l'aggiunta di dati al database (tempo di rivelamento + numero totale di persone)
     def addDataToDb(date,hours,minutes,secs):
 
         #Inserimento dati nel Database
@@ -60,7 +62,9 @@ def startFaceRecognition():
 
     #-----------------------------------------------------------------------------   
         
+     #------------------------------ Scansione volti ------------------------------    
 
+    #
     def getFaceBox(net, frame, conf_threshold=0.7):
         frameOpencvDnn = frame.copy()
         frameHeight = frameOpencvDnn.shape[0]
@@ -80,8 +84,6 @@ def startFaceRecognition():
                 cv.rectangle(frameOpencvDnn, (x1, y1), (x2, y2), (255, 0, 0), int(round(frameHeight/150)), 8)
         return frameOpencvDnn, bboxes
 
-    #------------------------------ Scansione volti ------------------------------
-
     faceProto = "opencv_face_detector.pbtxt"
     faceModel = "opencv_face_detector_uint8.pb"
 
@@ -90,7 +92,6 @@ def startFaceRecognition():
     # Load network
     faceNet = cv.dnn.readNet(faceModel, faceProto)
 
-    # Open a video file or an image file or a camera stream
     cap = cv.VideoCapture(0)
     padding = 20
     last_face_number = None
@@ -107,8 +108,10 @@ def startFaceRecognition():
             break
 
         frameFace, bboxes = getFaceBox(faceNet, frame)
-        face_number = 0
+        if not bboxes:
+            continue
 
+        face_number = 0
         for bbox in bboxes:
             # print(bbox)
             face = frame[max(0,bbox[1]-padding):min(bbox[3]+padding,frame.shape[0]-1),max(0,bbox[0]-padding):min(bbox[2]+padding, frame.shape[1]-1)]
@@ -134,7 +137,8 @@ def startFaceRecognition():
     #chiusura della connessione con il database
     mydb.close()   
 
-#verifica se i dati utente inseriti sono validi
+#verifica se i dati utente inseriti sono validi, per farlo utilizza un try & catch
+# che verifica se l'host o l'utente inserito esistano.
 def testConnection(host,user,password):
     
     try:
@@ -192,6 +196,7 @@ L0.place(x=30,y=90)
 L1 = Label(top, text="Host")
 L1.place(x=30,y=120)
 E1 = Entry(top, bd =5)
+E1.insert(END, "localhost")
 E1.place(x=100,y=120)
 
 L2 = Label(top, text="User")
@@ -227,7 +232,7 @@ def buttonPressed():
     else:
         if testConnection(v,v2,v3) is True:
             top.destroy()
-            startFaceRecognition()
+            startFaceRecognition(v,v2,v3)
         else:
             L4 = Label(top, text="Utente o host inserito non valido, riprova.")
             L4.config(fg="red")

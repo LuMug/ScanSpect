@@ -140,7 +140,7 @@
 
 **Priorità**: l'importanza con la quale deve essere svolto un requisito
 
-**Versione**: indica la versione del requisito. 
+**Versione**: indica la versione del requisito.
 
 **Note**: eventuali osservazioni
 
@@ -296,6 +296,27 @@ ripetibile alle stesse condizioni.
 |**Prerequisiti**|Store on local PC: Profile\_1.2.001.xml (appendix n\_n) and Cards\_1.2.001.txt (appendix n\_n) |
 |**Procedura**     | - Go to “Cards manager” menu, in main page click “Import Profiles” link, Select the “1.2.001.xml” file, Import the Profile - Go to “Cards manager” menu, in main page click “Import Cards” link, Select the “1.2.001.txt” file, Delete the cards, Select the “1.2.001.txt” file, Import the cards |
 |**Risultati attesi** |Keys visible in the DB (OtaCardKey) but not visible in the GUI (Card details) |
+
+
+|Test Case      | TC-002                               |
+|---------------|--------------------------------------|
+|**Nome**       | Il conteggio non aumenta con la stessa persona in movimento nella webcam. |
+|**Riferimento**|REQ-07                               |
+|**Descrizione**| Avviando l'applicazione, e muovendosi all'interno della visual della webcam, il contatore di persone non aumenta in quanto il software riconosce che si tratta sempre della stessa persona. |
+|**Prerequisiti**| - |
+|**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso.  <br>  - Muoversi all'interno della webcam. |
+|**Risultati attesi** | Muovendosi, il conteggio rimane sempre lo stesso. |
+
+|Test Case      | TC-002                               |
+|---------------|--------------------------------------|
+|**Nome**       | Il conteggio non aumenta con altre parti del corpo |
+|**Riferimento**|REQ-08                               |
+|**Descrizione**| Avviando l'applicazione, e muovendosi all'interno della visual della webcam, non vengono prese in considerazioni altre parti del corpo che non siano il volto. |
+|**Prerequisiti**| - |
+|**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso.  <br>  - Muoversi all'interno della webcam con altre parti del corpo visibili oltre al volto (es. busto). |
+|**Risultati attesi** | Muovendosi, il conteggio rimane sempre lo stesso. |
+
+
 
 
 ### Risultati test
