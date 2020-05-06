@@ -7,7 +7,7 @@
 
 |Orario        |Lavoro svolto                           |
 |--------------|----------------------------------------|
-|10:35 - 17:30 | <b>Nathan</b>: Creazione grafici con Chart.js  <br><b>André</b>: Commenti codice + protcollo di test |
+|10:35 - 17:30 | <b>Nathan</b>: Creazione grafici con Chart.js  <br><b>André</b>: Commenti codice + protocollo di test |
 
 
 ##  Problemi riscontrati e soluzioni adottate
