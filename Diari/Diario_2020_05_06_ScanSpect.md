@@ -7,12 +7,10 @@
 
 |Orario        |Lavoro svolto                           |
 |--------------|----------------------------------------|
-<<<<<<< HEAD
 |8:20 - 9:50 | <b>Nathan</b>: Creazione grafici con Chart.js  <br><b>André</b>: Commenti codice + protcollo di test |
 |10:05 - 11:35 | <b>Alessandro</b>: Sistemazione Problemi sito web  e inizio guida |
-=======
-|10:35 - 17:30 | <b>Nathan</b>: Creazione grafici con Chart.js  <br><b>André</b>: Commenti codice + protocollo di test |
->>>>>>> 788b01d2cf9d14b8c99dc940cf3603edda4432cc
+
+
 
 
 ##  Problemi riscontrati e soluzioni adottate
