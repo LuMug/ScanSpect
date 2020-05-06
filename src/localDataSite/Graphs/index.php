@@ -33,31 +33,7 @@
             $mysqli = new mysqli("".$_SESSION['host'], "".$_SESSION['username'], "".$_SESSION['password'], "".$_SESSION['database']);
             #Query effettuata al Database.
             $table = $_SESSION['table'];
-    ?>
-    <label for="typeGraph">Select type of the graph:</label>
-	<select id="typeGraph" onChange="createGraph(value)">
-		<option value="bar">Bar</option>
-		<option value="horizontalBar">Horizontal Bar</option>
-		<option value="pie">Pie</option>
-		<option value="line">Line</option>
-		<option value="doughnut">Doughnut</option>
-        <option value="radar">Radar</option>
-        <option value="polarArea">Polar Area</option>
-    </select>
-    <form>
-        <label for="rangeGraph">Select the range of the graph:</label>
-        <select id="rangeGraph" name="changeRange" onChange="this.form.submit()">
-            <option value="date">Days</option>
-            <option value="hours">Hours</option>
-            <option value="minutes">Minutes</option>
-            <option value="seconds">Seconds</option>
-        </select>
-    </form>
-    <?php
-            if(isset($_GET["changeRange"])){
-                $col=$_GET["changeRange"];
-                echo $col;
-            }
+            $col = "hours";
             $query = returnQuery("$col", "".$_SESSION['table']);
             $date = array();
             $count = array();
@@ -86,13 +62,30 @@
                 }
             
     ?>
+    <label for="typeGraph">Select type of the graph:</label>
+	<select id="typeGraph" onChange="createGraph(value)">
+		<option value="bar">Bar</option>
+		<option value="horizontalBar">Horizontal Bar</option>
+		<option value="pie">Pie</option>
+		<option value="line">Line</option>
+		<option value="doughnut">Doughnut</option>
+        <option value="radar">Radar</option>
+        <option value="polarArea">Polar Area</option>
+    </select>
+        <label for="rangeGraph">Select the range of the graph:</label>
+        <select id="rangeGraph">
+            <option value="date">Days</option>
+            <option value="hours">Hours</option>
+            <option value="minutes">Minutes</option>
+            <option value="seconds">Seconds</option>
+        </select>
     <div class="container">
         <canvas id="myChart"></canvas>
     </div>
     <script>
-    /*window.onload = function () {
+    window.onload = function () {
         createGraph('bar');
-    }*/
+    }
 
     function createGraph(type) {
         var myChart = document.getElementById("myChart").getContext("2d");
