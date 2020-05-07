@@ -38,7 +38,7 @@
 <body>
 
 <ul>
-	<li><a class="active" href="">Home</a></li>
+	<li><a class="active" href="<?php echo $route?>">Home</a></li>
 	<?php
 		if($_SESSION['loggedin']){
 	?>
@@ -53,7 +53,7 @@
 	<?php
 		}
 	?>
-	<li><a href="#about">About</a></li>
+	<li><a href="<?php echo $route?>About/">About</a></li>
 	<?php 
 		if(!$_SESSION['loggedin']){
 	?>

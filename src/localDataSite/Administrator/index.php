@@ -20,6 +20,33 @@
 		}
 
 		tr:hover {background-color:#f5f5f5;}
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #333;
+		}
+
+		li {
+			float: left;
+		}
+
+		li a {
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
+
+		li a:hover {
+			background-color: #4CAF50;
+		}
+		#login {
+			float: right;
+		}
 	</style>
 	<script>
 	function searchByValue() {
@@ -54,7 +81,6 @@
 	</script>
 </head>
 <body>
-
 	<?php
 		#Connessione al Database.
 		$mysqli = new mysqli("".$_SESSION['host'], "".$_SESSION['username'], "".$_SESSION['password'], "".$_SESSION['database']);
@@ -62,7 +88,29 @@
 		$table = $_SESSION['table'];
 		$query = "SELECT * FROM $table";
 	?>
-		<h1><center><b> Database Output</b></h1></center>  <br> <br>
+	<ul>
+		<li><a class="active" href="<?php echo $route?>">Home</a></li>
+		<?php
+			if($_SESSION['loggedin']){
+		?>
+		<li><a href="<?php echo $route?>Graphs/">Graphs</a></li>
+		<?php
+			}
+		?>
+		<li><a href="<?php echo $route?>About/">About</a></li>
+		<?php 
+			if(!$_SESSION['loggedin']){
+		?>
+		<li id="login"><a href="<?php echo $route?>Login/">Login</a></li>
+		<?php
+			}else{
+		?>
+		<li id="login"><a href="<?php echo $route?>User/"><?php if($_SESSION['admin'] == true){echo "Admin ";} echo $_SESSION['username'];?></a>
+		<?php 
+			}
+		?>
+	</ul>
+	<h1><center><b> Database Output</b></h1></center>  <br> <br>
 	<?php	
 		if ($result = $mysqli->query($query)) {
 	?>

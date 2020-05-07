@@ -45,11 +45,38 @@
             padding: 16px;
             text-align: center;
         }
+
+        ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #333;
+		}
+
+		li {
+			float: left;
+		}
+
+		li a {
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
+
+		li a:hover {
+			background-color: #4CAF50;
+		}
     </style>
 
 </head>
 <body>
-
+<ul>
+    <li><a class="active" href="<?php echo $route?>">Home</a></li>
+    <li><a href="<?php echo $route?>About/">About</a></li>
+</ul>
 <center><h2>Login</h2></center>
 
 <form action="<?php echo $route?>Login/checkLogin.php" method="post">

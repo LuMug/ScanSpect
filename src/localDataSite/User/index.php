@@ -34,9 +34,51 @@
             padding: 16px;
             text-align: center;
         }
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #333;
+		}
+
+		li {
+			float: left;
+		}
+
+		li a {
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
+
+		li a:hover {
+			background-color: #4CAF50;
+		}
     </style>
 </head>
 <body>
+    <ul>
+        <li><a class="active" href="<?php echo $route?>">Home</a></li>
+        <?php
+            if($_SESSION['loggedin']){
+        ?>
+        <li><a href="<?php echo $route?>Graphs/">Graphs</a></li>
+        <?php
+            }
+        ?>
+        <?php
+            if($_SESSION['admin']){
+        ?>
+        <li><a href="<?php echo $route?>Administrator/">Data</a></li>
+        <?php
+            }
+        ?>
+        <li><a href="<?php echo $route?>About/">About</a></li>
+    </ul>
     <div class="imgcontainer">
         <img src="<?php echo $route ?>Login/img/adminLogin.png" alt="Avatar" class="avatar">
     </div>

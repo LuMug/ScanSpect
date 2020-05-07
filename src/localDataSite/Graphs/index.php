@@ -15,7 +15,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,8 +23,59 @@
   <script src="<?php echo $route?>Graphs/Lib/Chart.min.js"></script>
     <link rel="stylesheet" href="<?php echo $route?>Graphs/Lib/bootstrap.min.css">
   <title>People graphs</title>
+  <style>
+    #ulist {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    .list {
+        float: left;
+    }
+
+    .list .alink {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .list .alink:hover {
+        background-color: #4CAF50;
+    }
+    #login {
+        float: right;
+    }
+  </style>
 </head>
 <body>
+    <ul id="ulist">
+        <li class="list"><a class="alink" href="<?php echo $route?>">Home</a></li>
+        <?php
+            if($_SESSION['admin']){
+        ?>
+        <li class="list"><a class="alink" href="<?php echo $route?>Administrator/">Data</a></li>
+        <?php
+            }
+        ?>
+        <li class="list"><a class="alink" href="<?php echo $route?>About/">About</a></li>
+        <?php 
+            if(!$_SESSION['loggedin']){
+        ?>
+        <li id="login" class="list"><a class="alink" href="<?php echo $route?>Login/">Login</a></li>
+        <?php
+            }else{
+        ?>
+        <li id="login" class="list"><a class="alink" href="<?php echo $route?>User/"><?php if($_SESSION['admin'] == true){echo "Admin ";} echo $_SESSION['username'];?></a>
+        <?php 
+            }
+        ?>
+    </ul>
+    <br><br>
     <?php
         if($_SESSION["loggedin"]){
             #Connessione al Database.
