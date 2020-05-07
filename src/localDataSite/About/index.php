@@ -57,19 +57,19 @@
             <div class="one_third">
             <h1><b>Le nostre abilità</b></h1>
             <ul class="skillset">
-                <li class="clear"><img class="fl_left" src="images/demo/64x64.gif" alt="Template Demo Image" />
+                <li class="clear"><img class="fl_left" src="<?php echo $route?>About/images/programmazione.jpg" alt="Template Demo Image" />
                 <div class="fl_right">
                     <p>Programmazione e design Web impeccabile</p>
                     <p>Grazie alle nostre competenze puoi fidarti ciecamente del nostro team.</p>
                 </div>
                 </li>
-                <li class="clear"><img class="fl_left" src="images/demo/64x64.gif" alt="Template Demo Image" />
+                <li class="clear"><img class="fl_left" src="<?php echo $route?>About/images/update.png" alt="Template Demo Image" />
                 <div class="fl_right">
                     <p>Aggiornamenti e miglioramenti sempre dietro l'angolo</p>
                     <p>Il nostro team è sempre al lavoro per garantirti il massimo delle prestazioni dal nostro applicativo.</p>
                 </div>
                 </li>
-                <li class="clear"><img class="fl_left" src="images/demo/64x64.gif" alt="Template Demo Image" />
+                <li class="clear"><img class="fl_left" src="<?php echo $route?>About/images/24h.png" alt="Template Demo Image" />
                 <div class="fl_right">
                     <p>Assistenza 24 ore su 24</p>
                     <p>Non importa che fuori ci sia il sole o piova, non importa che sia il 24 dicembre o il 2 agosto. Il nostro team ti aiuterà sempre, ogni momento in cui vuoi.</p>
@@ -78,17 +78,16 @@
             </ul>
             </div>
             <div class="one_third">
-            <h2>Vivamuslibero Auguer</h2>
+            <h1><b>Utilizzo di ScanSpect</b></h1>
+            <p>Utilizza il software per monitorare l'affluenza di persone</p>
             <ul>
-                <li>Aliquam venenatis leo et orci.</li>
-                <li>Pellentesque eleifend vulputate massa.</li>
-                <li>Vivamus eleifend sollicitudin eros.</li>
-                <li>Maecenas vitae nunc.</li>
-                <li>Ut pretium odio eu nisi.</li>
-                <li>Nam condimentum mi id magna.</li>
-                <li>Pellentesque consectetuer, felis vel rhoncus.</li>
-                <li>Sed sollicitudin bibendum dui.</li>
+                <li>Alle fiere</li>
+                <li>Al mercatino di natale</li>
+                <li>Alla consegna dei diplomi</li>
+                <li>Al saggio di tua figlia</li>
+                <li>Al tuo primo concerto</li>
             </ul>
+            <p>In poche parole ovunque tu voglia</p>
             </div>
         </div>
         <div id="team">
