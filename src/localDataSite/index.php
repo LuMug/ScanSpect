@@ -1,71 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php 
 	session_start(); 
 	$route = include('./Configuration/config.php');
 ?>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript">
+    function clearText(field){
+
+        if (field.defaultValue == field.value) field.value = '';
+        else if (field.value == '') field.value = field.defaultValue;
+    }
+    </script>
 	<title>ScanSpect<?php if($_SESSION['loggedin']){echo " ".$_SESSION['username'];}?></title>
 	<style>
-		ul {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-			background-color: #333;
-		}
+         #ulist {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
 
-		li {
-			float: left;
-		}
+        .list {
+            float: left;
+        }
 
-		li a {
-			display: block;
-			color: white;
-			text-align: center;
-			padding: 14px 16px;
-			text-decoration: none;
-		}
+        .list .alink {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
 
-		li a:hover {
-			background-color: #4CAF50;
-		}
-		#login {
-			float: right;
-		}
+        .list .alink:hover {
+            background-color: #4CAF50;
+        }
+        #login {
+            float: right;
+        }
 	</style>
 </head>
 <body>
 
-<ul>
-	<li><a class="active" href="<?php echo $route?>">Home</a></li>
-	<?php
-		if($_SESSION['loggedin']){
-	?>
-	<li><a href="<?php echo $route?>Graphs/">Graphs</a></li>
-	<?php
-		}
-	?>
-	<?php
-		if($_SESSION['admin']){
-	?>
-	<li><a href="<?php echo $route?>Administrator/">Data</a></li>
-	<?php
-		}
-	?>
-	<li><a href="<?php echo $route?>About/">About</a></li>
-	<?php 
-		if(!$_SESSION['loggedin']){
-	?>
-	<li id="login"><a href="<?php echo $route?>Login/">Login</a></li>
-	<?php
-		}else{
-	?>
-	<li id="login"><a href="<?php echo $route?>User/"><?php if($_SESSION['admin'] == true){echo "Admin ";} echo $_SESSION['username'];?></a>
-	<?php 
-		}
-	?>
-</ul>
-<?php if($_SESSION['loggedin']){ echo "<h1>Hi ".$_SESSION['username'];} ?>
+  <ul id="ulist">
+        <li class="list"><a class="alink" href="<?php echo $route?>">Home</a></li>
+        
+        <?php
+            if($_SESSION['loggedin']){
+        ?>
+        <li class="list"><a class="alink" href="<?php echo $route?>Graphs/">Graphs</a></li>
+        <?php
+            }
+        ?> 
+        <?php
+            if($_SESSION['admin']){
+        ?>
+        
+        <li class="list"><a class="alink" href="<?php echo $route?>Administrator/">Data</a></li>
+        <?php
+            }
+        ?>
+        <li class="list"><a class="alink" href="<?php echo $route?>About/">About</a></li>
+        <?php 
+            if(!$_SESSION['loggedin']){
+        ?>
+        <li id="login" class="list"><a class="alink" href="<?php echo $route?>Login/">Login</a></li>
+        <?php
+            }else{
+        ?>
+        <li id="login" class="list"><a class="alink" href="<?php echo $route?>User/"><?php if($_SESSION['admin'] == true){echo "Admin ";} echo $_SESSION['username'];?></a>
+        <?php 
+            }
+        ?>
+    </ul>
+
+ <div id="templatemo_banner_wrapper">
+	<div id="templatemo_banner">
+    
+    	<div id="templatemo_banner_image">
+        	<div id="templatemo_banner_image_wrapper">
+            	<img src="images/ScanSpectLogo.png" alt="image" />
+            </div>
+        </div>
+        
+        <div id="templatemo_banner_content">
+        	<div class="header_01">ScanSpect Data Manager</div>
+            <div class="button_01"><a href="#">Sito Informativo</a></div>
+            <br>
+            <br>
+            <?php
+                if(isset($_SESSION['username'])){
+                    echo '<div class="header_02">Benvenuto ' . $_SESSION['username'] . '</div>';
+                }
+               
+                
+            ?>
+        </div>	
+    
+    	<div class="cleaner"></div>
+    </div> <!-- end of banner -->
+</div> <!-- end of banner wrapper -->
+
+<div id="templatemo_content_wrapper">
+	<div id="templatemo_content">
+    
+    	<div id="column_w530">
+        	
+            <div class="header_02">Gestisci i tuoi dati ScanSpect da qui </div>
+            
+            <p class="em_text">Come utente:</p>
+            
+            <p>Come semplice utente, potrai analizzare i vari grafici dei dati di tutte le persone passate davanti allo stand con la possibilità di cambiare unita di tempo tramite l'opzione Graph del menu in alto.</p>
+                               
+            <div class="cleaner"></div>        
+            <p class="em_text">Come Amministratore:</p>
+            
+            <p>Oltre a poter analizzare i grafici, è presente la possibilità di vedere la tabella con tutti i dati tramite l'opzione data in alto.</p>                               
+            <div class="cleaner"></div>            
+            <br>
+            <img src="images/warning.png"  style="float: left; height:15px; width:15px;"><p>Ricordati di modificare il file config.php dentro l'apposita cartella affinché il sito punti direttamente alla cartella scelta per l'utilizzo del data manager di ScanSpect!</p>
+                               
+            <div class="cleaner"></div>
+        </div>
+        
+        <div id="column_w300">
+        
+        	<div class="header_03">Pagine utili</div>
+            
+            <div class="column_w300_section_01">
+            	<div class="news_image_wrapper">
+                	<img src="images/githubLogo.png" alt="image" />
+                </div>
+                
+                <div class="news_content">
+                    <div class="header_04"><a class="alist" href="https://github.com/LuMug/ScanSpect">Repository github</a></div>
+                    <p>Visualizza la repository del nostro progetto.</p>
+				</div>
+                                
+                <div class="cleaner"></div>
+            </div>
+            
+            <div class="column_w300_section_01 even_color">
+            	<div class="news_image_wrapper">
+                	<img src="images/opencvLogo.png" alt="image" />
+                </div>
+                
+                <div class="news_content">
+                    <div class="header_04"><a class="alist" href="https://opencv.org/">OpenCV</a></div>
+                    <p>La libreria OpenCV ha permesso il riconoscimento facciale del nostro software.</p>
+				</div>
+                                
+                <div class="cleaner"></div>
+            </div>
+            
+            <div class="column_w300_section_01">
+            	<div class="news_image_wrapper">
+                	<img src="images/pythonLogo.png" alt="image" />
+                </div>
+                
+                <div class="news_content">
+                    <div class="header_04"><a class="alist" href="https://www.python.org/">Python</a></div>
+                    <p>Python è necessario al fine di utilizzare il software per il riconoscimento facciale, 
+                    scarica l'ultima versione da questo link.</p>
+				</div>
+                                
+                <div class="cleaner"></div>
+            </div>
+             <div class="column_w300_section_01 even_color">
+            	<div class="news_image_wrapper">
+                	<img src="images/xamppLogo.jpg" alt="image" />
+                </div>
+                
+                <div class="news_content">
+                    <div class="header_04"><a class="alist" href="https://www.apachefriends.org/it/index.html">XAMPP</a></div>
+                    <p>XAMPP è una buona piattaforma per avere un DBMS e PHP in un unico pacchetto, senza dover installarli in modo stand-alone.</p>
+				</div>
+                                
+                <div class="cleaner"></div>
+                 
+            </div>
+            <div class="cleaner"></div>
+        </div>
+    
+    	<div class="cleaner"></div>
+    </div> <!-- end of content wrapper -->
+</div> <!-- end of content wrapper -->
+
+<footer>
+        <center>Copyright © 2020 ScanSpect</center><!-- Credit: www.templatemo.com -->
+</footer>    
+<!-- templatemo 121 simple gray -->
+<!-- 
+Simple Gray Template 
+http://www.templatemo.com/preview/templatemo_121_simple_gray 
+-->   
+    
+   
 </body>
 </html>
