@@ -150,6 +150,10 @@
 I casi d’uso rappresentano l’interazione tra i vari attori e le
 funzionalità del prodotto.
 
+![Use_case](../Screens/usecase.png)
+
+
+
 ### Pianificazione
 
 Prima di stabilire una pianificazione bisogna avere almeno una vaga idea
@@ -233,7 +237,7 @@ Se il diagramma E-R viene modificato, sulla doc dovrà apparire l’ultima
 versione, mentre le vecchie saranno sui diari.
 
 ### Design delle interfacce
-
+![Schema struttura](../Screens/Interfaccia.png)
 Descrizione delle interfacce interne ed esterne del sistema e
 dell’interfaccia utente. La progettazione delle interfacce è basata
 sulle informazioni ricavate durante la fase di analisi e realizzata
