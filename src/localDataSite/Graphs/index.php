@@ -21,10 +21,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="<?php echo $route?>Graphs/Lib/Chart.min.js"></script>
-  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script> -->
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <title>My Chart.js Chart</title>
+    <link rel="stylesheet" href="<?php echo $route?>Graphs/Lib/bootstrap.min.css">
+  <title>People graphs</title>
 </head>
 <body>
     <?php
@@ -33,7 +31,7 @@
             $mysqli = new mysqli("".$_SESSION['host'], "".$_SESSION['username'], "".$_SESSION['password'], "".$_SESSION['database']);
             #Query effettuata al Database.
             $table = $_SESSION['table'];
-            $col = "date";
+            $col = "hours";
             $query = returnQuery("$col", "".$_SESSION['table']);
             $date = array();
             $count = array();
@@ -96,111 +94,210 @@
         Chart.defaults.global.defaultFontFamily = 'Lato';
         Chart.defaults.global.defaultFontSize = 18;
         Chart.defaults.global.defaultFontColor = '#777';
-        window.bar = new Chart(myChart, {
-        type: type, // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-        data:{
-            labels:[<?php
-                        for($i = 0 ; $i < sizeof($date) ; $i++){
-                            $text = "";
-                            if($i != sizeof($date)-1){
-                                $text.= "'".$date[$i];
-                                if($hours){
-                                    $text.= " ".$hours[$i];
-                                    if($minutes){
-                                        $text.= ":".$minutes[$i];
-                                        if($seconds){
-                                            $text.= ":".$seconds[$i];
+        if(type == "bar" || type == "hoizontalBar" || type == "line"){
+            window.bar = new Chart(myChart, {
+                type: type, // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:[<?php
+                                for($i = 0 ; $i < sizeof($date) ; $i++){
+                                    $text = "";
+                                    if($i != sizeof($date)-1){
+                                        $text.= "'".$date[$i];
+                                        if($hours){
+                                            $text.= " ".$hours[$i];
+                                            if($minutes){
+                                                $text.= ":".$minutes[$i];
+                                                if($seconds){
+                                                    $text.= ":".$seconds[$i];
+                                                }
+                                            }else{
+                                                $text .= ":00";
+                                            }
                                         }
+                                        $text.= "',";
                                     }else{
-                                        $text .= ":00";
-                                    }
-                                }
-                                $text.= "',";
-                            }else{
-                                $text.= "'".$date[$i];
-                                if($hours){
-                                    $text.= " ".$hours[$i];
-                                    if($minutes){
-                                        $text.= ":".$minutes[$i];
-                                        if($seconds){
-                                            $text.= ":".$seconds[$i];
+                                        $text.= "'".$date[$i];
+                                        if($hours){
+                                            $text.= " ".$hours[$i];
+                                            if($minutes){
+                                                $text.= ":".$minutes[$i];
+                                                if($seconds){
+                                                    $text.= ":".$seconds[$i];
+                                                }
+                                            }else{
+                                                $text .= ":00";
+                                            }
                                         }
-                                    }else{
-                                        $text .= ":00";
+                                        $text.= "'";
                                     }
+                                    echo $text;
                                 }
-                                $text.= "'";
+                            ?>],
+                    datasets:[{
+                    label:'Persone',
+                    data:[<?php
+                            for($i = 0 ; $i < sizeof($count) ; $i++){
+                                if($i != sizeof($count)-1){
+                                    echo $count[$i].",";
+                                }else{
+                                    echo $count[$i];
+                            
+                                }
                             }
-                            echo $text;
-                        }
-                    ?>],
-            datasets:[{
-            label:'Persone',
-            data:[<?php
-                    for($i = 0 ; $i < sizeof($count) ; $i++){
-                        if($i != sizeof($count)-1){
-                            echo $count[$i].",";
-                        }else{
-                            echo $count[$i];
-                    
-                        }
+                        ?>],
+                    backgroundColor :[
+                        <?php
+                            for($i = 0 ; $i < sizeof($date) ; $i++){
+                                if($i != sizeof($date)-1){
+                                    echo "'rgba(".random_int(0,255).", ".random_int(0,255).", ".random_int(0,255).", ".(rand(0, 10) / 10)."',";
+                                }else{
+                                    echo "'rgba(".random_int(0,255).", ".random_int(0,255).", ".random_int(0,255).", ".(rand(0, 10) / 10)."'";
+                                }
+                            }
+                        ?>
+                    ],
+                    borderWidth:1,
+                    borderColor:'#777',
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'#000'
+                    }]
+                },
+                options:{
+                    title:{
+                    display:true,
+                    text:'Persone presenti alla tua postazione',
+                    fontSize:25
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                min: 0
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                min: 0
+                            }
+                        }]
+                    },
+                    legend:{
+                    display:true,
+                    position:'right',
+                    labels:{
+                        fontColor:'#000',
                     }
-                ?>],
-            backgroundColor :[
-                <?php
-                    for($i = 0 ; $i < sizeof($date) ; $i++){
-                        if($i != sizeof($date)-1){
-                            echo "'rgba(".random_int(0,255).", ".random_int(0,255).", ".random_int(0,255).", ".(rand(0, 10) / 10)."',";
-                        }else{
-                            echo "'rgba(".random_int(0,255).", ".random_int(0,255).", ".random_int(0,255).", ".(rand(0, 10) / 10)."'";
-                        }
+                    },
+                    layout:{
+                    padding:{
+                        left:50,
+                        right:0,
+                        bottom:0,
+                        top:0
                     }
-                ?>
-            ],
-            borderWidth:1,
-            borderColor:'#777',
-            hoverBorderWidth:3,
-            hoverBorderColor:'#000'
-            }]
-        },
-        options:{
-            title:{
-            display:true,
-            text:'Persone presenti alla tua postazione',
-            fontSize:25
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
+                    },
+                    tooltips:{
+                    enabled:true
                     }
-                }],
-                xAxes: [{
-                    ticks: {
-                        beginAtZero: true
+                }
+            });
+        }else{
+            window.bar = new Chart(myChart, {
+                type: type, // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data:{
+                    labels:[<?php
+                                for($i = 0 ; $i < sizeof($date) ; $i++){
+                                    $text = "";
+                                    if($i != sizeof($date)-1){
+                                        $text.= "'".$date[$i];
+                                        if($hours){
+                                            $text.= " ".$hours[$i];
+                                            if($minutes){
+                                                $text.= ":".$minutes[$i];
+                                                if($seconds){
+                                                    $text.= ":".$seconds[$i];
+                                                }
+                                            }else{
+                                                $text .= ":00";
+                                            }
+                                        }
+                                        $text.= "',";
+                                    }else{
+                                        $text.= "'".$date[$i];
+                                        if($hours){
+                                            $text.= " ".$hours[$i];
+                                            if($minutes){
+                                                $text.= ":".$minutes[$i];
+                                                if($seconds){
+                                                    $text.= ":".$seconds[$i];
+                                                }
+                                            }else{
+                                                $text .= ":00";
+                                            }
+                                        }
+                                        $text.= "'";
+                                    }
+                                    echo $text;
+                                }
+                            ?>],
+                    datasets:[{
+                    label:'Persone',
+                    data:[<?php
+                            for($i = 0 ; $i < sizeof($count) ; $i++){
+                                if($i != sizeof($count)-1){
+                                    echo $count[$i].",";
+                                }else{
+                                    echo $count[$i];
+                            
+                                }
+                            }
+                        ?>],
+                    backgroundColor :[
+                        <?php
+                            for($i = 0 ; $i < sizeof($date) ; $i++){
+                                if($i != sizeof($date)-1){
+                                    echo "'rgba(".random_int(0,255).", ".random_int(0,255).", ".random_int(0,255).", ".(rand(0, 10) / 10)."',";
+                                }else{
+                                    echo "'rgba(".random_int(0,255).", ".random_int(0,255).", ".random_int(0,255).", ".(rand(0, 10) / 10)."'";
+                                }
+                            }
+                        ?>
+                    ],
+                    borderWidth:1,
+                    borderColor:'#777',
+                    hoverBorderWidth:3,
+                    hoverBorderColor:'#000'
+                    }]
+                },
+                options:{
+                    title:{
+                    display:true,
+                    text:'Persone presenti alla tua postazione',
+                    fontSize:25
+                    },
+                    legend:{
+                    display:true,
+                    position:'right',
+                    labels:{
+                        fontColor:'#000',
                     }
-                }]
-            },
-            legend:{
-            display:true,
-            position:'right',
-            labels:{
-                fontColor:'#000',
-            }
-            },
-            layout:{
-            padding:{
-                left:50,
-                right:0,
-                bottom:0,
-                top:0
-            }
-            },
-            tooltips:{
-            enabled:true
-            }
+                    },
+                    layout:{
+                    padding:{
+                        left:50,
+                        right:0,
+                        bottom:0,
+                        top:0
+                    }
+                    },
+                    tooltips:{
+                    enabled:true
+                    }
+                }
+            });
         }
-        });
+        
     }
         
     </script>
