@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php 
+	session_start(); 
+	$route = include('./Configuration/config.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,14 +42,14 @@
 	<?php
 		if($_SESSION['loggedin']){
 	?>
-	<li><a href="/Graphs/">Graphs</a></li>
+	<li><a href="<?php echo $route?>Graphs/">Graphs</a></li>
 	<?php
 		}
 	?>
 	<?php
 		if($_SESSION['admin']){
 	?>
-	<li><a href="/Administrator/">Data</a></li>
+	<li><a href="<?php echo $route?>Administrator/">Data</a></li>
 	<?php
 		}
 	?>
@@ -54,11 +57,11 @@
 	<?php 
 		if(!$_SESSION['loggedin']){
 	?>
-	<li id="login"><a href="/Login/">Login</a></li>
+	<li id="login"><a href="<?php echo $route?>Login/">Login</a></li>
 	<?php
 		}else{
 	?>
-	<li id="login"><a href="/User/"><?php if($_SESSION['admin'] == true){echo "Admin ";} echo $_SESSION['username'];?></a>
+	<li id="login"><a href="<?php echo $route?>User/"><?php if($_SESSION['admin'] == true){echo "Admin ";} echo $_SESSION['username'];?></a>
 	<?php 
 		}
 	?>

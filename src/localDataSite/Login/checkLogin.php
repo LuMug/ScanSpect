@@ -1,5 +1,6 @@
-<?php
-	session_start();
+<?php 
+	session_start(); 
+	$route = include('./../Configuration/config.php');
     $username = $password = "";
 
 	function test_input($data) {
@@ -43,7 +44,7 @@
 		$_SESSION['database'] = $database;
 		$_SESSION['table'] = $table;
 		$_SESSION['host'] = $host;
-        header("location: ../");
+        header("location: ".$route);
     }else{
 ?>
 <!DOCTYPE html>
@@ -69,7 +70,7 @@
 		</style>
 	</head>
 	<body>
-	<form action="/Login/" method="post">
+	<form action="<?php echo $route?>Login/" method="post">
 		<div class="container">
 			<p><b>Login failed!</b><br><br>Check your username or password</p>
 			<button type="submit">Back</button>

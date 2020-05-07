@@ -1,5 +1,6 @@
 <?php 
-	session_start();
+	session_start(); 
+	$route = include('./../Configuration/config.php');
 	if($_SESSION['admin'] == true){
 ?>
 <!DOCTYPE html>
@@ -137,7 +138,7 @@
 		</style>
 	</head>
 	<body>
-	<form action="/../../Login/" method="post">
+	<form action="<?php echo $route?>Login/" method="post">
 		<div class="container">
 			<p><b>Access denied!</b><br><br>You must be an administrator to watch this page</p>
 			<button type="submit">Back</button>

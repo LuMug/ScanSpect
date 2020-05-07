@@ -1,6 +1,6 @@
-
 <?php 
-    session_start();
+	session_start(); 
+	$route = include('./../Configuration/config.php');
     function returnQuery($col, $table){
         if($col == "date"){
             $query = "SELECT `date`, count(`date`) as count from $table GROUP BY `date` ORDER BY `date`";
@@ -20,7 +20,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="/Graphs/Lib/Chart.min.js"></script>
+  <script src="<?php echo $route?>Graphs/Lib/Chart.min.js"></script>
   <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script> -->
   <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -33,7 +33,7 @@
             $mysqli = new mysqli("".$_SESSION['host'], "".$_SESSION['username'], "".$_SESSION['password'], "".$_SESSION['database']);
             #Query effettuata al Database.
             $table = $_SESSION['table'];
-            $col = "hours";
+            $col = "date";
             $query = returnQuery("$col", "".$_SESSION['table']);
             $date = array();
             $count = array();
@@ -72,13 +72,13 @@
         <option value="radar">Radar</option>
         <option value="polarArea">Polar Area</option>
     </select>
-        <label for="rangeGraph">Select the range of the graph:</label>
-        <select id="rangeGraph">
-            <option value="date">Days</option>
-            <option value="hours">Hours</option>
-            <option value="minutes">Minutes</option>
-            <option value="seconds">Seconds</option>
-        </select>
+    <label for="rangeGraph">Select the range of the graph:</label>
+    <select id="rangeGraph" name="changeRange">
+        <option value="date">Days</option>
+        <option value="hours">Hours</option>
+        <option value="minutes">Minutes</option>
+        <option value="seconds">Seconds</option>
+    </select>
     <div class="container">
         <canvas id="myChart"></canvas>
     </div>

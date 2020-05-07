@@ -1,3 +1,7 @@
+<?php 
+    $route = include('./../Configuration/config.php');
+    echo $route;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,9 +52,9 @@
 
 <center><h2>Login</h2></center>
 
-<form action="/Login/checkLogin.php" method="post">
+<form action="<?php echo $route?>Login/checkLogin.php" method="post">
   <div class="imgcontainer">
-    <img src="./img/adminLogin.png" alt="Avatar" class="avatar">
+    <img src="<?php echo $route?>/Login/img/adminLogin.png" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">

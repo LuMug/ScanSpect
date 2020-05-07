@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php 
+	session_start(); 
+	$route = include('./../Configuration/config.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +38,7 @@
 </head>
 <body>
     <div class="imgcontainer">
-        <img src="../Login/img/adminLogin.png" alt="Avatar" class="avatar">
+        <img src="<?php echo $route ?>Login/img/adminLogin.png" alt="Avatar" class="avatar">
     </div>
 
     <div class="container">
@@ -57,7 +60,7 @@
         <?php
         if(array_key_exists('buttonLogout', $_POST)) { 
             session_destroy();
-            header("location: ../");
+            header("location: ".$route);
         }
         ?> 
 
