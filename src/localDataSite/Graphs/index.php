@@ -78,11 +78,16 @@
     <br><br>
     <?php
         if($_SESSION["loggedin"]){
+
+            $col = "minutes"; 
+            if(isset($_POST["rangeGraph"])){
+                $unit =$_POST["rangeGraph"];
+                $col = $unit;
+            }
             #Connessione al Database.
             $mysqli = new mysqli("".$_SESSION['host'], "".$_SESSION['username'], "".$_SESSION['password'], "".$_SESSION['database']);
             #Query effettuata al Database.
             $table = $_SESSION['table'];
-            $col = "hours";
             $query = returnQuery("$col", "".$_SESSION['table']);
             $date = array();
             $count = array();
@@ -113,31 +118,42 @@
     ?>
     <label for="typeGraph">Select type of the graph:</label>
 	<select id="typeGraph" onChange="createGraph(value)">
-		<option value="bar">Bar</option>
-		<option value="horizontalBar">Horizontal Bar</option>
-		<option value="pie">Pie</option>
-		<option value="line">Line</option>
-		<option value="doughnut">Doughnut</option>
-        <option value="radar">Radar</option>
-        <option value="polarArea">Polar Area</option>
+		<option id="barOption" value="bar">Bar</option>
+		<option id="horizontalBarOption" value="horizontalBar">Horizontal Bar</option>
+		<option id="pieOption" value="pie">Pie</option>
+		<option id="lineOption" value="line">Line</option>
+		<option id="doughnutOption" value="doughnut">Doughnut</option>
+        <option id="radarOption" value="radar">Radar</option>
+        <option id="polarAreaOption" value="polarArea">Polar Area</option>
     </select>
+    <form method="Post">
     <label for="rangeGraph">Select the range of the graph:</label>
-    <select id="rangeGraph" name="changeRange">
-        <option value="date">Days</option>
-        <option value="hours">Hours</option>
-        <option value="minutes">Minutes</option>
-        <option value="seconds">Seconds</option>
-    </select>
+        <select id="rangeGraph" name="rangeGraph" onChange="this.form.submit()">
+            <option value="date" <?php  if($col == "date"){echo "selected";} ?>>Days</option>
+            <option value="hours" <?php  if($col == "hours"){echo "selected";} ?>>Hours</option>
+            <option value="minutes" <?php  if($col == "minutes"){echo "selected";} ?>>Minutes</option>
+            <option value="seconds" <?php  if($col == "seconds"){echo "selected";} ?>>Seconds</option>
+        </select>
+    </form>
     <div class="container">
         <canvas id="myChart"></canvas>
     </div>
     <script>
-    window.onload = function () {
-        createGraph('bar');
+    window.onload = setDefaultGraph();
+
+    function setDefaultGraph(){
+        if(localStorage.getItem("type") === null){
+            createGraph('bar');
+        }else{
+            createGraph(localStorage.getItem("type"));
+        }
     }
 
+
     function createGraph(type) {
+        localStorage.setItem("type",type);
         var myChart = document.getElementById("myChart").getContext("2d");
+        document.getElementById(type + "Option").selected = true;
         if(window.bar != undefined) 
             window.bar.destroy(); 
         
