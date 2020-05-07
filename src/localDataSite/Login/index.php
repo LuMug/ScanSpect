@@ -1,6 +1,5 @@
 <?php 
     $route = include('./../Configuration/config.php');
-    echo $route;
 ?>
 <!DOCTYPE html>
 <html>
