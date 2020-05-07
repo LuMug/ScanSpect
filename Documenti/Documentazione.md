@@ -123,7 +123,6 @@
   |Req-10|Riproduzione webcam a schermo|Il video della webcam e i dati analizzati dalla webcam devono essere riprodotti a schermo.|1|1.0|...|
   |Req-11|Presenza di interfaccia|Deve essere presente una Gui.|1|1.0|...|
   |Req-12|Composizione delle statistiche analizzate|Le statistiche dovranno visualizzare nel tempo la frequenza di passaggio allo stand, sia giornalmente che in determinate fasce orarie.|1|1.0|...|
-  |Req-13|Comparazione con celebrità|Deve essere presente la possibilità di comparare la faccia di un utente con un dataset di facce di celebrità e ritornare quella più simile.|2|1.0|...|
 
 
 
@@ -150,7 +149,17 @@
 I casi d’uso rappresentano l’interazione tra i vari attori e le
 funzionalità del prodotto.
 
+![Use_case](../Screens/usecase.png)
+
+La base della nostra progettazione questo é il diagramma. Il suo scopo è rappresentare in forma schematica le schermate e pulsanti disponibili. La prima "pagina" che appare avviando l'eseguibile é quella del login una volta fatto il login parte direttamente l'applicazione che conta la persone e scrivere sul databse.
+
+
 ### Pianificazione
+![Gantt](../Screens/Gantt.png)
+L'immagine indica il gantt stilato ad inizio progetto. Le due fasi che sulla carta impiegano più tempo sono l'implementazione e il test. Queste fasi sono  circa i 2/3 del tempo impiegato per portare a termine il progetto. Le attività sono divise per allievo, ogni tanto è possibile che più allievi lavorino insieme ed ogni tanto è possibile che un allievo lavori singolarmente. Questo è il gantt iniziale, potrebbe essere differente dal gantt consuntivo indicato nell'immagine sotto.
+
+![Gantt_Consuntivo](../Screens/GanttConsuntivo.png)
+Gantt consuntivo ancora da fare.
 
 Prima di stabilire una pianificazione bisogna avere almeno una vaga idea
 del modello di sviluppo che si intende adottare. In questa sezione
@@ -211,12 +220,6 @@ Descrive:
 
 -   Eventuale sitemap
 
-![Gantt](../Screens/Gantt.png)
-L'immagine indica il gantt stilato ad inizio progetto. Le due fasi che sulla carta impiegano più tempo sono l'implementazione e il test. Queste fasi sono  circa i 2/3 del tempo impiegato per portare a termine il progetto. Le attività sono divise per allievo, ogni tanto è possibile che più allievi lavorino insieme ed ogni tanto è possibile che un allievo lavori singolarmente. Questo è il gantt iniziale, potrebbe essere differente dal gantt consuntivo indicato nell'immagine sotto.
-
-
-![Gantt_Consuntivo](../Screens/GanttConsuntivo.png)
-Gantt consuntivo ancora da fare.
 
 
 ![Schema struttura](../Screens/Schema_Struttura.png)
@@ -233,6 +236,7 @@ Se il diagramma E-R viene modificato, sulla doc dovrà apparire l’ultima
 versione, mentre le vecchie saranno sui diari.
 
 ### Design delle interfacce
+![Schema struttura](../Screens/Interfaccia.png)
 
 Descrizione delle interfacce interne ed esterne del sistema e
 dell’interfaccia utente. La progettazione delle interfacce è basata
