@@ -21,9 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="<?php echo $route?>Graphs/Lib/Chart.min.js"></script>
-  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script> -->
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo $route?>Graphs/Lib/bootstrap.min.css">
   <title>My Chart.js Chart</title>
 </head>
 <body>
@@ -33,7 +31,7 @@
             $mysqli = new mysqli("".$_SESSION['host'], "".$_SESSION['username'], "".$_SESSION['password'], "".$_SESSION['database']);
             #Query effettuata al Database.
             $table = $_SESSION['table'];
-            $col = "date";
+            $col = "hours";
             $query = returnQuery("$col", "".$_SESSION['table']);
             $date = array();
             $count = array();
@@ -169,7 +167,7 @@
             text:'Persone presenti alla tua postazione',
             fontSize:25
             },
-            scales: {
+            /*scales: {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
@@ -180,7 +178,7 @@
                         beginAtZero: true
                     }
                 }]
-            },
+            },*/
             legend:{
             display:true,
             position:'right',
