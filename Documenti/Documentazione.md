@@ -72,38 +72,6 @@
 
 ## Analisi
 
-### Analisi del dominio
-
-  Questo capitolo dovrebbe descrivere il contesto in cui il prodotto verrà
-  utilizzato, da questa analisi dovrebbero scaturire le risposte a quesiti
-  quali ad esempio:
-
-  -   Background/Situazione iniziale
-
-  -   Quale è e come è organizzato il contesto in cui il prodotto dovrà
-      funzionare?
-
-  -   Come viene risolto attualmente il problema? Esiste già un prodotto
-      simile?
-
-  -   Chi sono gli utenti? Che bisogni hanno? Come e dove lavorano?
-
-  -   Che competenze/conoscenze/cultura posseggono gli utenti in relazione
-      con il problema?
-
-  -   Esistono convenzioni/standard applicati nel dominio?
-
-  -   Che conoscenze teoriche bisogna avere/acquisire per poter operare
-      efficacemente nel dominio?
-
-  -   …
-
-  Questo prodotto sarà utilizzabile da chiunque abbia uno stand visitato da persone. Ciò permette all'utilizzatore di sapere quante persone, in che modo e in che periodo hanno visitato lo stand. Grazie alle innovative tecnologie utilizzate vi sarà la possibilità di utilizzare il servizio scaricando ed avviando unicamente un file eseguibile.
-  <br>
-  Esistono alcuni software che permettono di rilevare la presenza negli stand, ma tutti sono molto complicati e molto costosi. Inoltre l'utilizzo dell'intelligenza artificiale rende questo progetto infinitamente più semplice da utilizzare rispetto a quelli presenti sul mercato.
-  <br>
-  Chiunque può utilizzare il seguente prodotto, gli unici requisiti sono: avere un computer, un webserver locale ed un database. Grazie alle semplici interfaccie leggibili ed intuitive non servirà nessuna conoscenza informatica particolare per utilizzare il prodotto.
-
 ### Analisi e specifica dei requisiti
 
 
@@ -161,31 +129,8 @@ L'immagine indica il gantt stilato ad inizio progetto. Le due fasi che sulla car
 ![Gantt_Consuntivo](../Screens/GanttConsuntivo.png)
 Gantt consuntivo ancora da fare.
 
-Prima di stabilire una pianificazione bisogna avere almeno una vaga idea
-del modello di sviluppo che si intende adottare. In questa sezione
-bisognerà inserire il modello concettuale di sviluppo che si seguirà
-durante il progetto. Gli elementi di riferimento per una buona
-pianificazione derivano da una scomposizione top-down della problematica
-del progetto.
-
-La pianificazione può essere rappresentata mediante un diagramma di
-Gantt.
-
-Se si usano altri metodi di pianificazione (es scrum), dovranno apparire
-in questo capitolo.
 
 ### Analisi dei mezzi
-
-Elencare e *descrivere* i mezzi disponibili per la realizzazione del
-progetto. Ricordarsi di sempre descrivere nel dettaglio le versioni e il
-modello di riferimento.
-
-SDK, librerie, tools utilizzati per la realizzazione del progetto e
-eventuali dipendenze.
-
-Su quale piattaforma dovrà essere eseguito il prodotto? Che hardware
-particolare è coinvolto nel progetto? Che particolarità e limitazioni
-presenta? Che hw sarà disponibile durante lo sviluppo?
 
 Per realizzare questo progetto sono stati utilizzati i seguenti software:
 <ul>
@@ -208,20 +153,6 @@ nell’implementazione del prodotto.
 
 ### Design dell’architettura del sistema
 
-Descrive:
-
--   La struttura del programma/sistema lo schema di rete...
-
--   Gli oggetti/moduli/componenti che lo compongono.
-
--   I flussi di informazione in ingresso ed in uscita e le
-    relative elaborazioni. Può utilizzare *diagrammi di flusso dei
-    dati* (DFD).
-
--   Eventuale sitemap
-
-
-
 ![Schema struttura](../Screens/Schema_Struttura.png)
 L'immagine mostra lo schema della struttura del progetto. Il progetto è composto da un programma che rileva il numero di persone. Ad ogni rilevamento inserisce un dato all'interno del database (all'inizio lo crea se non esiste). La logica del sito (in php), si occupa di richiedere i dati al database e di mandarli al sito vero e prorpio. Così facendo il sito ha abbastanza valori per creare un'interfaccia con dei grafici esaustivi e stampare i dati in una tabella.
 
@@ -230,13 +161,18 @@ L'immagine mostra lo schema della struttura del progetto. Il progetto è compost
 Descrizione delle strutture di dati utilizzate dal programma in base
 agli attributi e le relazioni degli oggetti in uso.
 
-### Schema E-R, schema logico e descrizione.
+### Schema logico e descrizione.
 
-Se il diagramma E-R viene modificato, sulla doc dovrà apparire l’ultima
-versione, mentre le vecchie saranno sui diari.
+Nome database: <b>ScanSpect</b>
+
+people(<u>id</u>,date,hours,minutes,seconds)<br>
+Tabella in cui vengono salvate tutte le persone rilevate tramite id e a quale data, minuto e secondo.
+
+user(<u>username</u>,password,admin)<br>
+Tabella in cui vengono salvati gli utenti registrati nel sito locale con username come chiave, password e
+un flag ad indicare se l'utente è admin o no.
 
 ### Design delle interfacce
-![Schema struttura](../Screens/Interfaccia.png)
 
 Descrizione delle interfacce interne ed esterne del sistema e
 dell’interfaccia utente. La progettazione delle interfacce è basata
@@ -263,64 +199,293 @@ per la realizzazione del prodotto.
 
 ## Implementazione
 
-In questo capitolo dovrà essere mostrato come è stato realizzato il
-lavoro. Questa parte può differenziarsi dalla progettazione in quanto il
-risultato ottenuto non per forza può essere come era stato progettato.
+<h4>Applicazione Client</h4>
 
-Sulla base di queste informazioni il lavoro svolto dovrà essere
-riproducibile.
+Il client si occupa di eseguire la detection di tutti volti trovati dalla webcam. Per fare ciò è stata utilizzata la libreria OpenCV e il modulo DNN (Deep Neural Network).
+Oltre a ciò prima che il software venga eseguito, viene chiesto all'utente di inserire i dati di accesso ad un DBMS (MySQL,MariaDB,etc.) per poter inviare i dati al database per poter analizzare i grafici.
 
-In questa parte è richiesto l’inserimento di codice sorgente/print
-screen di maschere solamente per quei passaggi particolarmente
-significativi e/o critici.
+<h5>FaceRec.py</h5>
 
-Inoltre dovranno essere descritte eventuali varianti di soluzione o
-scelte di prodotti con motivazione delle scelte.
+Per creare il form iniziale, in cui l'utente inserisce le sue credenziali del DBMS, è stata utillizata la libreria <b>Tkinter</b> che permette di creare delle semplici interfacce grafiche.
 
-Non deve apparire nessuna forma di guida d’uso di librerie o di
-componenti utilizzati. Eventualmente questa va allegata.
+Per dicharare e configurare un'interfaccia in tkinter occorre:
+```Python
+#Definisce nuovo frame.
+top = Tk()
+#setta le dimensioni del frame.
+top.geometry("280x380")
+#setta il background bianco.
+top.configure(background='white')
+#aggiunge il titolo al frame.
+top.wm_title("Face recognition")
+#setta a non ridimensionabile il frame.
+top.resizable(width=False, height=False)
 
-Per eventuali dettagli si possono inserire riferimenti ai diari.
+```
+Per creare invece dei label e dei textbox (chiamati Entry dalla libreria) occorre dichiarare l'oggetto desiderato
+passandogli come parametro necessario il frame, gli altri sono facoltativi. In seguito, per posizionarli nel frame, è stato utilizzato il metodo place() passandogli come parametri le coordinate x e y.
+
+Qui di seguito, la creazione del Label e dell'Entry per l'host del DBMS:
+```Python
+
+L1 = Label(top, text="Host")
+L1.place(x=30,y=120)
+E1 = Entry(top, bd =5)
+E1.insert(END, "localhost")
+E1.place(x=100,y=120)
+
+```
+il metodo insert richiamato dall'Entry permette l'inserimento di un valore di default (localhost).
+
+Per il pulsante di avvio, è stato necessario creare una funzione ButtonPressed che verifichi la coerenza dei dati inseriti dagli utenti:
+
+```Python
+
+#In caso venga premuto il tasto start, verifica
+#che i campi non siano vuoti e che i dati inseriti
+#siano validi tramite apposito metodo, se queste
+#condizioni non sono soddisfatte, stampa un label rosso con l'errore.
+def buttonPressed():
+    v = E1.get()
+    v2 = E2.get()
+    v3 = E3.get()
+    v4 = E5.get()
+
+    L4 = Label()
+    if L4.winfo_exists():
+        L4.destroy()
+
+    if len(v) == 0 or len(v2) == 0 or len(v3) == 0:
+        L4 = Label(top, text="I campi vuoti non sono ammessi, riprova.")
+        L4.config(fg="red")
+        L4.place(x=30,y=350)  
+
+    elif not v4.isdigit():
+        L4 = Label(top, text="Il Capture inserito non è valido, riprova.")
+        L4.config(fg="red")
+        L4.place(x=30,y=350)  
+
+    else:
+        if testConnection(v,v2,v3) is True:
+            top.destroy()
+            startFaceRecognition(v,v2,v3,int(v4))
+
+        else:
+            L4 = Label(top, text="Utente o host inserito non valido, riprova.")
+            L4.config(fg="red")
+            L4.place(x=30,y=350)   
+
+btn = Button(top, text ="Start", width=20,command=buttonPressed)
+btn.place(x=60,y=320)
+top.mainloop()
+
+```
+Se tutto è andato a buon fine, viene chiamato il metodo startFaceRecognition che avvia la detection dei volti passandogli come parametri i dati e il numero della webcam. Se invece ci sono problemi di campi vuoti o dati non validi, questi ultimi verifcati tramite il metodo testConnection che verifica se è possibile accedere con i dati inseriti o tramite il metodo isDigit per verificare che l'utente abbia inserito un numero per cam, viene creato un label con foreground rosso indicante l'errore.
+
+La prima cosa che viene fatta nel metodo startFaceRecognition è creare la connessione con il DBMS (nel nostro caso MySQL) e creare il cursor per poter effettuare query. Non è necessario verificare la validità dei dati in quanto viene già fatta, come visto prima tramite il metodo testConnection. In entrambi i due casi viene utilizzata la libreria <b>mysql.connector</b>.
+
+```Python
+mydb = mysql.connector.connect(
+   host=host,
+   user=user,
+   passwd=passwd
+   )
+   cursor = mydb.cursor()
+```
+
+Dopodiché carica la rete neurale nella variabile faceNet ed inizia la cattura dei frame della webcam e identifica ogni volto finché l'utente non preme il tasto esc.
+
+```Python
+
+ # Carica rete neurale.
+ faceNet = cv.dnn.readNet(faceModel, faceProto)
+
+ #cattura dell'input della webcam.
+ cap = cv.VideoCapture(capture)
+ padding = 20
+ last_face_number = None
+ count = 0
+ while cv.waitKey(1) < 0:
+
+     #prende il frame attuale della camera.
+     hasFrame, frame = cap.read()
+
+     #ridimensione del frame del 200% piu grande con il metodo apposito.
+     frame = rescale_frame(frame,percent=200)
+
+     if not hasFrame:
+         cv.waitKey()
+         break
+
+     #prende il numero di box/cornici create. Se non viene trovata nessuna, continua.
+     frameFace, bboxes = getFaceBox(faceNet, frame)
+     face_number = 0       
+
+     #conteggio dei volti presenti nel frame.
+     for bbox in bboxes:
+         face_number+=1   
+     #print delle cornici su schermo.
+     cv.imshow("Face detect", frameFace)
+```
+Per ogni frame, viene indivduato ogni volto presente tramite il metodo getFaceBox in cui vengono passati come argomenti la rete neurale e l'attuale frame ed assegnati alla variabile FrameFace per il disegno delle cornici intorno al volto ed a bboxes per fare il conteggio dei volti presenti.
+
+Il metodo getFaceBox prima citato calcola le coordinate e la dimensione delle cornice di ogni volto trovato:
+
+```Python
+
+#Genera  i box/cornici attorno ad ogni volto trovato per frame.
+	#@Param frame Frame attuale.
+	#@Param net Network.
+    def getFaceBox(net, frame, conf_threshold=0.7):
+        frameOpencvDnn = frame.copy()
+        frameHeight = frameOpencvDnn.shape[0]
+        frameWidth = frameOpencvDnn.shape[1]
+        blob = cv.dnn.blobFromImage(frameOpencvDnn, 1.0, (300, 300), [104, 117, 123], True, False)
+        net.setInput(blob)
+        detections = net.forward()
+        bboxes = []
+        for i in range(detections.shape[2]):
+            confidence = detections[0, 0, i, 2]
+            if confidence > conf_threshold:
+                x1 = int(detections[0, 0, i, 3] * frameWidth)
+                y1 = int(detections[0, 0, i, 4] * frameHeight)
+                x2 = int(detections[0, 0, i, 5] * frameWidth)
+                y2 = int(detections[0, 0, i, 6] * frameHeight)
+                bboxes.append([x1, y1, x2, y2])
+                cv.rectangle(frameOpencvDnn, (x1, y1), (x2, y2), (255, 0, 0), int(round(frameHeight/150)), 8)
+        return frameOpencvDnn, bboxes
+```
+
+Per calcolare il conteggio totale delle persone utilizza il seguente algoritmo, dove per ogni nuova persona trovata, invoca il metodo addDataToDb passandogli come parametri la data, ora minuti e secondi attuali.
+
+```Python
+
+    #conteggio totale delle persone.
+    if last_face_number is not None:
+      if last_face_number < face_number:
+          count+=1
+          now = datetime.datetime.now()
+          addDataToDb(str(datetime.date.today()),int(now.hour),int(now.minute),int(now.second))    
+          last_face_number = face_number
+      else:
+          last_face_number = face_number
+          count+=face_number
+          now = datetime.datetime.now()
+          addDataToDb(str(datetime.date.today()),int(now.hour),int(now.minute),int(now.second))    
+      print(str(count))
+
+```
+l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecognition per eseguire le query:
+
+```Python
+
+#Permette l'aggiunta di dati al database
+	#@param date Data corrente nel formato mm-dd-YY
+	#@param hours Ora attuale.
+	#@param minutes Minuti attuali.
+	#@param secs Secondi attuali.
+    def addDataToDb(date,hours,minutes,secs):
+
+        #Inserimento dati nel Database
+        print("new data added")
+        cursor.execute("USE ScanSpect")
+        sql = "INSERT INTO people(date,hours,minutes,seconds) VALUES(%s,%s,%s,%s)"
+        val = (date,hours,minutes,secs)
+        cursor.execute(sql,val)
+        mydb.commit()
+```
+
+
+
+
 
 ## Test
 
 ### Protocollo di test
 
-Definire in modo accurato tutti i test che devono essere realizzati per
-garantire l’adempimento delle richieste formulate nei requisiti. I test
-fungono da garanzia di qualità del prodotto. Ogni test deve essere
-ripetibile alle stesse condizioni.
-
-
 |Test Case      | TC-001                               |
 |---------------|--------------------------------------|
-|**Nome**       |Import a card, but not shown with the GUI |
-|**Riferimento**|REQ-012                               |
-|**Descrizione**|Import a card with KIC, KID and KIK keys with no obfuscation, but not shown with the GUI |
-|**Prerequisiti**|Store on local PC: Profile\_1.2.001.xml (appendix n\_n) and Cards\_1.2.001.txt (appendix n\_n) |
-|**Procedura**     | - Go to “Cards manager” menu, in main page click “Import Profiles” link, Select the “1.2.001.xml” file, Import the Profile - Go to “Cards manager” menu, in main page click “Import Cards” link, Select the “1.2.001.txt” file, Delete the cards, Select the “1.2.001.txt” file, Import the cards |
-|**Risultati attesi** |Keys visible in the DB (OtaCardKey) but not visible in the GUI (Card details) |
-
+|**Nome**       | Visualizzazione video webcam |
+|**Riferimento**|REQ-10                               |
+|**Descrizione**| Avviando l'applicazione, il software mostra il video della webcam. |
+|**Prerequisiti**| - |
+|**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso. |
+|**Risultati attesi** | Dopo aver inserito i dati, viene visualizzato il video della webcam. |
 
 |Test Case      | TC-002                               |
 |---------------|--------------------------------------|
-|**Nome**       | Il conteggio non aumenta con la stessa persona in movimento nella webcam. |
+|**Nome**       | Conteggio invariato con la stesssa persona visualizzata |
 |**Riferimento**|REQ-07                               |
 |**Descrizione**| Avviando l'applicazione, e muovendosi all'interno della visual della webcam, il contatore di persone non aumenta in quanto il software riconosce che si tratta sempre della stessa persona. |
 |**Prerequisiti**| - |
 |**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso.  <br>  - Muoversi all'interno della webcam. |
 |**Risultati attesi** | Muovendosi, il conteggio rimane sempre lo stesso. |
 
-|Test Case      | TC-002                               |
+|Test Case      | TC-003                               |
 |---------------|--------------------------------------|
-|**Nome**       | Il conteggio non aumenta con altre parti del corpo |
+|**Nome**       | Conteggio invariato con parti del corpo che non siano il volto |
 |**Riferimento**|REQ-08                               |
 |**Descrizione**| Avviando l'applicazione, e muovendosi all'interno della visual della webcam, non vengono prese in considerazioni altre parti del corpo che non siano il volto. |
-|**Prerequisiti**| - |
+|**Prerequisiti**| REQ-07 |
 |**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso.  <br>  - Muoversi all'interno della webcam con altre parti del corpo visibili oltre al volto (es. busto). |
 |**Risultati attesi** | Muovendosi, il conteggio rimane sempre lo stesso. |
 
+|Test Case      | TC-004                               |
+|---------------|--------------------------------------|
+|**Nome**       | Registrazione orario di visita     |
+|**Riferimento**|REQ-03                              |
+|**Descrizione**| Quando una persona viene rilevata, viene registrato l'orario in cui è stata rilevata. |
+|**Prerequisiti**| REQ-07 REQ-08 REQ-09, aver avviato il server apache ed il servizio MySQL |
+|**Procedura**     | - Avviare il software <br> - inserire i dati di accesso  <br>  - Rilevare almeno 1 volto di persona  <br> - Accedere al sito locale <br> - Fare login/registrazione nella pagina <br> - Selzionare l'opzione Graphs <br> - Visualizzare i grafici <br> oppure: <br> - Loggarsi come administratore alla pagina <br> - Selezionare l'opzione Data <br> - Analizzare la tabella   |
+|**Risultati attesi** | Osservando i grafici o la tabella, deve apparire la data con l'ora, minuti e secondi del momento in cui la persona è stata rilevata. |
 
+
+|Test Case      | TC-005                               |
+|---------------|--------------------------------------|
+|**Nome**       | Generazione grafici |
+|**Riferimento**|REQ-09                              |
+|**Descrizione**| Accedendo al sito, è possibile visualizzare i grafici con i dati delle persone. |
+|**Prerequisiti**| REQ-07, REQ-08, aver avviato il server apache ed il servizio MySQL|
+|**Procedura**     |  - Accedere al sito locale <br> - Selezionare l'opzione Graphs <br>  |
+|**Risultati attesi** | I grafici vengono visualizzati |
+
+
+|Test Case      | TC-006                               |
+|---------------|--------------------------------------|
+|**Nome**       | Accesso amministratore |
+|**Riferimento**| REQ-06                              |
+|**Descrizione**| Accendo al sito locale come amministratore, è possibile analizzare i dati e le configurazioni del sistema.|
+|**Prerequisiti**| REQ-07 REQ-08, aver avviato il server apache ed il servizio MySQL|
+|**Procedura**     |  - Accedere al sito locale <br> - Selezionare l'opzione Graphs <br>  |
+|**Risultati attesi** | I grafici vengono visualizzati |
+
+|Test Case      | TC-007                               |
+|---------------|--------------------------------------|
+|**Nome**       | Presenza del sito informativo |
+|**Riferimento**| REQ-05                              |
+|**Descrizione**| Accendo al sito locale come amministratore, è possibile analizzare i dati e le configurazioni del sistema.|
+|**Prerequisiti**| REQ-07 REQ-08, aver avviato il server apache ed il servizio MySQL|
+|**Procedura**     |  - Accedere al sito locale <br> - Selezionare l'opzione Graphs <br>  |
+|**Risultati attesi** | I grafici vengono visualizzati |
+
+
+|Test Case      | TC-0015                              |
+|---------------|--------------------------------------|
+|**Nome**       |Download dell'applicativo windows|
+|**Riferimento**|REQ-05                             |
+|**Descrizione**|Possibilità di scaricare l'applicativo e poterlo usare |
+|**Prerequisiti**|Avere tutti i test precedenti funzionati  |
+|**Procedura**     | -Andare sul sito web <br> -scorrere fino in fondo selezionare la versione per windows e premere scarica ora |
+|**Risultati attesi** |Viene scaricato uno zip con all'interno un eseguibile  |
+
+|Test Case      | TC-0016                               |
+|---------------|--------------------------------------|
+|**Nome**       |Download dell'applicativo linux|
+|**Riferimento**|REQ-05                             |
+|**Descrizione**|Possibilità di scaricare l'applicativo e poterlo usare |
+|**Prerequisiti**|Avere tutti i test precedenti funzionati  |
+|**Procedura**     | -Andare sul sito web scorrere fino in fondo -selezionare la versione per linux e premere scarica ora |
+|**Risultati attesi** |Viene scaricato uno zip  |
 
 
 ### Risultati test
@@ -356,6 +521,8 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
   Migliorie o estensioni che possono essere sviluppate sul prodotto.
 
 ### Considerazioni personali
+ Alessandro: penso che sia stato un progetto molto interessante e che io abbia imparato molto da esso soprattutto a lavorare in team dato che era la prima volta che lavoravo a un progetto così lungo con cosi "tante" persone. Nonostante la distanza e il fatto di non poterci vedere penso che ci siamo gestiti abbastanza bene il tempo anche se siamo arrivati abbastanza tirati con il tempo. Ogni tanto avrei preferito che il team ascoltasse di più le mie idee ma é normale dato che era la prima volta che al'inizio non ci fosse troppo dialogo. Sono comunque molto soddisfatto del lavoro svolto e di come abbiamo lavorato.
+ 
   Cosa ho imparato in questo progetto? ecc
 
 ## Bibliografia
@@ -390,17 +557,7 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
 
 ### Sitografia
 
-1.  URL del sito (se troppo lungo solo dominio, evt completo nel
-    diario),
-
-2.  Eventuale titolo della pagina (in italico),
-
-3.  Data di consultazione (GG-MM-AAAA).
-
-**Esempio:**
-
--   http://standards.ieee.org/guides/style/section7.html, *IEEE
-    Standards Style Manual*, 07-06-2008.
+-  https://docs.opencv.org/master/d2/d58/tutorial_table_of_content_dnn.html, *OpenCV DNN*, 17-04-2020
 
 ## Allegati
 
