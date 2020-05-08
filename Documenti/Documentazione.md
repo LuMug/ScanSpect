@@ -133,6 +133,7 @@ Per realizzare questo progetto sono stati utilizzati i seguenti software:
   <li>Visual Studio Code - 1.43: Per tutto ciò che riguarda la scrittura del codice Python/Php/html/css/Javascript</li>
   <li>Python - 2.7: Per la creazione dell'applicativo principale</li>
   <li>OpenCV - 4.2.0: Libreria utilizzata per il riconoscimento facciale</li>
+  <li>Tkinter: Libreria per la creazione di interfacce grafiche in Python</li>
   <li>Chart js: Libreria utilizzata per la creazione dei grafici</li>
   <li>Bootstrap (maxdn): "Libreria" css utilizzata per abbellire i grafici</li>
   <li>MySQL Workbench: Per creare e contenere il database</li>
