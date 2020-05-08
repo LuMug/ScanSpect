@@ -262,12 +262,12 @@ per la realizzazione del prodotto.
 
 ## Implementazione
 
-<h5>Applicazione Client</h5>
+<h4>Applicazione Client</h4>
 
 Il client si occupa di eseguire la detection di tutti volti trovati dalla webcam. Per fare ciò è stata utilizzata la libreria OpenCV e il modulo DNN (Deep Neural Network).
 Oltre a ciò prima che il software venga eseguito, viene chiesto all'utente di inserire i dati di accesso ad un DBMS (MySQL,MariaDB,etc.) per poter inviare i dati al database per poter analizzare i grafici.
 
-<h6>FaceRec.py</h6>
+<h5>FaceRec.py</h5>
 
 Per creare il form iniziale, in cui l'utente inserisce le sue credenziali del DBMS, è stata utillizata la libreria <b>Tkinter</b> che permette di creare delle semplici interfacce grafiche.
 
