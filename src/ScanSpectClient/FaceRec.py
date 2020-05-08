@@ -9,7 +9,10 @@ import datetime
 from tkinter import *
 from PIL import Image, ImageTk
 
-
+#Permette di iniziare la detection dei volti.
+#@param host Host del database.
+#@param user user con cui connettersi.
+#@param passwd password dell'utente.
 def startFaceRecognition(host,user,passwd):
 
 
@@ -25,6 +28,8 @@ def startFaceRecognition(host,user,passwd):
     #------------------------------Resize del frame-------------------------------
     
     #esegue un resizing del frame in base alla percentuale passata.
+	#@param frame Frame da ridimensionare.
+	#@param percent Percentuale di ridimensionamento.
     def rescale_frame(frame, percent=75):
         width = int(frame.shape[1] * percent/ 100)
         height = int(frame.shape[0] * percent/ 100)
@@ -50,6 +55,10 @@ def startFaceRecognition(host,user,passwd):
             mydb.commit()
 
     #Permette l'aggiunta di dati al database (tempo di rivelamento + numero totale di persone)
+	#@param date Data corrente nel formato mm-dd-YY
+	#@param hours Ora attuale.
+	#@param minutes Minuti attuali.
+	#@param secs Secondi attuali.
     def addDataToDb(date,hours,minutes,secs):
 
         #Inserimento dati nel Database
@@ -62,9 +71,11 @@ def startFaceRecognition(host,user,passwd):
 
     #-----------------------------------------------------------------------------   
         
-     #------------------------------ Scansione volti ------------------------------    
+    #------------------------------ Scansione volti ------------------------------    
 
-    #Genera  i box/cornici attorno ad ogni volto trovato.
+    #Genera  i box/cornici attorno ad ogni volto trovato per frame.
+	#@Param frame Frame attuale.
+	#@Param net Network.
     def getFaceBox(net, frame, conf_threshold=0.7):
         frameOpencvDnn = frame.copy()
         frameHeight = frameOpencvDnn.shape[0]
@@ -145,6 +156,9 @@ def startFaceRecognition(host,user,passwd):
 
 #verifica se i dati utente inseriti sono validi, per farlo utilizza un try & catch
 # che verifica se l'host o l'utente inserito esistano.
+#@param host Host da testare.
+#@param user User da testare.
+#@param password Password dell'utente da testare.
 def testConnection(host,user,password):
     
     try:
