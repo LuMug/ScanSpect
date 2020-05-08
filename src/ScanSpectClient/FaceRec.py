@@ -14,8 +14,9 @@ from PIL import Image, ImageTk
 #@param host Host del database.
 #@param user user con cui connettersi.
 #@param passwd password dell'utente.
-def startFaceRecognition(host,user,passwd):
+def startFaceRecognition(host,user,passwd,capture=0):
 
+    Videocapture= capture
 
     #---------- Accesso al database + dichiarazione cursore ----------------------
     mydb = mysql.connector.connect(
@@ -39,21 +40,6 @@ def startFaceRecognition(host,user,passwd):
 
     #-----------------------------------------------------------------------------
 
-
-    #-------------------- Creazione DB + inserimento dati ------------------------
-
-    #crea il database 
-    def createDatabase():
-
-        cursor.execute("SHOW DATABASES LIKE 'ScanSpect'")
-        results = 0
-        for x in cursor:
-            results+=1
-        if results == 0:
-            cursor.execute("CREATE DATABASE ScanSpect")
-            cursor.execute("USE ScanSpect")
-            cursor.execute("CREATE TABLE people(id INT PRIMARY KEY AUTO_INCREMENT,date DATE,hours INT,minutes INT,seconds INT)")
-            mydb.commit()
 
     #Permette l'aggiunta di dati al database (tempo di rivelamento + numero totale di persone)
 	#@param date Data corrente nel formato mm-dd-YY
@@ -104,11 +90,10 @@ def startFaceRecognition(host,user,passwd):
     faceNet = cv.dnn.readNet(faceModel, faceProto)
 
     #cattura dello schermo
-    cap = cv.VideoCapture(0)
+    cap = cv.VideoCapture(Videocapture)
     padding = 20
     last_face_number = None
     count = 0
-    createDatabase()
     while cv.waitKey(1) < 0:
 
         #prende il frame attuale della camera.
@@ -169,7 +154,6 @@ def testConnection(host,user,password):
     except (mysql.connector.errors.InterfaceError,mysql.connector.errors.ProgrammingError):
         return False
 
-
 #-------------------------------- Menu Frame in Tkinter ---------------------------------------
 
 #/////////////////// Frame /////////////////
@@ -177,7 +161,7 @@ def testConnection(host,user,password):
 #Definisce nuovo frame.
 top = Tk()
 #setta le dimensioni del frame.
-top.geometry("280x320")
+top.geometry("280x380")
 #setta il background bianco.
 top.configure(background='white')
 #aggiunge il titolo al frame.
@@ -205,9 +189,6 @@ L0.config(font=("Courier",8))
 L0.place(x=30,y=90)
 
 #///////////////////////////////////////////
-
-
-
 #///// Host,user,password label+entry //////
 
 L1 = Label(top, text="Host")
@@ -226,6 +207,12 @@ L3.place(x=30,y=220)
 E3 = Entry(top,show="*",bd =5)
 E3.place(x=100,y=220)
 
+L5 = Label(top, text="Capture ")
+L5.place(x=30,y=270)
+E5 = Entry(top, bd =5)
+E5.insert(END,"0")
+E5.place(x=100,y=270)
+
 #///////////////////////////////////////////
 
 #In caso venga premuto il tasto start, verifica
@@ -236,27 +223,34 @@ def buttonPressed():
     v = E1.get()
     v2 = E2.get()
     v3 = E3.get()
+    v4 = E5.get()
 
     L4 = Label()
     if L4.winfo_exists():
         L4.destroy()
 
     if len(v) == 0 or len(v2) == 0 or len(v3) == 0:
-       L4 = Label(top, text="I campi vuoti non sono ammessi, riprova.")
-       L4.config(fg="red")
-       L4.place(x=30,y=290)  
+        L4 = Label(top, text="I campi vuoti non sono ammessi, riprova.")
+        L4.config(fg="red")
+        L4.place(x=30,y=350)  
 
+    elif not v4.isdigit():
+        L4 = Label(top, text="Il Capture inserito non è valido, riprova.")
+        L4.config(fg="red")
+        L4.place(x=30,y=350)  
+        
     else:
         if testConnection(v,v2,v3) is True:
             top.destroy()
-            startFaceRecognition(v,v2,v3)
+            startFaceRecognition(v,v2,v3,int(v4))
+                
         else:
             L4 = Label(top, text="Utente o host inserito non valido, riprova.")
             L4.config(fg="red")
-            L4.place(x=30,y=290)  
+            L4.place(x=30,y=350)   
 
 btn = Button(top, text ="Start", width=20,command=buttonPressed)
-btn.place(x=60,y=260)
+btn.place(x=60,y=320)
 top.mainloop()
 
 #----------------------------------------------------------------------------------------
