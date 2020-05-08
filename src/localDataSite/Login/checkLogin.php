@@ -34,8 +34,38 @@
 			$_SESSION['admin'] = true;
 			header("location: ".$route);
 		}else{
-			//LOGIN ADMIN ERRATO
-			echo "Access denied";
+		?>
+			<!DOCTYPE html>
+			<head>
+				<style>
+					button {
+						background-color: #4CAF50;
+						color: white;
+						padding: 14px 20px;
+						margin: 8px 0;
+						border: none;
+						cursor: pointer;
+					}
+
+					button:hover {
+						opacity: 0.8;
+					}
+
+					.container {
+						padding: 16px;
+						text-align: center;
+					}
+				</style>
+			</head>
+			<body>
+			<form action="<?php echo $route?>Login/" method="post">
+				<div class="container">
+					<p><b>Login failed!</b><br><br>Check your username or password</p>
+					<button type="submit">Back</button>
+				</div>
+			</form>
+			</body>
+		<?php
 		}
 	}elseif($username != $adminUserCredential[0]){
 		#Connessione al Database. NORMAL
@@ -60,20 +90,80 @@
 							}
 							header("location: ".$route);
  						}else{
-							//PASSWORD ERRATA
-							echo "Password errata";
+						?>
+							<!DOCTYPE html>
+							<head>
+								<style>
+									button {
+										background-color: #4CAF50;
+										color: white;
+										padding: 14px 20px;
+										margin: 8px 0;
+										border: none;
+										cursor: pointer;
+									}
+
+									button:hover {
+										opacity: 0.8;
+									}
+
+									.container {
+										padding: 16px;
+										text-align: center;
+									}
+								</style>
+							</head>
+							<body>
+							<form action="<?php echo $route?>Login/" method="post">
+								<div class="container">
+									<p><b>Login failed!</b><br><br>Check your password</p>
+									<button type="submit">Back</button>
+								</div>
+							</form>
+							</body>
+						<?php
 						}
 					}
 				}else{
 					echo "Errore di query";
 				}
 			}else{
-				//USER NON ESISTE
-				echo "Utente non esiste";
+			?>
+				<!DOCTYPE html>
+				<head>
+					<style>
+						button {
+							background-color: #4CAF50;
+							color: white;
+							padding: 14px 20px;
+							margin: 8px 0;
+							border: none;
+							cursor: pointer;
+						}
+
+						button:hover {
+							opacity: 0.8;
+						}
+
+						.container {
+							padding: 16px;
+							text-align: center;
+						}
+					</style>
+				</head>
+				<body>
+				<form action="<?php echo $route?>Login/" method="post">
+					<div class="container">
+						<p><b>Login failed!</b><br><br>Check your username or password</p>
+						<button type="submit">Back</button>
+					</div>
+				</form>
+				</body>
+			<?php
 			}
 		}else{
 			//LOGIN NORMAL ERRATO
-			echo "Login normal errato";
+			echo "Login normalUser errato";
 		}
     }else{
 ?>
