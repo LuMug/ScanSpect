@@ -18,8 +18,6 @@
 	$database = "ScanSpect";
 	$table = "user";
     $host = "localhost";
-    echo "Username normal user: ".$normalUsercredential[0]."<br>Password normal user: ".$normalUsercredential[1];
-    echo "<br>Username new User: ".$username."<br>Password new user: ".$password;
     #Connessione al Database.
     $mysqli = new mysqli($host, $normalUsercredential[0], $normalUsercredential[1], $database);
     $_SESSION['loggedin'] = false;

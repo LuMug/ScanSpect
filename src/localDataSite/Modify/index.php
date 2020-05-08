@@ -138,5 +138,6 @@
 <?php
     }else{
         //ACCESSO NON EFFETTUATO
+        echo "You must login"
     }
 ?>
