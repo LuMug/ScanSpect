@@ -188,7 +188,7 @@ Questa é la schermata dove gli admin possono dare i privilegi agli altri utenti
 
 ### Design procedurale
 
-![Schema struttura ](../Screens/FaceRecDiagrammaFlusso.png)
+![Schema struttura ](../Screens/DiagrammaFlussi.png)
 
 ## Implementazione
 
@@ -761,7 +761,7 @@ Possiamo notare come il gantt consuntivo sia leggermente diverso perché non tro
 Il nostro progetto probabilmente non cambierà il mondo, ma per noi è stato importante. Grazie ad esso abbiamo capito com'è lavorare in team. Abbiamo capito come organizare e come utilizzare l'intelligenza artificiale. Non sappiamo se verrà mai utilizzato da qualcuno, ma sicuramente tutti noi la utilizzeremo almeno una volta per monitorare l'afflusso di persone ad alcuni eventi che parteciperemo.
 
 ### Sviluppi futuri
-  Per il futuro sicuramente si può migliorare il progetto sul lato grafico (abbellire le interfacce web e quelle dell'applicativo), oltre che continuare ad aggiornare il codice (mantendo il riconoscimento facciale al top). 
+  Per il futuro sicuramente si può migliorare il progetto sul lato grafico (abbellire le interfacce web e quelle dell'applicativo), oltre che continuare ad aggiornare il codice (mantendo il riconoscimento facciale al top).
 
 ### Considerazioni personali
  <b>Alessandro</b>: Penso che sia stato un progetto molto interessante e che io abbia imparato molto da esso soprattutto a lavorare in team dato che era la prima volta che lavoravo a un progetto così lungo con cosi "tante" persone. Nonostante la distanza e il fatto di non poterci vedere penso che ci siamo gestiti abbastanza bene il tempo anche se siamo arrivati abbastanza tirati con il tempo. Ogni tanto avrei preferito che il team ascoltasse di più le mie idee ma é normale dato che era la prima volta che al'inizio non ci fosse troppo dialogo. Sono comunque molto soddisfatto del lavoro svolto e di come abbiamo lavorato.
@@ -781,4 +781,3 @@ Il nostro progetto probabilmente non cambierà il mondo, ma per noi è stato imp
 -   Diari di lavoro
 
 -   Prodotto
-
