@@ -68,6 +68,10 @@
 		li a:hover {
 			background-color: #4CAF50;
 		}
+
+        #login {
+            float: right;
+        }
     </style>
 
 </head>
@@ -89,17 +93,6 @@
         }
     ?>
     <li><a href="<?php echo $route?>About/">About</a></li>
-    <?php 
-        if(!$_SESSION['loggedin']){
-    ?>
-    <li id="login"><a href="<?php echo $route?>Login/">Login</a></li>
-    <?php
-        }else{
-    ?>
-    <li id="login"><a href="<?php echo $route?>User/"><?php if($_SESSION['admin'] == true){echo "Admin ";} echo $_SESSION['username'];?></a>
-    <?php 
-        }
-    ?>
     <?php 
         if(!$_SESSION['loggedin']){
     ?>
