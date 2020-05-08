@@ -74,35 +74,6 @@
 
 ### Analisi del dominio
 
-  Questo capitolo dovrebbe descrivere il contesto in cui il prodotto verrà
-  utilizzato, da questa analisi dovrebbero scaturire le risposte a quesiti
-  quali ad esempio:
-
-  -   Background/Situazione iniziale
-
-  -   Quale è e come è organizzato il contesto in cui il prodotto dovrà
-      funzionare?
-
-  -   Come viene risolto attualmente il problema? Esiste già un prodotto
-      simile?
-
-  -   Chi sono gli utenti? Che bisogni hanno? Come e dove lavorano?
-
-  -   Che competenze/conoscenze/cultura posseggono gli utenti in relazione
-      con il problema?
-
-  -   Esistono convenzioni/standard applicati nel dominio?
-
-  -   Che conoscenze teoriche bisogna avere/acquisire per poter operare
-      efficacemente nel dominio?
-
-  -   …
-
-  Questo prodotto sarà utilizzabile da chiunque abbia uno stand visitato da persone. Ciò permette all'utilizzatore di sapere quante persone, in che modo e in che periodo hanno visitato lo stand. Grazie alle innovative tecnologie utilizzate vi sarà la possibilità di utilizzare il servizio scaricando ed avviando unicamente un file eseguibile.
-  <br>
-  Esistono alcuni software che permettono di rilevare la presenza negli stand, ma tutti sono molto complicati e molto costosi. Inoltre l'utilizzo dell'intelligenza artificiale rende questo progetto infinitamente più semplice da utilizzare rispetto a quelli presenti sul mercato.
-  <br>
-  Chiunque può utilizzare il seguente prodotto, gli unici requisiti sono: avere un computer, un webserver locale ed un database. Grazie alle semplici interfaccie leggibili ed intuitive non servirà nessuna conoscenza informatica particolare per utilizzare il prodotto.
 
 ### Analisi e specifica dei requisiti
 
@@ -175,17 +146,6 @@ Se si usano altri metodi di pianificazione (es scrum), dovranno apparire
 in questo capitolo.
 
 ### Analisi dei mezzi
-
-Elencare e *descrivere* i mezzi disponibili per la realizzazione del
-progetto. Ricordarsi di sempre descrivere nel dettaglio le versioni e il
-modello di riferimento.
-
-SDK, librerie, tools utilizzati per la realizzazione del progetto e
-eventuali dipendenze.
-
-Su quale piattaforma dovrà essere eseguito il prodotto? Che hardware
-particolare è coinvolto nel progetto? Che particolarità e limitazioni
-presenta? Che hw sarà disponibile durante lo sviluppo?
 
 Per realizzare questo progetto sono stati utilizzati i seguenti software:
 <ul>
@@ -602,6 +562,9 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
 
 -   http://standards.ieee.org/guides/style/section7.html, *IEEE
     Standards Style Manual*, 07-06-2008.
+
+-  https://www.learnopencv.com/age-gender-classification-using-opencv-deep-learning-c-python/, *Gender & Age Classification using OpenCV*, 17.04.2020
+
 
 ## Allegati
 
