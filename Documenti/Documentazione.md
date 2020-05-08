@@ -72,9 +72,6 @@
 
 ## Analisi
 
-### Analisi del dominio
-
-
 ### Analisi e specifica dei requisiti
 
 
@@ -132,18 +129,6 @@ L'immagine indica il gantt stilato ad inizio progetto. Le due fasi che sulla car
 ![Gantt_Consuntivo](../Screens/GanttConsuntivo.png)
 Gantt consuntivo ancora da fare.
 
-Prima di stabilire una pianificazione bisogna avere almeno una vaga idea
-del modello di sviluppo che si intende adottare. In questa sezione
-bisognerà inserire il modello concettuale di sviluppo che si seguirà
-durante il progetto. Gli elementi di riferimento per una buona
-pianificazione derivano da una scomposizione top-down della problematica
-del progetto.
-
-La pianificazione può essere rappresentata mediante un diagramma di
-Gantt.
-
-Se si usano altri metodi di pianificazione (es scrum), dovranno apparire
-in questo capitolo.
 
 ### Analisi dei mezzi
 
@@ -167,20 +152,6 @@ all’esecutore di evitare fraintendimenti e imprecisioni
 nell’implementazione del prodotto.
 
 ### Design dell’architettura del sistema
-
-Descrive:
-
--   La struttura del programma/sistema lo schema di rete...
-
--   Gli oggetti/moduli/componenti che lo compongono.
-
--   I flussi di informazione in ingresso ed in uscita e le
-    relative elaborazioni. Può utilizzare *diagrammi di flusso dei
-    dati* (DFD).
-
--   Eventuale sitemap
-
-
 
 ![Schema struttura](../Screens/Schema_Struttura.png)
 L'immagine mostra lo schema della struttura del progetto. Il progetto è composto da un programma che rileva il numero di persone. Ad ogni rilevamento inserisce un dato all'interno del database (all'inizio lo crea se non esiste). La logica del sito (in php), si occupa di richiedere i dati al database e di mandarli al sito vero e prorpio. Così facendo il sito ha abbastanza valori per creare un'interfaccia con dei grafici esaustivi e stampare i dati in una tabella.
