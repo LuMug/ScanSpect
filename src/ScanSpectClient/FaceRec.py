@@ -41,21 +41,6 @@ def startFaceRecognition(host,user,passwd,capture=0):
     #-----------------------------------------------------------------------------
 
 
-    #-------------------- Creazione DB + inserimento dati ------------------------
-
-    #crea il database 
-    def createDatabase():
-
-        cursor.execute("SHOW DATABASES LIKE 'ScanSpect'")
-        results = 0
-        for x in cursor:
-            results+=1
-        if results == 0:
-            cursor.execute("CREATE DATABASE ScanSpect")
-            cursor.execute("USE ScanSpect")
-            cursor.execute("CREATE TABLE people(id INT PRIMARY KEY AUTO_INCREMENT,date DATE,hours INT,minutes INT,seconds INT)")
-            mydb.commit()
-
     #Permette l'aggiunta di dati al database (tempo di rivelamento + numero totale di persone)
 	#@param date Data corrente nel formato mm-dd-YY
 	#@param hours Ora attuale.
@@ -109,7 +94,6 @@ def startFaceRecognition(host,user,passwd,capture=0):
     padding = 20
     last_face_number = None
     count = 0
-    createDatabase()
     while cv.waitKey(1) < 0:
 
         #prende il frame attuale della camera.
@@ -205,9 +189,6 @@ L0.config(font=("Courier",8))
 L0.place(x=30,y=90)
 
 #///////////////////////////////////////////
-
-
-
 #///// Host,user,password label+entry //////
 
 L1 = Label(top, text="Host")
@@ -231,7 +212,6 @@ L5.place(x=30,y=270)
 E5 = Entry(top, bd =5)
 E5.insert(END,"0")
 E5.place(x=100,y=270)
-
 
 #///////////////////////////////////////////
 
