@@ -173,7 +173,7 @@ un flag ad indicare se l'utente è admin o no.
 
 ### Design delle interfacce
 
-![Schema struttura](../Screens/interfaccia.png)
+![Start programma](../Screens/interfaccia.png)
 La prima Interfaccia che abbiamo definito é stata quella che vedeva l'utente "normale" vede.
 
 ![Start applicazione ](../Screens/Demo_interfaccia.png)
