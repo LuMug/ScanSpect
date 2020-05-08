@@ -1,8 +1,8 @@
 # Modulo 306
 ## Progetto
-|Titolo             |Autori           |Responsabile               |Link    |
-|:------------------|:------------------|:--------------------------|:-------|
-|ScanSpect    |<b>Alessandro Aloise,</b> <b>André da Silva,</b>  <b>Nathan Lué </b> |Luca Muggiasca| [sito informativo](www.http://samtinfo.ch/i17aloale/site)|
+|Titolo             |Autori           |Responsabile               |
+|:------------------|:------------------|:--------------------------|
+|ScanSpect    |<b>Alessandro Aloise,</b> <b>André da Silva,</b>  <b>Nathan Lué </b> |Luca Muggiasca|
 
 ## Info
 **Inizio:** 24.01.2020
@@ -24,3 +24,5 @@ Mandato: [QdC_SecondoSemestre-ScanSpect.pdf](Documenti/muggiasca_qdc_scanspect.p
 - [Gantt](Documenti/ScanSpect_Gantt.pod)
 
 - [Diari di lavoro](Diari/)
+
+-  [sito informativo](http://samtinfo.ch/i17aloale/site)
