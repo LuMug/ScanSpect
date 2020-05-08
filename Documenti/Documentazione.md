@@ -126,8 +126,7 @@ La base della nostra progettazione questo é il diagramma. Il suo scopo è rappr
 ![Gantt](../Screens/Gantt.png)
 L'immagine indica il gantt stilato ad inizio progetto. Le due fasi che sulla carta impiegano più tempo sono l'implementazione e il test. Queste fasi sono  circa i 2/3 del tempo impiegato per portare a termine il progetto. Le attività sono divise per allievo, ogni tanto è possibile che più allievi lavorino insieme ed ogni tanto è possibile che un allievo lavori singolarmente. Questo è il gantt iniziale, potrebbe essere differente dal gantt consuntivo indicato nell'immagine sotto.
 
-![Gantt_Consuntivo](../Screens/GanttConsuntivo.png)
-Gantt consuntivo ancora da fare.
+
 
 
 ### Analisi dei mezzi
@@ -403,7 +402,18 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 
 ### Protocollo di test
 
+
 |Test Case      | TC-001                               |
+|---------------|--------------------------------------|
+|**Nome**       | Presenza di un'interfaccia grafica |
+|**Riferimento**|REQ-10                               |
+|**Descrizione**| Avviando l'applicazione, è possibile visualizzare un'interfaccia grafica per l'accesso al database. |
+|**Prerequisiti**| - |
+|**Procedura**     | - Avviare il software. <br>  |
+|**Risultati attesi** | Appare l'interfaccia grafica per l'accesso. |
+
+
+|Test Case      | TC-002                              |
 |---------------|--------------------------------------|
 |**Nome**       | Visualizzazione video webcam |
 |**Riferimento**|REQ-10                               |
@@ -412,7 +422,7 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 |**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso. |
 |**Risultati attesi** | Dopo aver inserito i dati, viene visualizzato il video della webcam. |
 
-|Test Case      | TC-002                               |
+|Test Case      | TC-003                               |
 |---------------|--------------------------------------|
 |**Nome**       | Conteggio invariato con la stesssa persona visualizzata |
 |**Riferimento**|REQ-07                               |
@@ -421,7 +431,7 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 |**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso.  <br>  - Muoversi all'interno della webcam. |
 |**Risultati attesi** | Muovendosi, il conteggio rimane sempre lo stesso. |
 
-|Test Case      | TC-003                               |
+|Test Case      | TC-004                               |
 |---------------|--------------------------------------|
 |**Nome**       | Conteggio invariato con parti del corpo che non siano il volto |
 |**Riferimento**|REQ-08                               |
@@ -430,7 +440,7 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 |**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso.  <br>  - Muoversi all'interno della webcam con altre parti del corpo visibili oltre al volto (es. busto). |
 |**Risultati attesi** | Muovendosi, il conteggio rimane sempre lo stesso. |
 
-|Test Case      | TC-004                               |
+|Test Case      | TC-005                               |
 |---------------|--------------------------------------|
 |**Nome**       | Registrazione orario di visita     |
 |**Riferimento**|REQ-03                              |
@@ -440,7 +450,7 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 |**Risultati attesi** | Osservando i grafici o la tabella, deve apparire la data con l'ora, minuti e secondi del momento in cui la persona è stata rilevata. |
 
 
-|Test Case      | TC-005                               |
+|Test Case      | TC-006                               |
 |---------------|--------------------------------------|
 |**Nome**       | Generazione grafici |
 |**Riferimento**|REQ-09                              |
@@ -450,26 +460,35 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 |**Risultati attesi** | I grafici vengono visualizzati |
 
 
-|Test Case      | TC-006                               |
+|Test Case      | TC-007                               |
 |---------------|--------------------------------------|
 |**Nome**       | Accesso amministratore |
 |**Riferimento**| REQ-06                              |
-|**Descrizione**| Accendo al sito locale come amministratore, è possibile analizzare i dati e le configurazioni del sistema.|
+|**Descrizione**| Accedendo al sito locale come amministratore, è possibile analizzare i dati e le configurazioni del sistema.|
 |**Prerequisiti**| REQ-07 REQ-08, aver avviato il server apache ed il servizio MySQL|
-|**Procedura**     |  - Accedere al sito locale <br> - Selezionare l'opzione Graphs <br>  |
+|**Procedura**     |  - Accedere al sito locale <br> - Loggarsi come amministratore <br> - Selezionare l'opzione Graphs <br>  |
 |**Risultati attesi** | I grafici vengono visualizzati |
 
-|Test Case      | TC-007                               |
+|Test Case      | TC-008                               |
+|---------------|--------------------------------------|
+|**Nome**       | Possibilità di cambiare unità di misura del tempo della frequenza di persone. |
+|**Riferimento**| REQ-12                              |
+|**Descrizione**| Accedendo alla pagina Graph o Data, è possibile cambiare unità di misura, (es. da giorno a ore, da ore a minuti, e via dicendo) .|
+|**Prerequisiti**| REQ-09, aver avviato il server apache ed il servizio MySQL|
+|**Procedura**     |  - Accedere al sito locale <br> - Loggarsi come user o admin <br> - Selezionare l'opzione Graphs o Data <br>  - Utilizzare il selettore apposito in Graph  o il sorting su Data |
+|**Risultati attesi** | I dati del grafico o tabella vengono riorganizzati in base all'unità di tempo selezionata. |
+
+|Test Case      | TC-009                               |
 |---------------|--------------------------------------|
 |**Nome**       | Presenza del sito informativo |
 |**Riferimento**| REQ-05                              |
 |**Descrizione**| Accendo al sito locale come amministratore, è possibile analizzare i dati e le configurazioni del sistema.|
-|**Prerequisiti**| REQ-07 REQ-08, aver avviato il server apache ed il servizio MySQL|
-|**Procedura**     |  - Accedere al sito locale <br> - Selezionare l'opzione Graphs <br>  |
-|**Risultati attesi** | I grafici vengono visualizzati |
+|**Prerequisiti**| Sito informativo già creato. |
+|**Procedura**     |  -   |
+|**Risultati attesi** | Il sito informativo viene visualizzato. |
 
 
-|Test Case      | TC-0015                              |
+|Test Case      | TC-0010                             |
 |---------------|--------------------------------------|
 |**Nome**       |Download dell'applicativo windows|
 |**Riferimento**|REQ-05                             |
@@ -478,7 +497,7 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 |**Procedura**     | -Andare sul sito web <br> -scorrere fino in fondo selezionare la versione per windows e premere scarica ora |
 |**Risultati attesi** |Viene scaricato uno zip con all'interno un eseguibile  |
 
-|Test Case      | TC-0016                               |
+|Test Case      | TC-0011                               |
 |---------------|--------------------------------------|
 |**Nome**       |Download dell'applicativo linux|
 |**Riferimento**|REQ-05                             |
@@ -490,24 +509,31 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 
 ### Risultati test
 
-Tabella riassuntiva in cui si inseriscono i test riusciti e non del
-prodotto finale. Se un test non riesce e viene corretto l’errore, questo
-dovrà risultare nel documento finale come riuscito (la procedura della
-correzione apparirà nel diario), altrimenti dovrà essere descritto
-l’errore con eventuali ipotesi di correzione.
+| Test Case | Stato |
+|-----------|-------|
+|   TC-001  | Riuscito |            
+|   TC-002  | Riuscito |            
+|   TC-003  | Migliorabile |           
+|   TC-004  | Riuscito |
+|   TC-005 | Riuscito |             
+|   TC-006 | Riuscito |             
+|   TC-007 | Riuscito |             
+|   TC-008 | Riuscito |             
+|   TC-009 | Riuscito |  
+|   TC-010 | Riuscito |             
+|   TC-011 | Riuscito |   
+
+
 
 ### Mancanze/limitazioni conosciute
 
-Descrizione con motivazione di eventuali elementi mancanti o non
-completamente implementati, al di fuori dei test case. Non devono essere
-riportati gli errori e i problemi riscontrati e poi risolti durante il
-progetto.
+- L'intelligenza artificiale non è perfetta in quanto può succedere che il contatore venga aumentato in modo errato a causa del mal riconoscimento dei volti.
 
 ## Consuntivo
 
-Consuntivo del tempo di lavoro effettivo e considerazioni riguardo le
-differenze rispetto alla pianificazione (cap 1.7) (ad esempio Gannt
-consuntivo).
+![Gantt_Consuntivo](../Screens/GanttConsuntivo.png)
+Possiamo notare come il gantt consuntivo sia leggermente diverso perché non troviamo più l'attivà dedicata alla creazione del programma per paragonare le celebrità perché non é stato creato mentre nella sezione test possiamo vedere come il tempo di test per il sito sia passato da 10 giorni a 1 invece per quanto riguarda la documentazine abbiamo deciso di fare in pararralleo la scrittura e la correzzione di tale.
+
 
 ## Conclusioni
 
@@ -521,39 +547,11 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
   Migliorie o estensioni che possono essere sviluppate sul prodotto.
 
 ### Considerazioni personali
- Alessandro: penso che sia stato un progetto molto interessante e che io abbia imparato molto da esso soprattutto a lavorare in team dato che era la prima volta che lavoravo a un progetto così lungo con cosi "tante" persone. Nonostante la distanza e il fatto di non poterci vedere penso che ci siamo gestiti abbastanza bene il tempo anche se siamo arrivati abbastanza tirati con il tempo. Ogni tanto avrei preferito che il team ascoltasse di più le mie idee ma é normale dato che era la prima volta che al'inizio non ci fosse troppo dialogo. Sono comunque molto soddisfatto del lavoro svolto e di come abbiamo lavorato.
- 
-  Cosa ho imparato in questo progetto? ecc
+ <b>Alessandro</b>: Penso che sia stato un progetto molto interessante e che io abbia imparato molto da esso soprattutto a lavorare in team dato che era la prima volta che lavoravo a un progetto così lungo con cosi "tante" persone. Nonostante la distanza e il fatto di non poterci vedere penso che ci siamo gestiti abbastanza bene il tempo anche se siamo arrivati abbastanza tirati con il tempo. Ogni tanto avrei preferito che il team ascoltasse di più le mie idee ma é normale dato che era la prima volta che al'inizio non ci fosse troppo dialogo. Sono comunque molto soddisfatto del lavoro svolto e di come abbiamo lavorato.
 
-## Bibliografia
+ <b>André</b>: Essendo il primo progetto di gruppo 'serio' mai fatto, gestire i compiti di ognuno o risolvere una determinata problematica (implementazione, strutturale, design, etc.) non è sempre stato facile in quanto  giustamente ognuno ha le proprie idee su come risolverle. Con la presenza del lockdown e l'obbligo quindi lavorare da casa senza un contatto fisico diretto, tutto ciò è stato ancora piu difficile, ma bisogna dire che nel bene o nel male ce la siamo cavata in quanto un risultato c'è stato.
+ Nel complesso ho sicuramente imparato molto su come lavorare meglio in team e spero di poter migliorare ancora con futuri progetti.
 
-### Bibliografia per articoli di riviste
-1.  Cognome e nome (o iniziali) dell’autore o degli autori, o nome
-    dell’organizzazione,
-
-2.  Titolo dell’articolo (tra virgolette),
-
-3.  Titolo della rivista (in italico),
-
-4.  Anno e numero
-
-5.  Pagina iniziale dell’articolo,
-
-### Bibliografia per libri
-
-
-1.  Cognome e nome (o iniziali) dell’autore o degli autori, o nome
-    dell’organizzazione,
-
-2.  Titolo del libro (in italico),
-
-3.  ev. Numero di edizione,
-
-4.  Nome dell’editore,
-
-5.  Anno di pubblicazione,
-
-6.  ISBN.
 
 ### Sitografia
 
