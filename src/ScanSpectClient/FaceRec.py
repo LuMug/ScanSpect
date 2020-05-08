@@ -64,7 +64,7 @@ def startFaceRecognition(host,user,passwd):
         
      #------------------------------ Scansione volti ------------------------------    
 
-    #
+    #Genera  i box/cornici attorno ad ogni volto trovato.
     def getFaceBox(net, frame, conf_threshold=0.7):
         frameOpencvDnn = frame.copy()
         frameHeight = frameOpencvDnn.shape[0]
@@ -86,32 +86,37 @@ def startFaceRecognition(host,user,passwd):
 
     faceProto = "opencv_face_detector.pbtxt"
     faceModel = "opencv_face_detector_uint8.pb"
-
     MODEL_MEAN_VALUES = (78.4263377603, 87.7689143744, 114.895847746)
 
     # Load network
     faceNet = cv.dnn.readNet(faceModel, faceProto)
 
+    #cattura dello schermo
     cap = cv.VideoCapture(0)
     padding = 20
     last_face_number = None
     count = 0
     createDatabase()
     while cv.waitKey(1) < 0:
-        # Read frame
-        #t = time.time()
+
+        #prende il frame attuale della camera.
         hasFrame, frame = cap.read()
+        
+        #ridimensione del frame del 100% con il metodo apposito.
         frame = rescale_frame(frame,percent=100)
 
         if not hasFrame:
             cv.waitKey()
             break
 
+        #prende il numero di box/cornici create. Se non viene trovata nessuna, continua.
         frameFace, bboxes = getFaceBox(faceNet, frame)
         if not bboxes:
             continue
 
         face_number = 0
+        
+        #print delle cornici su schermo.
         for bbox in bboxes:
             # print(bbox)
             face = frame[max(0,bbox[1]-padding):min(bbox[3]+padding,frame.shape[0]-1),max(0,bbox[0]-padding):min(bbox[2]+padding, frame.shape[1]-1)]
@@ -119,6 +124,7 @@ def startFaceRecognition(host,user,passwd):
             face_number+=1   
             cv.imshow("Face detect", frameFace)
         
+        #conteggio totale delle persone.
         if last_face_number is not None:
             if last_face_number < face_number:
                 count+=1
