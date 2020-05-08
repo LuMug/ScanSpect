@@ -3,6 +3,7 @@ import cv2 as cv
 import math
 import argparse
 import mysql.connector
+from mysql.connector.locales.eng import client_error
 import os 
 import time
 import datetime
