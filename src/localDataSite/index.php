@@ -144,7 +144,7 @@
         
         <div id="column_w300">
         
-        	<div class="header_03">Pagine utili</div>
+        	<div class="header_03" style="color: black;">Pagine utili</div>
             
             <div class="column_w300_section_01">
             	<div class="news_image_wrapper">
