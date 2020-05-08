@@ -97,18 +97,12 @@
                 if(isset($_POST["type$usernameDb"])){
                     $unit =$_POST["type$usernameDb"];
                     $col = $unit;
-                    echo "boiade";
-                    //QUERY
-                    echo $row["admin"];
-                    if($row["admin"] != null){
+                    if($row["admin"] == 1){
                         $sql2 = "UPDATE user SET admin = FALSE WHERE username = '$usernameDb'"; 
-                        echo "UPDATE 'user' SET 'admin' = 'false' WHERE username = $usernameDb"; 
                         $adminDb = false;
                     }else{
 
                         $sql2 = "UPDATE user SET admin = TRUE WHERE username = '$usernameDb'";
-
-                        echo "UPDATE 'user' SET 'admin' = 'false' WHERE 'username' = $usernameDb"; 
                         $adminDb = true;
                     }
                     if ($ris = $mysqli->query($sql2)) {
