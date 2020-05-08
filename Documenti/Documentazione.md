@@ -236,7 +236,6 @@ Se il diagramma E-R viene modificato, sulla doc dovrà apparire l’ultima
 versione, mentre le vecchie saranno sui diari.
 
 ### Design delle interfacce
-![Schema struttura](../Screens/Interfaccia.png)
 
 Descrizione delle interfacce interne ed esterne del sistema e
 dell’interfaccia utente. La progettazione delle interfacce è basata
