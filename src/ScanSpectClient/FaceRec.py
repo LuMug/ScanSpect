@@ -233,7 +233,7 @@ def buttonPressed():
         L4.place(x=30,y=350)  
 
     elif not v4.isdigit():
-        L4 = Label(top, text="Il Capture inserito non è valido, riprova.")
+        L4 = Label(top, text="Il Capture inserito non è numerico, riprova.")
         L4.config(fg="red")
         L4.place(x=30,y=350)  
         
