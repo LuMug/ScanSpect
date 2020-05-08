@@ -501,6 +501,27 @@ ripetibile alle stesse condizioni.
 |**Risultati attesi** | Muovendosi, il conteggio rimane sempre lo stesso. |
 
 
+|Test Case      | TC-0015                              |
+|---------------|--------------------------------------|
+|**Nome**       |Download dell'applicativo windows|
+|**Riferimento**|REQ-05                             |
+|**Descrizione**|Possibilità di scaricare l'applicativo e poterlo usare |
+|**Prerequisiti**|Avere tutti i test precedenti funzionati  |
+|**Procedura**     | -Andare sul sito web -scorrere fino in fondo selezionare la versione per windows e premere scarica ora |
+|**Risultati attesi** |Che ci venga scaricato uno zip con all'interno un eseguibile  |
+
+|Test Case      | TC-0016                               |
+|---------------|--------------------------------------|
+|**Nome**       |Download dell'applicativo linux|
+|**Riferimento**|REQ-05                             |
+|**Descrizione**|Possibilità di scaricare l'applicativo e poterlo usare |
+|**Prerequisiti**|Avere tutti i test precedenti funzionati  |
+|**Procedura**     | -Andare sul sito web scorrere fino in fondo -selezionare la versione per linux e premere scarica ora |
+|**Risultati attesi** |Che ci venga scaricato uno zip  |
+
+
+
+
 
 
 ### Risultati test
