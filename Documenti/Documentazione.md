@@ -165,7 +165,7 @@ agli attributi e le relazioni degli oggetti in uso.
 Nome database: <b>ScanSpect</b>
 
 people(<u>id</u>,date,hours,minutes,seconds)<br>
-Tabella in cui vengono salvate tutte le persone rilevate tramite id e a quale data, minuto e secondo.
+Tabella in cui vengono salvate tutte le persone rilevate tramite id (chiave) e a quale data, minuto e secondo.
 
 user(<u>username</u>,password,admin)<br>
 Tabella in cui vengono salvati gli utenti registrati nel sito locale con username come chiave, password e
@@ -180,21 +180,7 @@ tramite mockups.
 
 ### Design procedurale
 
-Descrive i concetti dettagliati dell’architettura/sviluppo utilizzando
-ad esempio:
-
--   Diagrammi di flusso e Nassi.
-
--   Tabelle.
-
--   Classi e metodi.
-
--   Tabelle di routing
-
--   Diritti di accesso a condivisioni …
-
-Questi documenti permetteranno di rappresentare i dettagli procedurali
-per la realizzazione del prodotto.
+![Schema struttura](../Screens/FaceRecDiagrammaFlusso.png)
 
 ## Implementazione
 

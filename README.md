@@ -1,8 +1,8 @@
 # Modulo 306
 ## Progetto
-|Titolo             |Autori           |Responsabile               |Link    |
-|:------------------|:------------------|:--------------------------|:-------|
-|ScanSpect    |<b>Alessandro Aloise,</b> <b>André da Silva,</b>  <b>Nathan Lué </b> |Luca Muggiasca|non ancora|
+|Titolo             |Autori           |Responsabile               |
+|:------------------|:------------------|:--------------------------|
+|ScanSpect    |<b>Alessandro Aloise,</b> <b>André da Silva,</b>  <b>Nathan Lué </b> |Luca Muggiasca|
 
 ## Info
 **Inizio:** 24.01.2020
@@ -17,10 +17,12 @@ L’obiettivo principale è quello di riuscire a contare quante persone sono pa
 Mandato: [QdC_SecondoSemestre-ScanSpect.pdf](Documenti/muggiasca_qdc_scanspect.pdf)
 
 #### Struttura:
-- [Codice](Src/)
+- [Codice](src/)
 
 - [Documentazione](Documenti/Documentazione.md)
 
 - [Gantt](Documenti/ScanSpect_Gantt.pod)
 
 - [Diari di lavoro](Diari/)
+
+-  [Sito informativo](http://samtinfo.ch/i17aloale/site)

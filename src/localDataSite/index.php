@@ -138,7 +138,11 @@
             <div class="cleaner"></div>            
             <br>
             <img src="images/warning.png"  style="float: left; height:15px; width:15px;"><p>Ricordati di modificare il file config.php dentro l'apposita cartella affinché il sito punti direttamente alla cartella scelta per l'utilizzo del data manager di ScanSpect!</p>
-                               
+            <img src="images/warning.png"  style="float: left; height:15px; width:15px;"><p>Se è la prima volta che accedi a questa pagina, esegui il file InitialScript.sql!</p>
+            <img src="images/warning.png"  style="float: left; height:15px; width:15px;"><p>Per poter accedere al client, ricordati di usare un account di un utente presente come user e con permessi di scrittura in MySQL!</p>
+            <img src="images/warning.png"  style="float: left; height:15px; width:15px;"><p>Se vuoi creare degli utenti amministratori, accedi come adminUser (la password è presente dentro al file adminUser.php)</p>
+            
+            
             <div class="cleaner"></div>
         </div>
         
