@@ -22,8 +22,6 @@
 
   - [Design dell’architettura del sistema](#design-dell’architettura-del-sistema)
 
-  - [Design dei dati e database](#design-dei-dati-e-database)
-
 1. [Implementazione](#implementazione)
 
 1. [Test](#test)
@@ -114,8 +112,6 @@
 
 ### Use case
 
-I casi d’uso rappresentano l’interazione tra i vari attori e le
-funzionalità del prodotto.
 
 ![Use_case](../Screens/usecase.png)
 
@@ -137,8 +133,9 @@ Per realizzare questo progetto sono stati utilizzati i seguenti software:
   <li>Visual Studio Code - 1.43: Per tutto ciò che riguarda la scrittura del codice Python/Php/html/css/Javascript</li>
   <li>Python - 2.7: Per la creazione dell'applicativo principale</li>
   <li>OpenCV - 4.2.0: Libreria utilizzata per il riconoscimento facciale</li>
-  <li>Database</li>
-  <li>Webserver</li>
+  <li>Chart js: Libreria utilizzata per la creazione dei grafici</li>
+  <li>Bootstrap (maxdn): "Libreria" css utilizzata per abbellire i grafici</li>
+  <li>MySQL Workbench: Per creare e contenere il database</li>
 </ul>
 
 L'applicativo è multipiattaforma (Windows, MacOS, Linux). Il progetto non necessa forze computazionali esagerate, necessita però di una WebCam (che sia integrata o esterna). Senza una WebCam l'applicativo non funzionerà.
@@ -154,12 +151,6 @@ nell’implementazione del prodotto.
 
 ![Schema struttura](../Screens/Schema_Struttura.png)
 L'immagine mostra lo schema della struttura del progetto. Il progetto è composto da un programma che rileva il numero di persone. Ad ogni rilevamento inserisce un dato all'interno del database (all'inizio lo crea se non esiste). La logica del sito (in php), si occupa di richiedere i dati al database e di mandarli al sito vero e prorpio. Così facendo il sito ha abbastanza valori per creare un'interfaccia con dei grafici esaustivi e stampare i dati in una tabella.
-
-### Design dei dati e database
-
-Descrizione delle strutture di dati utilizzate dal programma in base
-agli attributi e le relazioni degli oggetti in uso.
-
 ### Schema logico e descrizione.
 
 Nome database: <b>ScanSpect</b>
@@ -173,7 +164,7 @@ un flag ad indicare se l'utente è admin o no.
 
 ### Design delle interfacce
 
-![Schema struttura](../Screens/interfaccia.png)
+![Schema struttura ](../Screens/interfaccia.png)
 La prima Interfaccia che abbiamo definito é stata quella che vedeva l'utente "normale" vede.
 
 ![Start applicazione ](../Screens/Demo_interfaccia.png)
@@ -197,7 +188,7 @@ Questa é la schermata dove gli admin possono dare i privilegi agli altri utenti
 
 ### Design procedurale
 
-![Schema struttura](../Screens/FaceRecDiagrammaFlusso.png)
+![Schema struttura ](../Screens/FaceRecDiagrammaFlusso.png)
 
 ## Implementazione
 
@@ -481,14 +472,13 @@ Se si ha già un utente o si vuole accedere con uno dei due utenti preimpostati 
 							if($row["admin"]){
 								$_SESSION['admin'] = true;
 							}
-							header("location: ".$route);
-            }
+                            header("location: ".$route);
+                            }
+                          }
+                    }
+               }
           }
-        }
-      }
-    }
   }
-
 ```
 
 <h5>About</h5>
@@ -768,20 +758,18 @@ Possiamo notare come il gantt consuntivo sia leggermente diverso perché non tro
 
 ## Conclusioni
 
-Quali sono le implicazioni della mia soluzione? Che impatto avrà?
-Cambierà il mondo? È un successo importante? È solo un’aggiunta
-marginale o è semplicemente servita per scoprire che questo percorso è
-stato una perdita di tempo? I risultati ottenuti sono generali,
-facilmente generalizzabili o sono specifici di un caso particolare? ecc
+Il nostro progetto probabilmente non cambierà il mondo, ma per noi è stato importante. Grazie ad esso abbiamo capito com'è lavorare in team. Abbiamo capito come organizare e come utilizzare l'intelligenza artificiale. Non sappiamo se verrà mai utilizzato da qualcuno, ma sicuramente tutti noi la utilizzeremo almeno una volta per monitorare l'afflusso di persone ad alcuni eventi che parteciperemo.
 
 ### Sviluppi futuri
-  Migliorie o estensioni che possono essere sviluppate sul prodotto.
+  Per il futuro sicuramente si può migliorare il progetto sul lato grafico (abbellire le interfacce web e quelle dell'applicativo), oltre che continuare ad aggiornare il codice (mantendo il riconoscimento facciale al top). 
 
 ### Considerazioni personali
  <b>Alessandro</b>: Penso che sia stato un progetto molto interessante e che io abbia imparato molto da esso soprattutto a lavorare in team dato che era la prima volta che lavoravo a un progetto così lungo con cosi "tante" persone. Nonostante la distanza e il fatto di non poterci vedere penso che ci siamo gestiti abbastanza bene il tempo anche se siamo arrivati abbastanza tirati con il tempo. Ogni tanto avrei preferito che il team ascoltasse di più le mie idee ma é normale dato che era la prima volta che al'inizio non ci fosse troppo dialogo. Sono comunque molto soddisfatto del lavoro svolto e di come abbiamo lavorato.
 
  <b>André</b>: Essendo il primo progetto di gruppo 'serio' mai fatto, gestire i compiti di ognuno o risolvere una determinata problematica (implementazione, strutturale, design, etc.) non è sempre stato facile in quanto  giustamente ognuno ha le proprie idee su come risolverle. Con la presenza del lockdown e l'obbligo quindi lavorare da casa senza un contatto fisico diretto, tutto ciò è stato ancora piu difficile, ma bisogna dire che nel bene o nel male ce la siamo cavata in quanto un risultato c'è stato.
  Nel complesso ho sicuramente imparato molto su come lavorare meglio in team e spero di poter migliorare ancora con futuri progetti.
+
+ <b>Nathan</b>: Questo è stato il primo progetto svolto in gruppo, abbiamo lavorato bene a mio avviso. A volte chiaramente ci sono stati alcune incomprensioni, ma tutto sommato il lavoro svolto è stato più che buono. Abbiamo avuto qualche difficoltà iniziale, ma una volta capita l'antifona abbiamo dato un'accelerata al progetto. A causa del lockdown abbiamo avuto qualche difficoltà, ma alla fine siamo riusciti comuqnue a completare il progetto.
 
 
 ### Sitografia
@@ -790,21 +778,7 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
 
 ## Allegati
 
-Elenco degli allegati, esempio:
-
 -   Diari di lavoro
-
--   Codici sorgente/documentazione macchine virtuali
-
--   Istruzioni di installazione del prodotto (con credenziali
-    di accesso) e/o di eventuali prodotti terzi
-
--   Documentazione di prodotti di terzi
-
--   Eventuali guide utente / Manuali di utilizzo
-
--   Mandato e/o Qdc
 
 -   Prodotto
 
--   …
