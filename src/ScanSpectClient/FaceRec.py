@@ -123,18 +123,14 @@ def startFaceRecognition(host,user,passwd):
 
         #prende il numero di box/cornici create. Se non viene trovata nessuna, continua.
         frameFace, bboxes = getFaceBox(faceNet, frame)
-        if not bboxes:
-            continue
-
-        face_number = 0
-        
+        face_number = 0       
         #print delle cornici su schermo.
         for bbox in bboxes:
-            # print(bbox)
             face = frame[max(0,bbox[1]-padding):min(bbox[3]+padding,frame.shape[0]-1),max(0,bbox[0]-padding):min(bbox[2]+padding, frame.shape[1]-1)]
             blob = cv.dnn.blobFromImage(face, 1.0, (227, 227), MODEL_MEAN_VALUES, swapRB=False)
             face_number+=1   
-            cv.imshow("Face detect", frameFace)
+
+        cv.imshow("Face detect", frameFace)
         
         #conteggio totale delle persone.
         if last_face_number is not None:
