@@ -133,6 +133,7 @@ Per realizzare questo progetto sono stati utilizzati i seguenti software:
   <li>Visual Studio Code - 1.43: Per tutto ciò che riguarda la scrittura del codice Python/Php/html/css/Javascript</li>
   <li>Python - 2.7: Per la creazione dell'applicativo principale</li>
   <li>OpenCV - 4.2.0: Libreria utilizzata per il riconoscimento facciale</li>
+  <li>Tkinter: Libreria per la creazione di interfacce grafiche in Python</li>
   <li>Chart js: Libreria utilizzata per la creazione dei grafici</li>
   <li>Bootstrap (maxdn): "Libreria" css utilizzata per abbellire i grafici</li>
   <li>MySQL Workbench: Per creare e contenere il database</li>
@@ -164,7 +165,8 @@ un flag ad indicare se l'utente è admin o no.
 
 ### Design delle interfacce
 
-![Schema struttura ](../Screens/interfaccia.png)
+![Schema struttura ](../Screens/Interfaccia_programma_finale.png)
+
 La prima Interfaccia che abbiamo definito é stata quella che vedeva l'utente "normale" vede.
 
 ![Start applicazione ](../Screens/Demo_interfaccia.png)
@@ -188,7 +190,7 @@ Questa é la schermata dove gli admin possono dare i privilegi agli altri utenti
 
 ### Design procedurale
 
-![Schema struttura ](../Screens/FaceRecDiagrammaFlusso.png)
+![Schema struttura ](../Screens/DiagrammaFlussi.png)
 
 ## Implementazione
 
@@ -761,7 +763,7 @@ Possiamo notare come il gantt consuntivo sia leggermente diverso perché non tro
 Il nostro progetto probabilmente non cambierà il mondo, ma per noi è stato importante. Grazie ad esso abbiamo capito com'è lavorare in team. Abbiamo capito come organizare e come utilizzare l'intelligenza artificiale. Non sappiamo se verrà mai utilizzato da qualcuno, ma sicuramente tutti noi la utilizzeremo almeno una volta per monitorare l'afflusso di persone ad alcuni eventi che parteciperemo.
 
 ### Sviluppi futuri
-  Per il futuro sicuramente si può migliorare il progetto sul lato grafico (abbellire le interfacce web e quelle dell'applicativo), oltre che continuare ad aggiornare il codice (mantendo il riconoscimento facciale al top). 
+  Per il futuro sicuramente si può migliorare il progetto sul lato grafico (abbellire le interfacce web e quelle dell'applicativo), oltre che continuare ad aggiornare il codice (mantendo il riconoscimento facciale al top).
 
 ### Considerazioni personali
  <b>Alessandro</b>: Penso che sia stato un progetto molto interessante e che io abbia imparato molto da esso soprattutto a lavorare in team dato che era la prima volta che lavoravo a un progetto così lungo con cosi "tante" persone. Nonostante la distanza e il fatto di non poterci vedere penso che ci siamo gestiti abbastanza bene il tempo anche se siamo arrivati abbastanza tirati con il tempo. Ogni tanto avrei preferito che il team ascoltasse di più le mie idee ma é normale dato che era la prima volta che al'inizio non ci fosse troppo dialogo. Sono comunque molto soddisfatto del lavoro svolto e di come abbiamo lavorato.
@@ -781,4 +783,3 @@ Il nostro progetto probabilmente non cambierà il mondo, ma per noi è stato imp
 -   Diari di lavoro
 
 -   Prodotto
-
