@@ -10,13 +10,12 @@ import datetime
 from tkinter import *
 from PIL import Image, ImageTk
 
+
 #Permette di iniziare la detection dei volti.
 #@param host Host del database.
 #@param user user con cui connettersi.
 #@param passwd password dell'utente.
 def startFaceRecognition(host,user,passwd,capture=0):
-
-    Videocapture= capture
 
     #---------- Accesso al database + dichiarazione cursore ----------------------
     mydb = mysql.connector.connect(
@@ -25,8 +24,7 @@ def startFaceRecognition(host,user,passwd,capture=0):
     passwd=passwd
     )
     cursor = mydb.cursor()
-
-    
+  
     #------------------------------Resize del frame-------------------------------
     
     #esegue un resizing del frame in base alla percentuale passata.
@@ -41,7 +39,7 @@ def startFaceRecognition(host,user,passwd,capture=0):
     #-----------------------------------------------------------------------------
 
 
-    #Permette l'aggiunta di dati al database (tempo di rivelamento + numero totale di persone)
+    #Permette l'aggiunta di dati al database
 	#@param date Data corrente nel formato mm-dd-YY
 	#@param hours Ora attuale.
 	#@param minutes Minuti attuali.
@@ -84,13 +82,12 @@ def startFaceRecognition(host,user,passwd,capture=0):
 
     faceProto = "opencv_face_detector.pbtxt"
     faceModel = "opencv_face_detector_uint8.pb"
-    MODEL_MEAN_VALUES = (78.4263377603, 87.7689143744, 114.895847746)
 
     # Load network
     faceNet = cv.dnn.readNet(faceModel, faceProto)
 
     #cattura dello schermo
-    cap = cv.VideoCapture(Videocapture)
+    cap = cv.VideoCapture(capture)
     padding = 20
     last_face_number = None
     count = 0
@@ -99,22 +96,23 @@ def startFaceRecognition(host,user,passwd,capture=0):
         #prende il frame attuale della camera.
         hasFrame, frame = cap.read()
         
-        #ridimensione del frame del 100% con il metodo apposito.
-        frame = rescale_frame(frame,percent=100)
+        #ridimensione del frame del 200% con il metodo apposito.
+        frame = rescale_frame(frame,percent=200)
 
+        #se non individua frame, chiude.
         if not hasFrame:
             cv.waitKey()
             break
 
         #prende il numero di box/cornici create. Se non viene trovata nessuna, continua.
         frameFace, bboxes = getFaceBox(faceNet, frame)
-        face_number = 0       
-        #print delle cornici su schermo.
-        for bbox in bboxes:
-            face = frame[max(0,bbox[1]-padding):min(bbox[3]+padding,frame.shape[0]-1),max(0,bbox[0]-padding):min(bbox[2]+padding, frame.shape[1]-1)]
-            blob = cv.dnn.blobFromImage(face, 1.0, (227, 227), MODEL_MEAN_VALUES, swapRB=False)
+        face_number = 0    
+
+       #conteggio dei volti presenti nel frame.
+        for face in bboxes:
             face_number+=1   
 
+        #print delle cornici su schermo. 
         cv.imshow("Face detect", frameFace)
         
         #conteggio totale delle persone.
