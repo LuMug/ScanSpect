@@ -403,33 +403,70 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 
 ### Protocollo di test
 
-
 |Test Case      | TC-001                               |
 |---------------|--------------------------------------|
-|**Nome**       | Il conteggio non aumenta con la stessa persona in movimento nella webcam. |
+|**Nome**       | Visualizzazione video webcam |
+|**Riferimento**|REQ-10                               |
+|**Descrizione**| Avviando l'applicazione, il software mostra il video della webcam. |
+|**Prerequisiti**| - |
+|**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso. |
+|**Risultati attesi** | Dopo aver inserito i dati, viene visualizzato il video della webcam. |
+
+|Test Case      | TC-002                               |
+|---------------|--------------------------------------|
+|**Nome**       | Conteggio invariato con la stesssa persona visualizzata |
 |**Riferimento**|REQ-07                               |
 |**Descrizione**| Avviando l'applicazione, e muovendosi all'interno della visual della webcam, il contatore di persone non aumenta in quanto il software riconosce che si tratta sempre della stessa persona. |
 |**Prerequisiti**| - |
 |**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso.  <br>  - Muoversi all'interno della webcam. |
 |**Risultati attesi** | Muovendosi, il conteggio rimane sempre lo stesso. |
 
-|Test Case      | TC-002                               |
+|Test Case      | TC-003                               |
 |---------------|--------------------------------------|
-|**Nome**       | Il conteggio non aumenta con altre parti del corpo |
+|**Nome**       | Conteggio invariato con parti del corpo che non siano il volto |
 |**Riferimento**|REQ-08                               |
 |**Descrizione**| Avviando l'applicazione, e muovendosi all'interno della visual della webcam, non vengono prese in considerazioni altre parti del corpo che non siano il volto. |
 |**Prerequisiti**| REQ-07 |
 |**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso.  <br>  - Muoversi all'interno della webcam con altre parti del corpo visibili oltre al volto (es. busto). |
 |**Risultati attesi** | Muovendosi, il conteggio rimane sempre lo stesso. |
 
-|Test Case      | TC-003                               |
+|Test Case      | TC-004                               |
 |---------------|--------------------------------------|
-|**Nome**       | Il sistema registra l'orario di visita di ogni persona rilevata|
+|**Nome**       | Registrazione orario di visita     |
 |**Riferimento**|REQ-03                              |
 |**Descrizione**| Quando una persona viene rilevata, viene registrato l'orario in cui è stata rilevata. |
-|**Prerequisiti**| REQ-07, REQ-08, REQ-09 |
-|**Procedura**     | - Avviare il software <br> - inserire i dati di accesso  <br>  - Rilevare almeno 1 volto di persona  <br> - Accedere alla pagina locale <br> - Eseguire l'acesso alla pagina <br> - Selzionare l'opzione Graphs <br> - Visualizzare i grafici <br> oppure: <br> - Loggarsi come administratore alla pagina <br> - Selezionare l'opzione Data <br> - Analizzare la tabella   |
+|**Prerequisiti**| REQ-07 REQ-08 REQ-09, aver avviato il server apache ed il servizio MySQL |
+|**Procedura**     | - Avviare il software <br> - inserire i dati di accesso  <br>  - Rilevare almeno 1 volto di persona  <br> - Accedere al sito locale <br> - Fare login/registrazione nella pagina <br> - Selzionare l'opzione Graphs <br> - Visualizzare i grafici <br> oppure: <br> - Loggarsi come administratore alla pagina <br> - Selezionare l'opzione Data <br> - Analizzare la tabella   |
 |**Risultati attesi** | Osservando i grafici o la tabella, deve apparire la data con l'ora, minuti e secondi del momento in cui la persona è stata rilevata. |
+
+
+|Test Case      | TC-005                               |
+|---------------|--------------------------------------|
+|**Nome**       | Generazione grafici |
+|**Riferimento**|REQ-09                              |
+|**Descrizione**| Accedendo al sito, è possibile visualizzare i grafici con i dati delle persone. |
+|**Prerequisiti**| REQ-07, REQ-08, aver avviato il server apache ed il servizio MySQL|
+|**Procedura**     |  - Accedere al sito locale <br> - Selezionare l'opzione Graphs <br>  |
+|**Risultati attesi** | I grafici vengono visualizzati |
+
+
+|Test Case      | TC-006                               |
+|---------------|--------------------------------------|
+|**Nome**       | Accesso amministratore |
+|**Riferimento**| REQ-06                              |
+|**Descrizione**| Accendo al sito locale come amministratore, è possibile analizzare i dati e le configurazioni del sistema.|
+|**Prerequisiti**| REQ-07 REQ-08, aver avviato il server apache ed il servizio MySQL|
+|**Procedura**     |  - Accedere al sito locale <br> - Selezionare l'opzione Graphs <br>  |
+|**Risultati attesi** | I grafici vengono visualizzati |
+
+|Test Case      | TC-007                               |
+|---------------|--------------------------------------|
+|**Nome**       | Presenza del sito informativo |
+|**Riferimento**| REQ-05                              |
+|**Descrizione**| Accendo al sito locale come amministratore, è possibile analizzare i dati e le configurazioni del sistema.|
+|**Prerequisiti**| REQ-07 REQ-08, aver avviato il server apache ed il servizio MySQL|
+|**Procedura**     |  - Accedere al sito locale <br> - Selezionare l'opzione Graphs <br>  |
+|**Risultati attesi** | I grafici vengono visualizzati |
 
 
 |Test Case      | TC-0015                              |
