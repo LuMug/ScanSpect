@@ -1,6 +1,7 @@
 <?php 
 	session_start(); 
-	$route = include('./../Configuration/config.php');
+    $route = include('./../Configuration/config.php');
+    $normalUserCredential = include('./../Configuration/normalUser.php');
     function returnQuery($col, $table){
         if($col == "date"){
             $query = "SELECT `date`, count(`date`) as count from $table GROUP BY `date` ORDER BY `date`";
@@ -101,7 +102,7 @@
                 $col = $unit;
             }
             #Connessione al Database.
-            $mysqli = new mysqli("".$_SESSION['host'], "".$_SESSION['username'], "".$_SESSION['password'], "".$_SESSION['database']);
+            $mysqli = new mysqli($_SESSION['host'], $normalUserCredential[0], $normalUserCredential[1],$_SESSION['database']);
             #Query effettuata al Database.
             $table = $_SESSION['table'];
             $query = returnQuery("$col", "".$_SESSION['table']);
