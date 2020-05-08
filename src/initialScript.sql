@@ -24,9 +24,12 @@ CREATE USER 'normalUser'@'localhost' identified by "Normal_1";
 GRANT SELECT, INSERT on ScanSpect.user to 'normalUser'@'localhost';
 GRANT SELECT on ScanSpect.people to 'normalUser'@'localhost';
 
-ALTER USER 'normalUser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Normal_1';
+#Utilizzare la password mysql_native_password. Decommentare la riga sotto qualora non fosse così
+#ALTER USER 'normalUser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Normal_1';
 
 DROP USER IF EXISTS 'adminUser'@'localhost';
 CREATE USER 'adminUser'@'localhost' identified by "!Ciao123";
 GRANT ALL on ScanSpect.* to 'adminUser'@'localhost';
-ALTER USER 'adminUser'@'localhost' IDENTIFIED WITH mysql_native_password BY '!Ciao123';
+
+#Utilizzare la password mysql_native_password. Decommentare la riga sotto qualora non fosse così
+#ALTER USER 'adminUser'@'localhost' IDENTIFIED WITH mysql_native_password BY '!Ciao123';
