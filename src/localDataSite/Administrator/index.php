@@ -1,6 +1,7 @@
 <?php 
 	session_start(); 
 	$route = include('./../Configuration/config.php');
+	$adminUserCredential = include('./../Configuration/adminUser.php');
 	if($_SESSION['admin'] == true){
 ?>
 <!DOCTYPE html>
@@ -83,7 +84,7 @@
 <body>
 	<?php
 		#Connessione al Database.
-		$mysqli = new mysqli("".$_SESSION['host'], "".$_SESSION['username'], "".$_SESSION['password'], "".$_SESSION['database']);
+		$mysqli = new mysqli("".$_SESSION['host'], $adminUserCredential[0], $adminUserCredential[1], "".$_SESSION['database']);
 		#Query effettuata al Database.
 		$table = $_SESSION['table'];
 		$query = "SELECT * FROM $table";
