@@ -509,20 +509,7 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
 
 ### Sitografia
 
-1.  URL del sito (se troppo lungo solo dominio, evt completo nel
-    diario),
-
-2.  Eventuale titolo della pagina (in italico),
-
-3.  Data di consultazione (GG-MM-AAAA).
-
-**Esempio:**
-
--   http://standards.ieee.org/guides/style/section7.html, *IEEE
-    Standards Style Manual*, 07-06-2008.
-
--  https://www.learnopencv.com/age-gender-classification-using-opencv-deep-learning-c-python/, *Gender & Age Classification using OpenCV*, 17.04.2020
-
+-  https://docs.opencv.org/master/d2/d58/tutorial_table_of_content_dnn.html, *OpenCV DNN*, 17-04-2020
 
 ## Allegati
 
