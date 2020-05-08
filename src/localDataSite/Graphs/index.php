@@ -178,7 +178,7 @@
         Chart.defaults.global.defaultFontFamily = 'Lato';
         Chart.defaults.global.defaultFontSize = 18;
         Chart.defaults.global.defaultFontColor = '#777';
-        if(type == "bar" || type == "hoizontalBar" || type == "line"){
+        if(type == "bar" || type == "horizontalBar" || type == "line"){
             window.bar = new Chart(myChart, {
                 type: type, // bar, horizontalBar, pie, line, doughnut, radar, polarArea
                 data:{
