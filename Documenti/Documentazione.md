@@ -180,21 +180,7 @@ tramite mockups.
 
 ### Design procedurale
 
-Descrive i concetti dettagliati dell’architettura/sviluppo utilizzando
-ad esempio:
-
--   Diagrammi di flusso e Nassi.
-
--   Tabelle.
-
--   Classi e metodi.
-
--   Tabelle di routing
-
--   Diritti di accesso a condivisioni …
-
-Questi documenti permetteranno di rappresentare i dettagli procedurali
-per la realizzazione del prodotto.
+![Schema struttura](../Screens/FaceRecDiagrammaFlusso.png)
 
 ## Implementazione
 
