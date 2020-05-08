@@ -10,8 +10,7 @@
 **Consegna:** 08.05.2020
 
 ## Descrizione
-In questo progetto si dovrà creare un prgoramma che permette di contare le persone che passano presso lo stend di Expo professioni.
-L’obiettivo principale è quello di riuscire a contare quante persone sono passate davanti a una webcam.
+L'obbiettivo del progetto è quello di creare un metodo per poter contare e avere un feedback semplice ed istantaneo. Tramite una semplice webcam ed il nostro progetto è possibile farlo in automatico. Grazie al riconoscimento facciale implementato è possibile rilevare precisamente il numero di persone. Tramite il sito locale scaricato in allegato è possibile visualizzare i dati in grafici belli ed intuitivi e tutto a costo 0.
 
 #### Mandato:
 Mandato: [QdC_SecondoSemestre-ScanSpect.pdf](Documenti/muggiasca_qdc_scanspect.pdf)
