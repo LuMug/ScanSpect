@@ -521,6 +521,8 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
   Migliorie o estensioni che possono essere sviluppate sul prodotto.
 
 ### Considerazioni personali
+ Alessandro: penso che sia stato un progetto molto interessante e che io abbia imparato molto da esso soprattutto a lavorare in team dato che era la prima volta che lavoravo a un progetto così lungo con cosi "tante" persone. Nonostante la distanza e il fatto di non poterci vedere penso che ci siamo gestiti abbastanza bene il tempo anche se siamo arrivati abbastanza tirati con il tempo. Ogni tanto avrei preferito che il team ascoltasse di più le mie idee ma é normale dato che era la prima volta che al'inizio non ci fosse troppo dialogo. Sono comunque molto soddisfatto del lavoro svolto e di come abbiamo lavorato.
+ 
   Cosa ho imparato in questo progetto? ecc
 
 ## Bibliografia
