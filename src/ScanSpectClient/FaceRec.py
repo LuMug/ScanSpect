@@ -170,14 +170,6 @@ def testConnection(host,user,password):
     except (mysql.connector.errors.InterfaceError,mysql.connector.errors.ProgrammingError):
         return False
 
-def isNumber(num):
-
-    if num.isdigit():
-        return True
-    else:
-        return False
-
-
 #-------------------------------- Menu Frame in Tkinter ---------------------------------------
 
 #/////////////////// Frame /////////////////
@@ -262,8 +254,7 @@ def buttonPressed():
         L4.config(fg="red")
         L4.place(x=30,y=350)  
 
-    elif not isNumber(v4):
-
+    elif not v4.isdigit():
         L4 = Label(top, text="Il Capture inserito non è valido, riprova.")
         L4.config(fg="red")
         L4.place(x=30,y=350)  
