@@ -2,7 +2,7 @@
 ## Progetto
 |Titolo             |Autori           |Responsabile               |Link    |
 |:------------------|:------------------|:--------------------------|:-------|
-|ScanSpect    |<b>Alessandro Aloise,</b> <b>André da Silva,</b>  <b>Nathan Lué </b> |Luca Muggiasca|non ancora|
+|ScanSpect    |<b>Alessandro Aloise,</b> <b>André da Silva,</b>  <b>Nathan Lué </b> |Luca Muggiasca| [sito informativo](www.http://samtinfo.ch/i17aloale/site)|
 
 ## Info
 **Inizio:** 24.01.2020
@@ -17,7 +17,7 @@ L’obiettivo principale è quello di riuscire a contare quante persone sono pa
 Mandato: [QdC_SecondoSemestre-ScanSpect.pdf](Documenti/muggiasca_qdc_scanspect.pdf)
 
 #### Struttura:
-- [Codice](Src/)
+- [Codice](src/)
 
 - [Documentazione](Documenti/Documentazione.md)
 
