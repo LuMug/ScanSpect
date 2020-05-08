@@ -1,13 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <?php 
 	session_start(); 
 	$route = include('./Configuration/config.php');
 ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo $route?>Style/templatemo_style.css" rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
     function clearText(field){
 
@@ -84,13 +84,13 @@
     
     	<div id="templatemo_banner_image">
         	<div id="templatemo_banner_image_wrapper">
-            	<img src="images/ScanSpectLogo.png" alt="image" />
+            	<img src="<?php echo $route?>/About/images/logo.png" alt="image" />
             </div>
         </div>
         
         <div id="templatemo_banner_content">
         	<div class="header_01">ScanSpect Data Manager</div>
-            <div class="button_01"><a href="#">Sito Informativo</a></div>
+            <div class="button_01"><a href="http://samtinfo.ch/i17aloale/site/">Sito Informativo</a></div>
             <br>
             <br>
             <?php
@@ -111,7 +111,7 @@
     
     	<div id="column_w530">
         	
-            <div class="header_02">Gestisci i tuoi dati ScanSpect da qui </div>
+            <div class="header_02" style="color: black;">Gestisci i tuoi dati ScanSpect da qui </div>
             
             <p class="em_text">Come utente:</p>
             
@@ -134,7 +134,7 @@
             
             <div class="column_w300_section_01">
             	<div class="news_image_wrapper">
-                	<img src="images/githubLogo.png" alt="image" />
+                	<img src="<?php echo $route?>images/githubLogo.png" alt="image" />
                 </div>
                 
                 <div class="news_content">
@@ -147,7 +147,7 @@
             
             <div class="column_w300_section_01 even_color">
             	<div class="news_image_wrapper">
-                	<img src="images/opencvLogo.png" alt="image" />
+                	<img src="<?php echo $route?>images/opencvLogo.png" alt="image" />
                 </div>
                 
                 <div class="news_content">
@@ -160,7 +160,7 @@
             
             <div class="column_w300_section_01">
             	<div class="news_image_wrapper">
-                	<img src="images/pythonLogo.png" alt="image" />
+                	<img src="<?php echo $route?>images/pythonLogo.png" alt="image" />
                 </div>
                 
                 <div class="news_content">
@@ -173,7 +173,7 @@
             </div>
              <div class="column_w300_section_01 even_color">
             	<div class="news_image_wrapper">
-                	<img src="images/xamppLogo.jpg" alt="image" />
+                	<img src="<?php echo $route?>images/xamppLogo.jpg" alt="image" />
                 </div>
                 
                 <div class="news_content">
