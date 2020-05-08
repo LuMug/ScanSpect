@@ -77,6 +77,13 @@
         <?php
             }
         ?>
+        <?php
+            if($_SESSION['admin']){
+        ?>
+            <li><a href="<?php echo $route?>Modify/">Modify</a></li>
+        <?php
+            }
+        ?>
         <li><a href="<?php echo $route?>About/">About</a></li>
     </ul>
     <div class="imgcontainer">

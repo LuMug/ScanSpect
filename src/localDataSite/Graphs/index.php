@@ -62,6 +62,14 @@
         <?php
             }
         ?>
+
+        <?php
+            if($_SESSION['admin']){
+        ?>
+            <li class="list"><a class="alink" href="<?php echo $route?>Modify/">Modify</a></li>
+        <?php
+            }
+        ?>
         <li class="list"><a class="alink" href="<?php echo $route?>About/">About</a></li>
         <?php 
             if(!$_SESSION['loggedin']){
@@ -72,6 +80,14 @@
         ?>
         <li id="login" class="list"><a class="alink" href="<?php echo $route?>User/"><?php if($_SESSION['admin'] == true){echo "Admin ";} echo $_SESSION['username'];?></a>
         <?php 
+            }
+        ?>
+
+        <?php 
+            if(!$_SESSION['loggedin']){
+        ?>
+        <li id="login" class="list"><a class="alink" href="<?php echo $route?>Register/">Register</a></li>
+        <?php
             }
         ?>
     </ul>

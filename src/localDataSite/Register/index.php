@@ -84,7 +84,14 @@
     <?php
         if($_SESSION['admin']){
     ?>
-        <li class="list"><a class="alink" href="<?php echo $route?>Modify/">Modify</a></li>
+    <li><a href="<?php echo $route?>Administrator/">Data</a></li>
+    <?php
+        }
+    ?>
+    <?php
+        if($_SESSION['admin']){
+    ?>
+        <li><a href="<?php echo $route?>Modify/">Modify</a></li>
     <?php
         }
     ?>
@@ -92,27 +99,20 @@
     <?php 
         if(!$_SESSION['loggedin']){
     ?>
-    <li id="login"><a href="<?php echo $route?>Login/">Login</a></li>
+    <li><a  href="<?php echo $route?>Login/">Login</a></li>
     <?php
         }else{
     ?>
-    <li id="login"><a href="<?php echo $route?>User/"><?php if($_SESSION['admin'] == true){echo "Admin ";} echo $_SESSION['username'];?></a>
+    <li><a  href="<?php echo $route?>User/"><?php if($_SESSION['admin'] == true){echo "Admin ";} echo $_SESSION['username'];?></a>
     <?php 
-        }
-    ?>
-    <?php 
-        if(!$_SESSION['loggedin']){
-    ?>
-    <li id="login" class="list"><a class="alink" href="<?php echo $route?>Register/">Register</a></li>
-    <?php
         }
     ?>
 </ul>
-<center><h2>Login</h2></center>
+<center><h2>Register</h2></center>
 
-<form action="<?php echo $route?>Login/checkLogin.php" method="post">
+<form action="<?php echo $route?>Register/registerUser.php" method="post">
   <div class="imgcontainer">
-    <img src="<?php echo $route?>/Login/img/adminLogin.png" alt="Avatar" class="avatar">
+    <img src="<?php echo $route?>Login/img/adminLogin.png" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">
@@ -122,7 +122,7 @@
     <label for="password"><b>Password</b></label><br>
     <input type="password" placeholder="Enter Password" name="password" required><br>
         
-    <button type="submit">Login</button>
+    <button type="submit">Register</button>
   </div>
 </form>
 

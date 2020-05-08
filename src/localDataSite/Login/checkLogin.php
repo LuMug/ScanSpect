@@ -1,6 +1,8 @@
 <?php 
 	session_start(); 
 	$route = include('./../Configuration/config.php');
+	$normalUserCredential = include('./../Configuration/normalUser.php');
+	$adminUserCredential = include('./../Configuration/adminUser.php');
     $username = $password = "";
 
 	function test_input($data) {
@@ -16,33 +18,63 @@
 	$database = "ScanSpect";
 	$table = "people";
 	$host = "localhost";
-	#Connessione al Database.
-	$mysqli = new mysqli($host, $username, $password, $database);
-	$_SESSION['loggedin'] = false;
-	if(!$mysqli->connect_errno){
-		$sql = "SHOW GRANTS FOR '$username'@'$host'";
-		if ($result = $mysqli->query($sql)) {
-			$count = 1;
+
+	if($username == $adminUserCredential[0] && $password == $adminUserCredential[1]){
+		#Connessione al Database. ADMIN
+		echo "Host: ".$host."<br>AdminUsername: ".$adminUserCredential[0]."<br>AdminPassword: ".$adminUserCredential[1]."<br>Database: ".$database;
+		$mysqli = new mysqli($host, $adminUserCredential[0], $adminUserCredential[1], $database);
+		$_SESSION['loggedin'] = false;
+		if(!$mysqli->connect_errno){
+			$_SESSION['loggedin'] = true;
+			$_SESSION['username'] = $username;
+			$_SESSION['password'] = $password;
+			$_SESSION['database'] = $database;
+			$_SESSION['table'] = $table;
+			$_SESSION['host'] = $host;
 			$_SESSION['admin'] = true;
-			while ($row = $result->fetch_assoc()) {
-				if($count == 1 && $row["Grants for $username@$host"] != 'GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, SHUTDOWN, PROCESS, FILE, REFERENCES, INDEX, ALTER, SHOW DATABASES, SUPER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REPLICATION SLAVE, REPLICATION CLIENT, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER, CREATE TABLESPACE, CREATE ROLE, DROP ROLE ON *.* TO `'.$username.'`@`'.$host.'` WITH GRANT OPTION'){
-					$_SESSION['admin'] = false;
-					break;
-				}elseif($count == 2 && $row["Grants for $username@$host"] != 'GRANT APPLICATION_PASSWORD_ADMIN,AUDIT_ADMIN,BACKUP_ADMIN,BINLOG_ADMIN,BINLOG_ENCRYPTION_ADMIN,CLONE_ADMIN,CONNECTION_ADMIN,ENCRYPTION_KEY_ADMIN,GROUP_REPLICATION_ADMIN,INNODB_REDO_LOG_ARCHIVE,PERSIST_RO_VARIABLES_ADMIN,REPLICATION_APPLIER,REPLICATION_SLAVE_ADMIN,RESOURCE_GROUP_ADMIN,RESOURCE_GROUP_USER,ROLE_ADMIN,SERVICE_CONNECTION_ADMIN,SESSION_VARIABLES_ADMIN,SET_USER_ID,SHOW_ROUTINE,SYSTEM_USER,SYSTEM_VARIABLES_ADMIN,TABLE_ENCRYPTION_ADMIN,XA_RECOVER_ADMIN ON *.* TO `'.$username.'`@`'.$host.'` WITH GRANT OPTION'){
-					$_SESSION['admin'] = false;
-					echo $row["Grants for $username@$host"];
-					break;
-				}
-				$count++;
-			}
+			header("location: ".$route);
+		}else{
+			//LOGIN ADMIN ERRATO
+			echo "Access denied";
 		}
-		$_SESSION['loggedin'] = true;
-		$_SESSION['username'] = $username;
-		$_SESSION['password'] = $password;
-		$_SESSION['database'] = $database;
-		$_SESSION['table'] = $table;
-		$_SESSION['host'] = $host;
-        header("location: ".$route);
+	}elseif($username != $adminUserCredential[0]){
+		#Connessione al Database. NORMAL
+		$mysqli = new mysqli($host, $normalUserCredential[0], $normalUserCredential[1], $database);
+		if(!$mysqli->connect_errno){
+			$sql = "SELECT * from `user` WHERE `username` = '$username'";
+			$result = $mysqli->query($sql);
+			if ($result->fetch_assoc() > 1) {
+				$sql = "SELECT password, admin from user WHERE username = '$username'";
+				if ($result = $mysqli->query($sql)) {
+					while ($row = $result->fetch_assoc()) {
+						if($password == $row["password"]){
+							$_SESSION['loggedin'] = true;
+							$_SESSION['username'] = $username;
+							$_SESSION['password'] = $password;
+							$_SESSION['database'] = $database;
+							$_SESSION['table'] = $table;
+							$_SESSION['host'] = $host;
+							$_SESSION['admin'] = false;
+							if($row["admin"]){
+								$_SESSION['admin'] = true;
+							}
+							header("location: ".$route);
+ 						}else{
+							//PASSWORD ERRATA
+							echo "Password errata";
+						}
+					}
+				}else{
+					echo "Errore di query";
+				}
+			}else{
+				//USER NON ESISTE
+				echo "Utente non esiste";
+			}
+		}else{
+			//LOGIN NORMAL ERRATO
+			echo "Login normal errato";
+		}
     }else{
 ?>
 <!DOCTYPE html>

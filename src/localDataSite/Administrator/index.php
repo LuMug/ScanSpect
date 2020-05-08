@@ -109,6 +109,14 @@
 		<?php 
 			}
 		?>
+
+		<?php 
+            if(!$_SESSION['loggedin']){
+        ?>
+        <li id="login"><a href="<?php echo $route?>Register/">Register</a></li>
+        <?php
+            }
+        ?>
 	</ul>
 	<h1><center><b> Database Output</b></h1></center>  <br> <br>
 	<?php	
