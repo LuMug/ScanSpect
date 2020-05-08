@@ -161,10 +161,16 @@ L'immagine mostra lo schema della struttura del progetto. Il progetto è compost
 Descrizione delle strutture di dati utilizzate dal programma in base
 agli attributi e le relazioni degli oggetti in uso.
 
-### Schema E-R, schema logico e descrizione.
+### Schema logico e descrizione.
 
-Se il diagramma E-R viene modificato, sulla doc dovrà apparire l’ultima
-versione, mentre le vecchie saranno sui diari.
+Nome database: <b>ScanSpect</b>
+
+people(<u>id</u>,date,hours,minutes,seconds)<br>
+Tabella in cui vengono salvate tutte le persone rilevate tramite id e a quale data, minuto e secondo.
+
+user(<u>username</u>,password,admin)<br>
+Tabella in cui vengono salvati gli utenti registrati nel sito locale con username come chiave, password e
+un flag ad indicare se l'utente è admin o no.
 
 ### Design delle interfacce
 
@@ -397,12 +403,6 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 
 ### Protocollo di test
 
-Definire in modo accurato tutti i test che devono essere realizzati per
-garantire l’adempimento delle richieste formulate nei requisiti. I test
-fungono da garanzia di qualità del prodotto. Ogni test deve essere
-ripetibile alle stesse condizioni.
-
-
 |Test Case      | TC-001                               |
 |---------------|--------------------------------------|
 |**Nome**       |Import a card, but not shown with the GUI |
@@ -449,10 +449,6 @@ ripetibile alle stesse condizioni.
 |**Prerequisiti**|Avere tutti i test precedenti funzionati  |
 |**Procedura**     | -Andare sul sito web scorrere fino in fondo -selezionare la versione per linux e premere scarica ora |
 |**Risultati attesi** |Che ci venga scaricato uno zip  |
-
-
-
-
 
 
 ### Risultati test
