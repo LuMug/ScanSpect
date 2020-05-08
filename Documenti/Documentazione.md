@@ -173,10 +173,27 @@ un flag ad indicare se l'utente è admin o no.
 
 ### Design delle interfacce
 
-Descrizione delle interfacce interne ed esterne del sistema e
-dell’interfaccia utente. La progettazione delle interfacce è basata
-sulle informazioni ricavate durante la fase di analisi e realizzata
-tramite mockups.
+![Schema struttura](../Screens/interfaccia.png)
+La prima Interfaccia che abbiamo definito é stata quella che vedeva l'utente "normale" vede.
+
+![Start applicazione ](../Screens/Demo_interfaccia.png)
+Questa progettazione di interfaccia rappresenta l'avvio del programma con i vari campi da inserire.
+
+![Home sito ](../Screens/home.png)
+Questa é la progettazione della home del sito per vedere i grafici
+
+![Login ](../Screens/login.png)
+
+Questa é la nostra progettazione del login per il sito dove visitare i grafici.
+
+![Register ](../Screens/register.png)
+
+Questa é la nostro progettazione per potersi registrare come utente sul nostro sito.
+
+
+![Data ](../Screens/data.png)
+
+Questa é la schermata dove gli admin possono dare i privilegi agli altri utenti.
 
 ### Design procedurale
 
@@ -471,7 +488,7 @@ Se si ha già un utente o si vuole accedere con uno dei due utenti preimpostati 
       }
     }
   }
-             
+
 ```
 
 <h5>About</h5>
@@ -532,7 +549,7 @@ labels:[<?php
                 echo $count[$i].",";
             }else{
                 echo $count[$i];
-        
+
             }
         }
       ?>],
@@ -591,7 +608,7 @@ function searchByValue() {
           tr[i].style.display = "none";
         }
       }
-      
+
     }       
   }
 }
@@ -603,7 +620,7 @@ La possibilità di modificare il tipo degli utenti avviene tramite il trigger di
 
 ```Php
 if($row["admin"] == 1){
-    $sql2 = "UPDATE user SET admin = FALSE WHERE username = '$usernameDb'"; 
+    $sql2 = "UPDATE user SET admin = FALSE WHERE username = '$usernameDb'";
     $adminDb = false;
 }else{
 
