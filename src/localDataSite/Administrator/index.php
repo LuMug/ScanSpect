@@ -97,6 +97,14 @@
 		<?php
 			}
 		?>
+
+		<?php
+			if($_SESSION['admin']){
+		?>
+			<li><a href="<?php echo $route?>Modify/">Modify</a></li>
+		<?php
+			}
+		?>
 		<li><a href="<?php echo $route?>About/">About</a></li>
 		<?php 
 			if(!$_SESSION['loggedin']){
