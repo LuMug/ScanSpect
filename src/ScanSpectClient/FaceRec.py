@@ -3,13 +3,17 @@ import cv2 as cv
 import math
 import argparse
 import mysql.connector
+from mysql.connector.locales.eng import client_error
 import os 
 import time
 import datetime
 from tkinter import *
 from PIL import Image, ImageTk
 
-
+#Permette di iniziare la detection dei volti.
+#@param host Host del database.
+#@param user user con cui connettersi.
+#@param passwd password dell'utente.
 def startFaceRecognition(host,user,passwd):
 
 
@@ -25,6 +29,8 @@ def startFaceRecognition(host,user,passwd):
     #------------------------------Resize del frame-------------------------------
     
     #esegue un resizing del frame in base alla percentuale passata.
+	#@param frame Frame da ridimensionare.
+	#@param percent Percentuale di ridimensionamento.
     def rescale_frame(frame, percent=75):
         width = int(frame.shape[1] * percent/ 100)
         height = int(frame.shape[0] * percent/ 100)
@@ -50,6 +56,10 @@ def startFaceRecognition(host,user,passwd):
             mydb.commit()
 
     #Permette l'aggiunta di dati al database (tempo di rivelamento + numero totale di persone)
+	#@param date Data corrente nel formato mm-dd-YY
+	#@param hours Ora attuale.
+	#@param minutes Minuti attuali.
+	#@param secs Secondi attuali.
     def addDataToDb(date,hours,minutes,secs):
 
         #Inserimento dati nel Database
@@ -62,9 +72,11 @@ def startFaceRecognition(host,user,passwd):
 
     #-----------------------------------------------------------------------------   
         
-     #------------------------------ Scansione volti ------------------------------    
+    #------------------------------ Scansione volti ------------------------------    
 
-    #
+    #Genera  i box/cornici attorno ad ogni volto trovato per frame.
+	#@Param frame Frame attuale.
+	#@Param net Network.
     def getFaceBox(net, frame, conf_threshold=0.7):
         frameOpencvDnn = frame.copy()
         frameHeight = frameOpencvDnn.shape[0]
@@ -86,32 +98,37 @@ def startFaceRecognition(host,user,passwd):
 
     faceProto = "opencv_face_detector.pbtxt"
     faceModel = "opencv_face_detector_uint8.pb"
-
     MODEL_MEAN_VALUES = (78.4263377603, 87.7689143744, 114.895847746)
 
     # Load network
     faceNet = cv.dnn.readNet(faceModel, faceProto)
 
+    #cattura dello schermo
     cap = cv.VideoCapture(0)
     padding = 20
     last_face_number = None
     count = 0
     createDatabase()
     while cv.waitKey(1) < 0:
-        # Read frame
-        #t = time.time()
+
+        #prende il frame attuale della camera.
         hasFrame, frame = cap.read()
+        
+        #ridimensione del frame del 100% con il metodo apposito.
         frame = rescale_frame(frame,percent=100)
 
         if not hasFrame:
             cv.waitKey()
             break
 
+        #prende il numero di box/cornici create. Se non viene trovata nessuna, continua.
         frameFace, bboxes = getFaceBox(faceNet, frame)
         if not bboxes:
             continue
 
         face_number = 0
+        
+        #print delle cornici su schermo.
         for bbox in bboxes:
             # print(bbox)
             face = frame[max(0,bbox[1]-padding):min(bbox[3]+padding,frame.shape[0]-1),max(0,bbox[0]-padding):min(bbox[2]+padding, frame.shape[1]-1)]
@@ -119,6 +136,7 @@ def startFaceRecognition(host,user,passwd):
             face_number+=1   
             cv.imshow("Face detect", frameFace)
         
+        #conteggio totale delle persone.
         if last_face_number is not None:
             if last_face_number < face_number:
                 count+=1
@@ -139,6 +157,9 @@ def startFaceRecognition(host,user,passwd):
 
 #verifica se i dati utente inseriti sono validi, per farlo utilizza un try & catch
 # che verifica se l'host o l'utente inserito esistano.
+#@param host Host da testare.
+#@param user User da testare.
+#@param password Password dell'utente da testare.
 def testConnection(host,user,password):
     
     try:
