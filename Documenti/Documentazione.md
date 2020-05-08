@@ -393,10 +393,238 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
         cursor.execute(sql,val)
         mydb.commit()
 ```
+<h4>Sito di management dei dati</h4>
 
+Il sito di management dei dati si occupa appunto di rendere la vita facile all'utente. Nel sito è possibile creare e registrare più utenti (utenti che non verranno creati come utenti del database, ma inseriti in una tabella), visualizzare i grafici dei dati ed i dati stessi con molti filtri e molte varianti. Il sito è completo di un accesso per account admin (configurabili tramite l'account fisico adminUser). Il compito prinicpale del sito è quello di dialogare con il database. Tutto ciò avviene in locale, senza la necessità di un collegamento ad internet.
+<h5>Struttura del sito</h5>
+Il sito è strutturato secondo rigidi criteri. Ogni pagina prinicpale è chiamata index, ed è presente in cartelle differenti ed autoesplicative. Questa è la root del sito:
+<ul>
+  <li>ScanSpect</li>
+  <ul>
+    <li>About</li>
+    <li>Administrator</li>
+    <li>Configuration</li>
+    <li>Graphs</li>
+    <li>images</li>
+    <li>Login</li>
+    <li>Modify</li>
+    <li>Register</li>
+    <li>Style</li>
+    <li>User</li>
+  </ul>
+</ul>
+<h5>Configurazione</h5>
+Per rendere il sito più compatibile possibile è presente una cartella Configuration che presenta vari file di configurazione (come la route del percorso del webserver e i dati di accesso per i due utenti del database ScanSpect).
+<br>
+Nel file di configurazione per gli utenti è necessario specificare come primo argomento il nome utente e come secondo la password. Questi dati saranno utilizzati per tutto il sito.
 
+```Php
+  <?php
+    //First argument username, second argument password. You must to have the access to database ScanSpect and to create table.
+    return ["adminUser", "!Ciao123"];
+  ?>
+```
+<h5>Home</h5>
+Nella home, l'interfaccia principale del sito, vi è la possibilità di accedere, registrarsi o visualizzare l'about.
+<h5>Registrazione</h5>
+Schiacciando sul pulsante "Register", vi è la possibilità di registrare un utente. Questo utente non verrà registrato come utente del database, ma verrà aggiunto alla tabella 'user' presente nel database ScanSpect.
+<br>
+Questa sezione è composta da una pagina che presenta un form, che ha l'action sul file registerUser.php. La pagina che contiene il form manda i dati (username e password) dell'utente da registrare alla pagina registerUser. Non è necessario essere amministratori per registrare degli utenti.
+<br>
+La connessione al database avviene attraverso l'utente normalUser. Dopo aver inserito l'utente creato nella tabella vengono istanziate le variabili di sessione. Se tutto va  a buon fine l'utente viene reindirizzato (loggato nell'account creato) nella home
 
+```Php
+#Connessione al Database.
+  $mysqli = new mysqli($host, $normalUsercredential[0], $normalUsercredential[1], $database);
+  $_SESSION['loggedin'] = false;
+	if(!$mysqli->connect_errno){
+        $sql = "INSERT INTO user(username,password, admin) VALUES('$username','$password',null)";
+        if ($result = $mysqli->query($sql)) {
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $password;
+            $_SESSION['database'] = $database;
+            $_SESSION['table'] = $table;
+            $_SESSION['host'] = $host;
+            $_SESSION['admin'] = false;
+            header("location: ".$route);
+        }else{
+            echo "Error";
+        }
+    }
+```
+<h5>Login</h5>
+Se si ha già un utente o si vuole accedere con uno dei due utenti preimpostati è possibile farlo schiacciando sul bottone di login. Come nell'area di registrazione vi è un form con un action che manda alla pagina checkLogin.php. Questa pagina controlla dapprima se l'utente è l'adminUser. In questo caso effettua il login e setta le variabili di sessione in modo adeguato (accesso di admin). Se l'username che si inserisce non è quello dell'adminUser controlla che sia presente all'interno della tabella user del database. Se trova una corrispondeza controlla la password e se è corretta fa accedere e reindirizza l'utente alla home. In caso contrario mostra un messaggio di errore (non presente nel codice sotto per ragioni di spazio, ma presente nel codice originale).
 
+```Php
+  if($username != $adminUserCredential[0]){
+		#Connessione al Database. NORMAL
+		$mysqli = new mysqli($host, $normalUserCredential[0], $normalUserCredential[1], $database);
+		if(!$mysqli->connect_errno){
+			$sql = "SELECT * from `user` WHERE `username` = '$username'";
+			$result = $mysqli->query($sql);
+			if ($result->fetch_assoc() > 1) {
+				$sql = "SELECT password, admin from user WHERE username = '$username'";
+				if ($result = $mysqli->query($sql)) {
+					while ($row = $result->fetch_assoc()) {
+						if($password == $row["password"]){
+							$_SESSION['loggedin'] = true;
+							$_SESSION['username'] = $username;
+							$_SESSION['password'] = $password;
+							$_SESSION['database'] = $database;
+							$_SESSION['table'] = $table;
+							$_SESSION['host'] = $host;
+							$_SESSION['admin'] = false;
+							if($row["admin"]){
+								$_SESSION['admin'] = true;
+							}
+							header("location: ".$route);
+            }
+          }
+        }
+      }
+    }
+  }
+             
+```
+
+<h5>About</h5>
+È la pagina che mostra le informazioni sul nostro team. Al suo interno ci sono i nostri contatti e le nostre informazioni. La pagina è stata realizzata utilizzando un template.
+
+<h5>User</h5>
+Mostra le caratteristiche dell'utente loggato (username, tipo [admin o no], accesso al database, ecc...).
+
+<h5>Graphs</h5>
+Nella pagina Graphs è possibile visualizzare i dati salvati nel database ScanSpect sottoforma di bei grafici. Vi è la possbilità di scegliere tra molte varianti di grafici e acluni tipi di raggruppamenti (ad esempio per ora, per data, per minuto, ecc...). Per creare la pagina sono state utilizzate due librerie: Chart.js per la creazione di grafici ed un Bootstrap per l'abbellimento degli stessi.
+<br>
+ La creazione del grafico avviene per mezzo di una definizione in JSON. Per specificare i labels e i dati da inserire sugli assi è stato necessario implementare php all'interno della definizione del JSON.
+<br>
+il codice sotto mostra come i dati dei label vengono salvati (dopo una query) nella variabile date, mentre il conteggio dei dati viene salvato nella variabile count. Se sono presenti piu informazioni (ad esempio la data, l'ora e i minuti) il codice li aggiunge tutti su un label.
+
+ ```Php
+labels:[<?php
+            for($i = 0 ; $i < sizeof($date) ; $i++){
+                $text = "";
+                if($i != sizeof($date)-1){
+                    $text.= "'".$date[$i];
+                    if($hours){
+                        $text.= " ".$hours[$i];
+                        if($minutes){
+                            $text.= ":".$minutes[$i];
+                            if($seconds){
+                                $text.= ":".$seconds[$i];
+                            }
+                        }else{
+                            $text .= ":00";
+                        }
+                    }
+                    $text.= "',";
+                }else{
+                    $text.= "'".$date[$i];
+                    if($hours){
+                        $text.= " ".$hours[$i];
+                        if($minutes){
+                            $text.= ":".$minutes[$i];
+                            if($seconds){
+                                $text.= ":".$seconds[$i];
+                            }
+                        }else{
+                            $text .= ":00";
+                        }
+                    }
+                    $text.= "'";
+                }
+                echo $text;
+            }
+        ?>],
+      datasets:[{
+      label:'Persone',
+      data:[
+        <?php
+        for($i = 0 ; $i < sizeof($count) ; $i++){
+            if($i != sizeof($count)-1){
+                echo $count[$i].",";
+            }else{
+                echo $count[$i];
+        
+            }
+        }
+      ?>],
+ ```
+Tramite la funzione returnQuery viene calcolata e ritornata la query da effettuare in base alla colonna e alla tabella che vengono inseriti come parametri.
+
+```Php
+function returnQuery($col, $table){
+    if($col == "date"){
+        $query = "SELECT `date`, count(`date`) as count from $table GROUP BY `date` ORDER BY `date`";
+    }elseif($col == "hours"){
+        $query = "SELECT `date`, $col, count(`date`) as count from $table GROUP BY `date`,$col ORDER BY `date`";
+    }elseif($col == "minutes"){
+        $query = "SELECT `date`, `hours`, $col, count(`date`) as count from $table GROUP BY `date`,`hours`, $col ORDER BY `date`";
+    }else{
+        $query = "SELECT `date`, `hours`, `minutes`, $col, count(`date`) as count from $table GROUP BY `date`,`hours`,`minutes`,$col ORDER BY `date`";
+    }
+    return $query;
+}
+```
+Il grafico viene scritto in javascript e viene creato richiamando la funzione createGraph che ha come parametro il tipo di grafico, uno tra bar, horizontalBar, pie, line, doughnut, radar, polarArea.
+
+```JavaScript
+function createGraph(type) {
+  ...
+}
+```
+<h5>Administrator</h5>
+Contiene la pagina che solo se l'utente è amministratore può vedere. Al suo interno è possibile visualizzare tutte i dati presenti nel database (ovviamente non gli utenti). Permette inoltre di raggruppare e filtrare i dati tramite una barra di ricerca.
+<br>
+La funzione searchByValue permette di cercare all'interno della tabella nella quale sono presenti i dati ricavati nel database, dati in base al valore (inserito nella barra di ricerca). Inoltre tramite il checkbox (id -> searchContains) è possibile definire se la stringa che si sta cercando è contenuta nei valori della colonna della tabella oppure è quella stringa.
+
+```JavaScript
+function searchByValue() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("inputSearchValue");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("dataTable");
+  tr = table.getElementsByTagName("tr");
+  selectedSearch = document.getElementById("searchBy").value;
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[selectedSearch];
+    if (td) {
+      if(document.querySelector('#searchContains').checked){
+        txtValue =  td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }else{
+        txtValue =  td.textContent || td.innerText;
+        if (txtValue == input.value || input.value == "") {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+      
+    }       
+  }
+}
+```
+<h5>Modify</h5>
+Questa pagina è accessibile solo dall'amministratore e permette di modificare i permessi degli utenti salvati nella tabella user. Inizialmete per modificare i permessi è necessario accedere con l'utente adminUser.
+<br>
+La possibilità di modificare il tipo degli utenti avviene tramite il trigger di un tag select. Se l'utente viene messo come admin, nella tabella user la colonna admin sarà impostata a 1, a 0 viceversa.
+
+```Php
+if($row["admin"] == 1){
+    $sql2 = "UPDATE user SET admin = FALSE WHERE username = '$usernameDb'"; 
+    $adminDb = false;
+}else{
+
+    $sql2 = "UPDATE user SET admin = TRUE WHERE username = '$usernameDb'";
+    $adminDb = true;
+}
+```
 
 ## Test
 
