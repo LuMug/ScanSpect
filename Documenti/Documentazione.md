@@ -418,9 +418,18 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 |**Nome**       | Il conteggio non aumenta con altre parti del corpo |
 |**Riferimento**|REQ-08                               |
 |**Descrizione**| Avviando l'applicazione, e muovendosi all'interno della visual della webcam, non vengono prese in considerazioni altre parti del corpo che non siano il volto. |
-|**Prerequisiti**| - |
+|**Prerequisiti**| REQ-07 |
 |**Procedura**     | - Avviare il software. <br> - inserire i dati di accesso.  <br>  - Muoversi all'interno della webcam con altre parti del corpo visibili oltre al volto (es. busto). |
 |**Risultati attesi** | Muovendosi, il conteggio rimane sempre lo stesso. |
+
+|Test Case      | TC-003                               |
+|---------------|--------------------------------------|
+|**Nome**       | Il sistema registra l'orario di visita di ogni persona rilevata|
+|**Riferimento**|REQ-03                              |
+|**Descrizione**| Quando una persona viene rilevata, viene registrato l'orario in cui è stata rilevata. |
+|**Prerequisiti**| REQ-07, REQ-08, REQ-09 |
+|**Procedura**     | - Avviare il software <br> - inserire i dati di accesso  <br>  - Rilevare almeno 1 volto di persona  <br> - Accedere alla pagina locale <br> - Eseguire l'acesso alla pagina <br> - Selzionare l'opzione Graphs <br> - Visualizzare i grafici <br> oppure: <br> - Loggarsi come administratore alla pagina <br> - Selezionare l'opzione Data <br> - Analizzare la tabella   |
+|**Risultati attesi** | Osservando i grafici o la tabella, deve apparire la data con l'ora, minuti e secondi del momento in cui la persona è stata rilevata. |
 
 
 |Test Case      | TC-0015                              |
@@ -429,8 +438,8 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 |**Riferimento**|REQ-05                             |
 |**Descrizione**|Possibilità di scaricare l'applicativo e poterlo usare |
 |**Prerequisiti**|Avere tutti i test precedenti funzionati  |
-|**Procedura**     | -Andare sul sito web -scorrere fino in fondo selezionare la versione per windows e premere scarica ora |
-|**Risultati attesi** |Che ci venga scaricato uno zip con all'interno un eseguibile  |
+|**Procedura**     | -Andare sul sito web <br> -scorrere fino in fondo selezionare la versione per windows e premere scarica ora |
+|**Risultati attesi** |Viene scaricato uno zip con all'interno un eseguibile  |
 
 |Test Case      | TC-0016                               |
 |---------------|--------------------------------------|
@@ -439,7 +448,7 @@ l'addDataToDb utilizza il cursor definito all'inizio del metodo startFaceRecogni
 |**Descrizione**|Possibilità di scaricare l'applicativo e poterlo usare |
 |**Prerequisiti**|Avere tutti i test precedenti funzionati  |
 |**Procedura**     | -Andare sul sito web scorrere fino in fondo -selezionare la versione per linux e premere scarica ora |
-|**Risultati attesi** |Che ci venga scaricato uno zip  |
+|**Risultati attesi** |Viene scaricato uno zip  |
 
 
 ### Risultati test
