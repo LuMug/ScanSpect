@@ -68,6 +68,10 @@
 		li a:hover {
 			background-color: #4CAF50;
 		}
+
+        #login {
+            float: right;
+        }
     </style>
 
 </head>
@@ -99,7 +103,7 @@
     <?php 
         if(!$_SESSION['loggedin']){
     ?>
-    <li><a  href="<?php echo $route?>Login/">Login</a></li>
+    <li id="login"><a  href="<?php echo $route?>Login/">Login</a></li>
     <?php
         }else{
     ?>
