@@ -24,4 +24,4 @@ Mandato: [QdC_SecondoSemestre-ScanSpect.pdf](Documenti/muggiasca_qdc_scanspect.p
 
 - [Diari di lavoro](Diari/)
 
--  [Sito informativo](http://samtinfo.ch/i17aloale/site)
+-  [Sito informativo](http://www.samtinfo.ch/i17aloale/scanSpect/)
